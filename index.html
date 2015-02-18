@@ -1,4 +1,52 @@
-﻿<div id="p0" class="kjkpage">
+﻿<head>
+<style>
+
+.kjkpage {
+	display: none;
+}
+
+p {
+	text-align: justify;
+}
+
+table {
+	width: 100%;
+}
+
+h1 {
+	text-align: center;
+}
+
+#concont {
+	overflow: scroll;
+	width: 400px;
+	height: 600px;
+	padding: 5px
+}
+</style>
+<script>
+var con
+var actPage = -1
+
+function addPage(a){
+	actPage += a
+	pageid = "p" + actPage;
+	con.innerHTML = document.getElementById(pageid).innerHTML
+}
+
+function startApp(){
+	con = document.getElementById("concont")
+	addPage(1)
+}
+</script>
+</head>
+<body onLoad="startApp()">
+
+<button onClick="addPage(-1)">prev</button><button onClick="addPage(1)">next</button>
+<div id="concont"></div>
+
+
+<div id="p0" class="kjkpage">
 <h1>Videóhírek, 2022. Július 21.</h1>
 <p>
 Senki sem számított a katasztrófára. A harmadik világháborút sikerült elkerülniük a keleti és nyugati nagyhatalmaknak, 
@@ -128,7 +176,7 @@ sivatagon keresztül. Amikor az Interceptort már nem lehet az útról
 látni, a lány szól, hogy állj meg, és várjatok, míg besötétedik. -
 Frissnek kell lennünk az éjszaka - mondja. - Hoztam valamit ami ébren
 tart majd minket. - S ezzel boldogan a zsebébe nyúl. Tedd próbára
-szerencséd! Ha szerencséd van, lapozz a 319-re. Ha nincs, lapozz a
+szerencséd! Ha szerencséd van, lapozz a <b>319</b>-re. Ha nincs, lapozz a
 <b>136</b>-ra.
 </p>
 </div>
@@ -137,7 +185,7 @@ szerencséd! Ha szerencséd van, lapozz a 319-re. Ha nincs, lapozz a
 <h1>8.</h1>
 <p>
 Úgy teszel, mintha balról akarnál elmenni a Ford mellett, de hirtelen
-jobbra kapod a kormányt, és elzúgsz mellette. Lapozz a <p>340</p>-re.
+jobbra kapod a kormányt, és elzúgsz mellette. Lapozz a <b>340</b>-re.
 </p>
 </div>
 
@@ -415,7 +463,7 @@ Az egyik eltévedt golyó vállon talál. Dobj egy kockával, és az eredményt
 vond le életerő pontjaidból. Elgondolkodsz, vajon meddig fog
 kitartani a gyógyszerkészleted, ha vállalkozásod továbbra is ilyen
 veszélyes lesz. Amikor végre ellátod magad, visszabicegsz az
-Interceptorhoz, és keletnek tépsz. Lapozz a 22-re.
+Interceptorhoz, és keletnek tépsz. Lapozz a <b>22</b>-re.
 </p>
 <p align="center"><img src="imgs/carfight.jpg"/></p>
 </div>
@@ -1066,7 +1114,7 @@ továbbmész kelet felé? Lapozz a <b>45</b>-re.
 <p>
 Motorod
 jár, és úgy hallod, nem esett baja. Ha meg akarsz állni, hogy elbánj
-a támadóddal, lapozz a 281-re. Ha inkább tovább mész délnek, lapozz a
+a támadóddal, lapozz a <b>281</b>-re. Ha inkább tovább mész délnek, lapozz a
 <b>150</b>-re.
 </p>
 </div>
@@ -1287,7 +1335,7 @@ Interceptorral, ujjaid a géppuska ravaszára kulcsolódnak.
 </table>
 <p>
 Ha
-győzöl, lapozz a <p>249</p>-re.
+győzöl, lapozz a <b>249</b>-re.
 </p>
 </div>
 
@@ -1326,7 +1374,7 @@ a robbanást, lapozz a <b>294</b>-re.
 <p>
 Megállsz, és egy teli kanna tartalmát a kocsiba öntőd. Szemügyre veszed az
 Interceptort, elég siralmasan néz ki, és kétled, hogy kibírja az
-utat. Ha neki állsz egy kicsit helyre pofozni, lapozz a 21-re. Ha
+utat. Ha neki állsz egy kicsit helyre pofozni, lapozz a <b>21</b>-re. Ha
 inkább tovább mész, lapozz a <b>221</b>-re.
 </p>
 </div>
@@ -1498,7 +1546,7 @@ találsz, s rögtön berakod az Interceptorba. Ha eddig nem tetted meg,
 átkutathatod a legközelebbi házat (lapozz a 252-re). Ha inkább
 továbbhajtasz délnek, lapozz a <b>353</b>-ra.
 </p>
-<p align="center"><img src="imgs/hatrod.jpg"/></p>
+<p align="center"><img src="imgs/hotrod.jpg"/></p>
 </div>
 
 <div id="p113" class="kjkpage">
@@ -1561,7 +1609,7 @@ A golyó a válladon talál. Dobj egy kockával, és vond le az eredményt
 <p>
 A Tűzharc szabályai szerint harcolod végig a küzdelmet, de a harc
 időtartamára vonj le 2 pontot Ügyességedből sebesülésed miatt. Ha
-győzöl, lapozz a 131-re, de vonj le Ügyességedből mindig 1 pontot, ha
+győzöl, lapozz a <b>131</b>-re, de vonj le Ügyességedből mindig 1 pontot, ha
 egynél többször eltaláltak.
 </p>
 </div>
@@ -1578,7 +1626,7 @@ felé indulsz, San Anglo irányába. Lapozz a <b>189</b>-re.
 <h1>118.</h1>
 <p>
 A kocsi nyeli a kilométereket, s benzinórád egyszer csak üreset mutat.
-Ha van teli kannád, lapozz a 99-re. Ha nincs tartalék üzemanyagod,
+Ha van teli kannád, lapozz a <b>99</b>-re. Ha nincs tartalék üzemanyagod,
 lapozz a <b>364</b>-re.
 </p>
 </div>
@@ -1874,7 +1922,7 @@ Fegyverrel a kézben óvatosan kiszállsz, mire a férfi hirtelen lerohan
 az útról, és az árokba veti magát. Egyszerre csak valami átzúg a
 levegőben fölötted. Egy kézigránát az. Vakító villanást látsz, és
 abban a pillanatban fülsiketítő robbanás ver le a lábadról. Tedd
-próbára szerencséd! Ha szerencséd van, lapozz a 299-re. Ha nincs,
+próbára szerencséd! Ha szerencséd van, lapozz a <b>299</b>-re. Ha nincs,
 lapozz a <b>25</b>-re.
 </p>
 </div>
@@ -1934,8 +1982,8 @@ páncélozott benzinszállító felé rohan, amelyet neked készítettek elő
 a visszaútra. Rálősz, de elvéted, s már nyitja is a kabin ajtaját.
 Nincs más választásod, mint átrohanni a kereszttűzön, hogy
 megállítsd, különben elhajt az üzemanyaggal. Tedd próbára szerencséd!
-Ha szerencséd van, lapozz a 235-re. Ha nincs szerencséd, lapozz a
-279-re.
+Ha szerencséd van, lapozz a <b>235</b>-re. Ha nincs szerencséd, lapozz a
+<b>279</b>-re.
 </p>
 </div>
 
@@ -2046,7 +2094,7 @@ Igen, mintha ezt mondtad volna az előbb is, csak hát soha nem halottam
 róluk - mondja a tetovált. - Remélem, nem mindegyikőtök versenyez
 ilyen jól. Gondolom még találkozunk. - S ezzel legnagyobb
 megkönnyebbülésedre otthagy, és továbbhajtasz a földúton a főút felé.
-Ott jobbra fordulsz, délnek. Lapozz a 207-re.
+Ott jobbra fordulsz, délnek. Lapozz a <b>207</b>-re.
 </p>
 </div>
 
@@ -2056,8 +2104,8 @@ Ott jobbra fordulsz, délnek. Lapozz a 207-re.
 A földút rázós és hepehupás, és rájössz, hogy a por kilométerekről
 elárulja, hogy közeledsz. De eldöntötted magadban, hogy eléred
 Sziklavárost. Hirtelen vakító fényt pillantasz meg egy szikla
-tetején. Tedd próbára szerencséd! Ha szerencséd van, lapozz a 222-re.
-Ha nincs, lapozz a 315-re.
+tetején. Tedd próbára szerencséd! Ha szerencséd van, lapozz a <b>222</b>-re.
+Ha nincs, lapozz a <b>315</b>-re.
 </p>
 </div>
 
@@ -2105,7 +2153,7 @@ talajhoz, lapozz a <b>367</b>-re.
 Megrázod a fejed, s keményen a vezetésre összpontosítasz. Néhányszor csaknem
 elalszol a kormánykeréknél az éjszaka során, de ahogy a nap első
 sugarai bearanyozzák a láthatárt, fáradtságod mintha elfújták volna.
-Megújult lelkesedéssel mész tovább San Anglo felé. Lapozz a 128-ra.
+Megújult lelkesedéssel mész tovább San Anglo felé. Lapozz a <b>128</b>-ra.
 </p>
 </div>
 
@@ -2392,7 +2440,7 @@ s el kell döntened, melyikükkel harcolsz előbb. A másik ellen a
 szokásos módon veted be a Tűzerődet, de nem sebesíted meg akkor sem,
 ha a te Támadóerőd a nagyobb. Vedd úgy, hogy golyója nem talált.
 Természetesen ha az ő Támadóereje nagyobb, a szokásos módon
-megsebesít. Ha győzöl, lapozz a <p>69</p>-re, de vonj le 1 pontot végleg
+megsebesít. Ha győzöl, lapozz a <b>69</b>-re, de vonj le 1 pontot végleg
 Ügyességedből, ha egynél többször meglőttek a harcban.
 </p>
 </div>
@@ -2472,7 +2520,7 @@ Idegesítő tehetetlenül ülni a fülkében. Csend van, aztán lépéseket hall
 vontató tetején. Az útonálló hátulról akar megtámadni. Kinyitod a
 vezetőfülke ajtaját, és felmászol a fémlétrán. Amint feltűnik a
 fejed, az útonálló rád lő nyílpuskájával. Tedd próbára szerencséd! Ha
-szerencséd van, lapozz a 345-re. Ha nincs, lapozz a 30-ra.
+szerencséd van, lapozz a <b>345</b>-re. Ha nincs, lapozz a <b>30</b>-ra.
 </p>
 </div>
 
@@ -2513,7 +2561,7 @@ alatti tokból kis revolvert ránt elő, készen a tűzharcra.
 <p>
 A Tűzharc szabályai szerint játszd le a küzdelmet, de adj 1 pontot
 Ügyességedhez, mert fedezékben vagy a kocsi ajtaja mögött. Ha győzöl,
-lapozz a 64-re, de vonjál le Ügyességedből végleg 1 pontot, ha egynél
+lapozz a <b>64</b>-re, de vonjál le Ügyességedből végleg 1 pontot, ha egynél
 többször eltaláltak a tűzharcban.
 </p>
 </div>
@@ -2539,7 +2587,7 @@ kockával, és a számot vond le az életerődből. Az ajtó lecsüng a
 pántról, s látod, hogy a mentőautó üres. Tulajdonosa nyilván úton
 van, hogy lássa, kit kapott el. Túl gyengének érzed magad, hogy elérd
 az Interceptort, és fedezékbe kúszol. Ha a bozótban akarsz
-elrejtőzni, lapozz a 182-re. Ha a mentőautó alá, lapozz a <b>356</b>-ra.
+elrejtőzni, lapozz a <b>182</b>-re. Ha a mentőautó alá, lapozz a <b>356</b>-ra.
 </p>
 </div>
 
@@ -2601,7 +2649,7 @@ Sikerül elkerülnöd a frontális ütközést, de a furgon oldalának ütközö
 Hegyes öklelőrúd áll ki belőle, amely áthatol az Interceptor
 páncélján, és a két kocsi összeakad. A furgon hangosbeszélője azonnal
 felugat. Az Állat azt üzeni, hogy állj ki vele puszta kézzel, ha nem
-akarod, hogy tűzharc legyen. Ha kiállsz az Állattal, lapozz a 269-re.
+akarod, hogy tűzharc legyen. Ha kiállsz az Állattal, lapozz a <b>269</b>-re.
 Ha a tűzharcot választod, lapozz a <b>102</b>-re.
 </p>
 </div>
@@ -2668,7 +2716,7 @@ tagja, amely megtámadta városodat. Egy Sziklaváros nevű helység
 kereszttel van megjelölve a térképen. Nincs messze onnan, ahol vagy,
 dél felé. Nem kétséges előtted, hogy ez a motorosok lakóhelye. Úgy
 döntesz, hogy kicseréled az Interceptor kerekét, mielőtt a motorosok
-berátai megérkeznének. Lapozz a 346-ra.
+berátai megérkeznének. Lapozz a <b>346</b>-ra.
 </p>
 </div>
 
@@ -2720,7 +2768,7 @@ Interceptornak. Megbuktál a küldetéseden.
 Dobj egy kockával. Előbb a Jaguár E-típusnak, majd az Interceptornak, de
 saját kocsidnak adjál egy plusz pontot, mert a motort
 feltuningoltattad. Addig csináld ezt, míg valamelyik kocsi el nem éri
-a <b>24</b>-et, és ezzel a célt. Ha győzöl, lapozz az 54-re. Ha elveszíted a
+a 24-et, és ezzel a célt. Ha győzöl, lapozz az <b>54</b>-re. Ha elveszíted a
 versenyt, lapozz a <b>322</b>-re.
 </p>
 </div>
@@ -2735,7 +2783,7 @@ porlasztóba. Épp kitisztítod, amikor egy motor mély dörmögését hallod
 a magasból. Felnézel, és egy helikoptert látsz a fejed fölött. Sárga fluoreszkáló
 festékkel van bemázolva, s a pilóta mellett egy lövész ül. Hangszórón
 keresztül utasítanak, hogy rakd ki az Interceptor rakétáit az útra.
-Ha engedelmeskedsz, lapozz a 11-re. Ha inkább beugrasz az
+Ha engedelmeskedsz, lapozz a <b>11</b>-re. Ha inkább beugrasz az
 Interceptorba és tüzet nyitsz a helikopterre, lapozz a <b>83</b>-ra.
 </p>
 <p align="center"><img src="imgs/gunfight.jpg"/></p>
@@ -2786,8 +2834,8 @@ Nyugat felé haladsz, dél felé vezető leágazást keresve. Amikor odaérsz,
 látod, hogy az elágazás mögött elhagyott kocsik torlódtak össze véget
 nem érő sorba, kilométereken keresztül eltorlaszolva az utat. Ha
 akarnád sem mehetnél tovább nyugat felé. Ha rögtön délnek fordulsz,
-lapozz a 149-re. Ha inkább megállsz, és előbb benézel néhány
-elhagyott kocsiba, lapozz a 10-re.
+lapozz a <b>149</b>-re. Ha inkább megállsz, és előbb benézel néhány
+elhagyott kocsiba, lapozz a <b>10</b>-re.
 </p>
 <p align="center"><img src="imgs/hotrod.jpg"/></p>
 </div>
@@ -2799,7 +2847,7 @@ elhagyott kocsiba, lapozz a 10-re.
 <h1>216.</h1>
 <p>
 Az út egy T alakú elágazásba torkollik, és itt végre balra fordulhatsz
-dél felé. Lapozz a 243-ra.
+dél felé. Lapozz a <b>243</b>-ra.
 </p>
 <p align="center"><img src="imgs/gunfight.jpg"/></p>
 </div>
@@ -2811,8 +2859,8 @@ A férfit nem zavarja, hogy felé futsz. Tovább énekel valami olyasmit,
 hogy meg kell tisztítani a földet a dekadens múlt összes
 maradványától. Épp akkor érsz oda hozzá, amikor a meggyújtott gyufát
 az Interceptorra akarja dobni. Dobj két kockával. Ha az összeg akkora
-vagy kisebb, mint Ügyességed, lapozz a 285-re. Ha nagyobb
-Ügyességednél, lapozz az 50-re.
+vagy kisebb, mint Ügyességed, lapozz a <b>285</b>-re. Ha nagyobb
+Ügyességednél, lapozz az <b>50</b>-re.
 </p>
 <p align="center"><img src="imgs/carfight.jpg"/></p>
 </div>
@@ -3130,7 +3178,7 @@ elszenvedsz. 1 Életerő pontot veszítesz. A patkányember eszeveszett
 nevetéssel szalad fel a lépcsőn. Úgy döntesz, hogy a motel nem a
 legmegfelelőbb hely arra, hogy ott éjszakázz, s visszamész a
 benzinszállítóhoz. Továbbhaladsz néhány kilométert a következő
-parkolóhelyig, ahol a kabinban alszol. Lapozz a 218-ra.
+parkolóhelyig, ahol a kabinban alszol. Lapozz a <b>218</b>-ra.
 </p>
 <p align="center"><img src="imgs/hotrod.jpg"/></p>
 </div>
@@ -3259,8 +3307,8 @@ ajtót választod, lapozz a <b>72</b>-re.
 Kinyitod a kormányülés felőli ajtót, és benyúlsz a kesztyűtartóba. Hirtelen
 csörgő hangot hallasz, és ijedten látod, hogy egy csörgőkígyó fészkét
 zavartad meg. A kígyó azonnal támad, és halálos mérgével beléd mar.
-Ha még van egy csomag gyógyszered a mentőládádban, lapozz a 2-re. Ha
-már mindent elhasználtál, lapozz a 357-re.
+Ha még van egy csomag gyógyszered a mentőládádban, lapozz a <b>2</b>-re. Ha
+már mindent elhasználtál, lapozz a <b>357</b>-re.
 </p>
 <p align="center"><img src="imgs/hotrod.jpg"/></p>
 </div>
@@ -3473,7 +3521,7 @@ lépsz aztán hirtelen kiengeded a kuplungot, és
 a híd felé száguldasz. 120 kilométeres sebességgel érkezel a hídra,
 és mire első kerekeid a levegőbe érnek, már 130-cal mész. Dobj két
 kockával. Ha az összeg akkora vagy kisebb, mint Ügyességed, lapozz a
-70-re. Ha az összeg nagyobb Ügyességednél, lapozz a <b>231</b>-re.
+<b>70</b>-re. Ha az összeg nagyobb Ügyességednél, lapozz a <b>231</b>-re.
 </p>
 </div>
 
@@ -3610,7 +3658,7 @@ töltésen. Amikor felérsz, a híd felé nézve meglátod támadódat. Épp
 valami zsákot vesz ki egy elhagyott lakókocsiból, majd motorra
 pattanva elszáguld. Ha be akarsz nézni a lakókocsiba, lapozz az
 58-ra. Ha inkább visszasietsz az Interceptorhoz, hogy folytasd utad,
-lapozz a 150-re.
+lapozz a <b>150</b>-re.
 </p>
 </div>
 
@@ -3841,7 +3889,7 @@ inkább azonnal továbbmész, lapozz a <b>254</b>-re.
 <p>
 Úgy nyolcvan kilométeren keresztül a sivatag szélén haladsz, majd az út
 egy T alakú elágazáshoz ér. Úgy határozol, hogy itt balra fordulsz, s
-a sivatagon át mész délnek, San Anglo irányába. Lapozz a 271-re.
+a sivatagon át mész délnek, San Anglo irányába. Lapozz a <b>271</b>-re.
 </p>
 </div>
 
@@ -3969,7 +4017,7 @@ rögtön kereket cserélsz az Interceptoron, lapozz a <b>346</b>-ra.
 <h1>308.</h1>
 <p>
 Jó lövés volt, a farkas azonnal holtan terül el. A társa a lövéstől
-megrettenve elszalad, s eltűnik az árnyékban. Lapozz a 286-ra.
+megrettenve elszalad, s eltűnik az árnyékban. Lapozz a <b>286</b>-ra.
 </p>
 </div>
 
@@ -3996,6 +4044,7 @@ gondolni, miközben újra elindulsz. Lapozz a <b>115</b>-re.
 </div>
 
 
+<div id="p311" class="kjkpage">
 <h1>311.</h1>
 <img src="imgs/311.jpg"/>
 <p>
@@ -4236,7 +4285,7 @@ emlékeztet, merre kell menned. Lapozz a <b>301</b>-ra.
 
 
 <div id="p331" class="kjkpage">
-<img src="imgs/311.jpg"/>
+<img src="imgs/331.jpg"/>
 <h1>331.</h1>
 <p>
 Amber hirtelen figyelmeztetően felkiált, és egy dzsipre mutat, amely
@@ -4683,7 +4732,7 @@ alól. Le kell győznöd.
 <p>
 A Tűzharc szabályai szerint játszd le ezt a küzdelmet, de adj 1 pontot
 Ügyességedhez, mert a kocsiajtó
-mögött fedezékben vagy. Ha győzöl, lapozz a <p>64</p>-re, de vonj le végleg
+mögött fedezékben vagy. Ha győzöl, lapozz a <b>64</b>-re, de vonj le végleg
 1 pontot Ügyességedből, ha egynél többször eltaláltak.
 </p>
 </div>
@@ -4779,7 +4828,7 @@ bandája maradéka, ha akarja. Lapozz a <b>90</b>-re.
 </p>
 </div>
 
-<div id="p37" class="kjkpage">
+<div id="p377" class="kjkpage">
 <h1>377.</h1>
 <p>
 Jobbra-balra cikázol, hogy nehezebb célpontot nyújtsál, ugyanakkor viszonzod a
@@ -4828,3 +4877,4 @@ fogadtatásban részesülsz. A benzinnek nagy hasznát veszitek jövőtök
 küldetésed teljes sikerrel járt.
 </p>
 </div>
+</body>
