@@ -9,13 +9,14 @@ p {
 	text-align: justify;
 }
 
-table {
-	width: 100%;
-}
 
 h1 {
 	text-align: center;
 	font-size: 1.5em;
+}
+
+#playground {
+	width: 600px;
 }
 
 #concont {
@@ -23,7 +24,16 @@ h1 {
 	overflow-x: hidden;
 	width: 400px;
 	height: 600px;
-	padding: 5px
+	padding: 5px;
+}
+
+table {
+	width: 100%;
+}
+
+#datapane {
+	width: 200px;
+	height: 600px;
 }
 
 .illust {
@@ -33,6 +43,10 @@ h1 {
 .subillust {
 	width: 100%;
 	text-align: center;
+}
+
+.chdata {
+	width: 40px;
 }
 </style>
 <script>
@@ -82,14 +96,152 @@ Page.prototype.start = function() {
 	}
 }
 
+function dice()
+{
+	return Math.floor((Math.random() * 6) + 1);
+}
+
+function CharacterPage(){
+	this.mdp = 0; //maximum dexterity
+	this.dp = //dexterity
+	this.mhp = 0; //maximum health point
+	this.hp = 0; //health point
+	this.mlp = 0; //maximum luck
+	this.lp = 0; //luck
+	this.eq = new Array(); //equipment
+	this.cr = 0; //credit
+	this.mk = 0; //medkits
+}
+CharacterPage.prototype.Render = function(add){
+	document.getElementById("mdp").value = this.mdp;
+	document.getElementById("dp").value = this.dp;
+	document.getElementById("mhp").value = this.mhp;
+	document.getElementById("hp").value = this.hp;
+	document.getElementById("mlp").value = this.mlp;
+	document.getElementById("lp").value = this.lp;
+	//document.getElementById("mk").value = this.mk;
+	//document.getElementById("cr").value = this.cr;
+}
+CharacterPage.prototype.AddDP = function(add){
+	this.dp =+ add;
+	if (this.mdp < this.dp) {
+		this.dp = this.mdp;
+	}
+	this.dp = ndp;
+	this.Render();
+}
+CharacterPage.prototype.AddHP = function(add){
+	his.hp =+ add;
+	if (this.mhp < this.hp) {
+		his.hp = this.mhp;
+	}
+	this.Render();
+}
+CharacterPage.prototype.AddLP = function(add){
+	this.lp += add;
+	if (this.mlp < this.lp) {
+		this.lp = this.mlp;
+	}
+	this.Render();
+}
+CharacterPage.prototype.AddCR = function(add){
+	this.cr += add;
+	this.Render();
+}
+CharacterPage.prototype.UseMedkit = function(){
+	if (this.mk <= 0){
+		return
+	}
+	this.mk--;
+	this.AddHP(4);
+	this.Render();
+}
+CharacterPage.prototype.HasStuff = function(stuff){
+	return this.eq.indexOf(stuff) != -1
+}
+CharacterPage.prototype.AddStuff = function(stuff){
+	this.eq.push(stuff);
+	this.Render();
+}
+CharacterPage.prototype.RemoveStuff = function(stuff){
+	var i = this.eq.indexOf(stuff);
+	if (i > -1){
+		this.eq.splice(i,1)
+	}
+	this.Render()
+}
+CharacterPage.prototype.Generate = function(){
+	this.mdp = this.dp = dice() + 6;
+	this.mhp = this.hp = dice() + dice() + 24;
+	this.mlp = this.lp = dice() + 6;
+	this.cr = 200;
+	this.mk = 10;
+	this.Render();
+}
+var cp = new CharacterPage();
+
+function VehiclePage(){
+	this.mfp = 0; //maximum firepower
+	this.fp = 0; //firepower
+	this.map = 0; //maximum armor
+	this.ap = 0; //armour
+	this.ro = 0; //rockets
+	this.in = 0; //iron needles
+	this.oi = 0; //oil cans
+	this.sw = 0; //spare wheel
+	this.ga = 0; //gassoline cans
+	this.mo = new Array(); //modifications
+}
+VehiclePage.prototype.Render = function(add){
+	document.getElementById("mfp").value = this.mfp;
+	document.getElementById("fp").value = this.fp;
+	document.getElementById("map").value = this.map;
+	document.getElementById("ap").value = this.ap;
+	//document.getElementById("ro").value = this.ro;
+	//document.getElementById("in").value = this.in;
+	//document.getElementById("sw").value = this.sw;
+	//document.getElementById("ga").value = this.ga;
+}
+VehiclePage.prototype.AddFP = function(add){
+	nfp = this.fp + add;
+	if (this.mfp < nfp) {
+		nfp = this.mfp;
+	}
+	this.fp = nfp;
+	this.Render();
+}
+VehiclePage.prototype.AddAP = function(add){
+	nap = this.ap + add;
+	if (this.map < nap) {
+		nap = this.map;
+	}
+	this.ap = nap;
+	this.Render();
+}
+VehiclePage.prototype.Generate = function(){
+	this.mfp = this.fp = dice() + 6;
+	this.map = this.ap = dice() + dice() + 24;
+	this.cr = 200;
+	this.mk = 10;
+	this.ro = 4; 
+	this.in = 3;
+	this.oi = 2; 
+	this.sw = 2; 
+	this.ga = 0;
+	this.Render();
+}
+var vp = new VehiclePage();
+
 var actpage = -1;
 
 function startApp(){
-	CONCONT = document.getElementById("concont")
+	cp.Generate();
+	vp.Generate();
+	CONCONT = document.getElementById("concont");
 	for (n=0;n<=380;++n){
-		PAGES[n] = new Page(n)
+		PAGES[n] = new Page(n);
 	}
-	nextPage()
+	nextPage();
 }
 
 function prevPage(){
@@ -104,8 +256,41 @@ function nextPage(){
 </head>
 <body onLoad="startApp()">
 
+<div id="playground">
 <button onClick="prevPage()">prev</button><button onClick="nextPage()">next</button>
-<div id="concont"></div>
+<table>
+<tr><td>
+	<div id="concont"></div>
+</td>
+<td>
+	<div id="datapane">
+		<table>
+		<tr>
+		<td>mdp:</td><td><input type="text" class="chdata" id="mdp" readonly/></td>
+		<td>dp:</td><td><input type="text" class="chdata" id="dp" readonly/></td>
+		</tr>
+		<tr>
+		<td>mhp:</td><td><input type="text" class="chdata" id="mhp" readonly/></td>
+		<td>hp:</td><td><input type="text" class="chdata" id="hp" readonly/></td>
+		</tr>
+		<tr>
+		<td>mlp:</td><td><input type="text" class="chdata" id="mlp" readonly/></td>
+		<td>lp:</td><td><input type="text" class="chdata" id="lp" readonly/></td>
+		</tr>
+
+		<tr>
+		<td>mfp:</td><td><input type="text" class="chdata" id="mfp" readonly/></td>
+		<td>fp:</td><td><input type="text" class="chdata" id="fp" readonly/></td>
+		</tr>
+		<tr>
+		<td>map:</td><td><input type="text" class="chdata" id="map" readonly/></td>
+		<td>ap:</td><td><input type="text" class="chdata" id="ap" readonly/></td>
+		</tr>
+		</table>
+	</div>
+</td></tr>
+</table>
+</div>
 
 
 <div id="p0" class="kjkpage">
