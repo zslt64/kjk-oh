@@ -32,8 +32,7 @@ table {
 }
 
 #datapane {
-	width: 200px;
-	height: 600px;
+	width: 100%;
 }
 
 .illust {
@@ -48,9 +47,18 @@ table {
 .chdata {
 	width: 40px;
 }
+
+#console {
+	width: 100%;
+	height: 200px;
+	font-size: 0.8em;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
 </style>
 <script>
 var CONCONT;
+var CONSOLE;
 var PAGES = new Object();
 
 function Link(page, destNum, cond){
@@ -232,17 +240,25 @@ VehiclePage.prototype.Generate = function(){
 }
 var vp = new VehiclePage();
 
-var actpage = -1;
-
-function startApp(){
-	cp.Generate();
-	vp.Generate();
-	CONCONT = document.getElementById("concont");
-	for (n=0;n<=380;++n){
-		PAGES[n] = new Page(n);
-	}
-	nextPage();
+function ClrConsole(){
+	CONSOLE.innerHTML = '';
 }
+
+function WrConsole(message){
+	CONSOLE.innerHTML = message + '</br>' + CONSOLE.innerHTML;
+}
+
+var ix = 0
+//action callback
+var ACB = function(){
+	WrConsole("hello" + ix++);
+}
+
+function next(){
+	ACB();
+}
+
+var actpage = -1;
 
 function prevPage(){
 	PAGES[--actpage].start()
@@ -250,6 +266,18 @@ function prevPage(){
 
 function nextPage(){
 	PAGES[++actpage].start()
+}
+
+function startApp(){
+	cp.Generate();
+	vp.Generate();
+	CONCONT = document.getElementById("concont");
+	CONSOLE = document.getElementById("console");
+	
+	for (n=0;n<=380;++n){
+		PAGES[n] = new Page(n);
+	}
+	nextPage();
 }
 
 </script>
@@ -262,7 +290,7 @@ function nextPage(){
 <tr><td>
 	<div id="concont"></div>
 </td>
-<td>
+<td valign="top">
 	<div id="datapane">
 		<table>
 		<tr>
@@ -288,6 +316,8 @@ function nextPage(){
 		</tr>
 		</table>
 	</div>
+	<button onclick="next()">next</button>
+	<div id="console"></div>
 </td></tr>
 </table>
 </div>
