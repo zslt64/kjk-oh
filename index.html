@@ -131,7 +131,7 @@ CharacterPage.prototype.Render = function(add){
 	//document.getElementById("cr").value = this.cr;
 }
 CharacterPage.prototype.AddDP = function(add){
-	this.dp =+ add;
+	this.dp += add;
 	if (this.mdp < this.dp) {
 		this.dp = this.mdp;
 	}
@@ -139,7 +139,7 @@ CharacterPage.prototype.AddDP = function(add){
 	this.Render();
 }
 CharacterPage.prototype.AddHP = function(add){
-	his.hp =+ add;
+	this.hp += add;
 	if (this.mhp < this.hp) {
 		his.hp = this.mhp;
 	}
@@ -211,19 +211,17 @@ VehiclePage.prototype.Render = function(add){
 	//document.getElementById("ga").value = this.ga;
 }
 VehiclePage.prototype.AddFP = function(add){
-	nfp = this.fp + add;
-	if (this.mfp < nfp) {
-		nfp = this.mfp;
+	this.fp += add;
+	if (this.mfp < this.fp) {
+		this.fp = this.mfp;
 	}
-	this.fp = nfp;
 	this.Render();
 }
 VehiclePage.prototype.AddAP = function(add){
-	nap = this.ap + add;
-	if (this.map < nap) {
-		nap = this.map;
+	this.ap += add;
+	if (this.map < this.ap) {
+		this.ap = this.map;
 	}
-	this.ap = nap;
 	this.Render();
 }
 VehiclePage.prototype.Generate = function(){
@@ -248,14 +246,168 @@ function WrConsole(message){
 	CONSOLE.innerHTML = message + '</br>' + CONSOLE.innerHTML;
 }
 
-var ix = 0
-//action callback
-var ACB = function(){
-	WrConsole("hello" + ix++);
+var NACB;
+
+function Enemy(name, power, health){
+	this.n = name;
+	this.p = power;
+	this.h = health;
+	this.hurt = 0;
+	this.hurtlimit = 0;
+	this.hurtmod = 0;
+	this.active = true;
 }
 
+function FightObj(type, enemies){
+	this.type = type;
+	this.enemies = enemies;
+	this.target = 0;
+	this.rounds = -1;
+	this.roundsLimit = 0;
+	this.hurt = 0;
+	this.hurtLimit = 0;
+	this.attackmod = 0;
+	this.powermod = 0;
+	this.hurtmod = 0;
+	this.win = false;
+}
+
+var actFight;
+
+function Fight(){
+	
+	var fobj = actFight;
+	
+	fobj.rounds++;
+	if (fobj.rounds == 0){
+		WrConsole("harc kezdődik");
+		//todo: disable medkits, enadble rockets
+		return;
+	}
+	
+	var myp = 0;
+	
+	if (fobj.type == 'hand' || fobj.type == 'gun'){
+		myp = cp.dp;
+	} else if (fobj.type == 'car'){
+		myp = vc.fp;
+	}
+	
+	var end = false;
+	
+	for (var i=0;i<fobj.enemies.length;++i){
+	
+		var en = fobj.enemies[i];
+		if (!en.active){
+			continue;
+		}		
+		WrConsole("támad: " + en.n);
+		var enp = en.p;
+		var endice = dice() + dice();
+		var enps = enp+endice;
+		WrConsole("ellenfél támadóereje : " + enp + " + " + endice + " = " + enps)
+		var mydice = dice() + dice();
+		var myps = myp+mydice;
+		WrConsole("saját támadóerő : " + myp + " + " + mydice + " = " + myps)
+		
+		if (enps == myps){
+			WrConsole("egál, senki se sérül");
+		}
+		else
+		{
+			var hurt = 0;
+			if (fobj.type == 'hand'){
+				hurt = 1;
+			} else if (fobj.type == 'gun' || fobj.type == 'car'){
+				hurt = dice();
+			}
+			
+			if (enps < myps){
+				//my succes
+				if (i != fobj.target){
+					WrConsole("nem talál el");
+				} else {
+					hurt += fobj.hurtmod;
+					en.hurt += hurt;
+					en.h -= hurt;
+					WrConsole("eltaláltad, sebzés: " + hurt + " maradt : " + en.h);
+				}
+				if (en.h <= 0){
+					WrConsole("végeztél vele");
+					en.active = false;				
+				}
+				if (en.hurtLimit && en.hurtlimit <= en.hurt){
+					WrConsole("kiütötted");
+					en.active = false;
+				}			
+			} else {
+				//enemy succes
+				hurt += en.hurtmod;
+				fobj.hurt += hurt; 
+				WrConsole("eltaláltak, sérülés: " + hurt);
+				if (fobj.type == 'hand' || fobj.type == 'gun'){
+					cp.AddHP(-hurt);
+					if (cp.hp <= 0){
+						WrConsole("véged");
+						end = true;
+						break;
+					}
+				} else if (fobj.type == 'car') {
+					vp.AddAP(-hurt);
+					if (vp.ap <= 0){
+						WrConsole("kilőttek");
+						end = true;
+						break;
+					}
+				}
+				if (fobj.hurtlimit && fobj.hurtlimit < fobj.hurt){
+					WrConsole("kidőltél");
+					end = true;
+					break;
+				}
+			}
+		}
+	}
+	
+	if (fobj.roundLimit <= fobj.rounds){
+		WrConsole("harc vége");
+		end = true;
+	}
+	var actenemy = 0;
+	var deadTarget = false;
+	for (var i=0;i<fobj.enemies.length;++i){
+		if (!fobj.enemies[i].active && fobj.target == i){
+			deadTarget = true;
+		}
+		if (fobj.enemies[i].active){
+			++actenemy;
+		}
+	}
+	if (actenemy == 0){		
+		WrConsole("győztél");
+		fobj.win = true;
+		end = true;
+	}
+	
+	if (end){
+		//todo: enable medkits, disable rockets
+		//todo: assing next action to NACB
+		return;
+	}
+	
+	if (deadTarget){
+		for (var i=0;i<fobj.enemies.length;++i){
+			if (fobj.enemies[i].active){
+				fobj.target = i;
+				break;
+			}
+		}
+	}
+}
+
+//next action callback
 function next(){
-	ACB();
+	NACB();
 }
 
 var actpage = -1;
@@ -274,10 +426,18 @@ function startApp(){
 	CONCONT = document.getElementById("concont");
 	CONSOLE = document.getElementById("console");
 	
-	for (n=0;n<=380;++n){
+	for (var n=0;n<=380;++n){
 		PAGES[n] = new Page(n);
 	}
 	nextPage();
+	
+	var enemies = [new Enemy("vegh bela", 6, 15), new Enemy("link elek", 7, 15), new Enemy("Freddy megkur", 8, 11)];
+	
+	actFight = new FightObj("gun", enemies);
+	
+	NACB = function() {
+		Fight();
+	}
 }
 
 </script>
