@@ -59,16 +59,28 @@ table {
 <script>
 var CONCONT;
 var CONSOLE;
+var LINKCONT;
+var NEXTBUTTON;
 var PAGES = new Object();
+
+var ACTPAGE;
+var NACB;
 
 function Link(page, destNum, cond){
 	this.page = page;
 	this.destNum = destNum;
-	this.cond = cond;
+	this.id = "link"+page.num+"to"+destNum;
+	this.cond = cond
+	if (!cond){
+		this.cond = function() {return true;};
+	}
 }
 Link.prototype.render = function(){
+	s = '<button id="'+this.id+'" onClick="PAGES['+this.destNum+'].start()" disabled>'+this.destNum+'</button></br>';
+	LINKCONT.innerHTML += s;
 }
 Link.prototype.activate = function(){
+	document.getElementById(this.id).disabled = !this.cond()
 }
 
 function Page(num){
@@ -86,22 +98,37 @@ Page.prototype.addLink = function(destNum, cond){
 Page.prototype.addAction = function(action){
 	this.actions.push(action);
 }
-Page.prototype.nextAction = function(){
-	this.actions[this.actAction]()
-	++this.actAction;
+Page.prototype.activateLinks = function(){
+	NEXTBUTTON.disabled = true;
 	if (this.actAction == this.actions.length){
 		for (i=0;i<this.links.length;++i){
 			this.links[i].activate();
 		}
 	}
 }
-Page.prototype.start = function() {
-	pageid = "p" + this.num
-    CONCONT.innerHTML = document.getElementById(pageid).innerHTML
-		
+Page.prototype.nextAction = function(){
+	if (this.actions.length <= this.actAction){
+		this.activateLinks();
+		return;
+	}
+	NACB = this.actions[this.actAction]();
+	++this.actAction;
+}
+Page.prototype.render = function(){
+	pageid = "p" + this.num;
+    CONCONT.innerHTML = document.getElementById(pageid).innerHTML;
+	
+	LINKCONT.innerHTML = "";
 	for (i=0;i<this.links.length;++i){
 		this.links[i].render();
 	}
+}
+Page.prototype.start = function() {
+	this.render();
+	this.actAction = 0;
+	NEXTBUTTON.disabled = true;
+	ClrConsole();
+	NACB = this.nextAction();
 }
 
 function dice()
@@ -243,10 +270,9 @@ function ClrConsole(){
 }
 
 function WrConsole(message){
-	CONSOLE.innerHTML = message + '</br>' + CONSOLE.innerHTML;
+	CONSOLE.innerHTML += message + '</br>';
+	CONSOLE.scrollTop = CONSOLE.scrollHeight;
 }
-
-var NACB;
 
 function Enemy(name, power, health){
 	this.n = name;
@@ -392,6 +418,7 @@ function Fight(){
 	if (end){
 		//todo: enable medkits, disable rockets
 		//todo: assing next action to NACB
+		ACTPAGE.nextAction();
 		return;
 	}
 	
@@ -424,20 +451,11 @@ function startApp(){
 	cp.Generate();
 	vp.Generate();
 	CONCONT = document.getElementById("concont");
+	LINKCONT = document.getElementById("linkcont");
 	CONSOLE = document.getElementById("console");
+	NEXTBUTTON = document.getElementById("nextbutton");
 	
-	for (var n=0;n<=380;++n){
-		PAGES[n] = new Page(n);
-	}
-	nextPage();
-	
-	var enemies = [new Enemy("vegh bela", 6, 15), new Enemy("link elek", 7, 15), new Enemy("Freddy megkur", 8, 11)];
-	
-	actFight = new FightObj("gun", enemies);
-	
-	NACB = function() {
-		Fight();
-	}
+	PAGES["0"].start();
 }
 
 </script>
@@ -476,7 +494,8 @@ function startApp(){
 		</tr>
 		</table>
 	</div>
-	<button onclick="next()">next</button>
+	<div id="linkcont"></div>
+	<button id="nextbutton" onclick="next()" disabled>next</button>
 	<div id="console"></div>
 </td></tr>
 </table>
@@ -531,6 +550,10 @@ Beindítod az Interceptor motorját, és a külvilág felé vezető kapuhoz hajt
 </p>
 <p class="subillust"><img src="imgs/carfight.jpg"/></p>
 </div>
+<script>
+	p = new Page(0);
+	p.addLink(1);
+</script>
 
 <div id="p1" class="kjkpage">
 <h1>1.</h1>
@@ -545,6 +568,11 @@ Ha kiszállsz az autóból, hogy megtudd, mi történt, lapozz a <b>126</b>-ra.
 Ha inkább kihajtasz a városkából, lapozz a <b>34</b>-re.
 </p>
 </div>
+<script>
+	p = new Page(1);
+	p.addLink(126);
+	p.addLink(34);
+</script>
 
 <div id="p2" class="kjkpage">
 <h1>2.</h1>
