@@ -111,7 +111,10 @@ Page.prototype.nextAction = function(){
 		this.activateLinks();
 		return;
 	}
-	NACB = this.actions[this.actAction]();
+	NACB = function() { 
+		ACTPAGE.nextAction(); 
+	};
+	this.actions[this.actAction]();
 	++this.actAction;
 }
 Page.prototype.render = function(){
@@ -124,11 +127,12 @@ Page.prototype.render = function(){
 	}
 }
 Page.prototype.start = function() {
+	ACTPAGE = this;
 	this.render();
 	this.actAction = 0;
-	NEXTBUTTON.disabled = true;
+	NEXTBUTTON.disabled = false;
 	ClrConsole();
-	NACB = this.nextAction();
+	this.nextAction();
 }
 
 function dice()
@@ -163,6 +167,7 @@ CharacterPage.prototype.AddDP = function(add){
 		this.dp = this.mdp;
 	}
 	this.dp = ndp;
+	WrConsole("Ügyesség: "+add);
 	this.Render();
 }
 CharacterPage.prototype.AddHP = function(add){
@@ -170,6 +175,7 @@ CharacterPage.prototype.AddHP = function(add){
 	if (this.mhp < this.hp) {
 		his.hp = this.mhp;
 	}
+	WrConsole("Életerő: "+add);
 	this.Render();
 }
 CharacterPage.prototype.AddLP = function(add){
@@ -177,10 +183,12 @@ CharacterPage.prototype.AddLP = function(add){
 	if (this.mlp < this.lp) {
 		this.lp = this.mlp;
 	}
+	WrConsole("Szerencse: "+add);
 	this.Render();
 }
 CharacterPage.prototype.AddCR = function(add){
 	this.cr += add;
+	WrConsole("Kredit: "+add);
 	this.Render();
 }
 CharacterPage.prototype.UseMedkit = function(){
@@ -188,6 +196,7 @@ CharacterPage.prototype.UseMedkit = function(){
 		return
 	}
 	this.mk--;
+	WrConsole("EU csomag használat");
 	this.AddHP(4);
 	this.Render();
 }
@@ -308,6 +317,7 @@ function Fight(){
 	if (fobj.rounds == 0){
 		WrConsole("harc kezdődik");
 		//todo: disable medkits, enadble rockets
+		NACB = Fight;
 		return;
 	}
 	
@@ -432,19 +442,32 @@ function Fight(){
 	}
 }
 
+function LuckTest(){
+	d = dice() + dice();
+	WrConsole("szerencseteszt: "+d);
+	if (d <= cp.lp){
+		WrConsole("szerencséd van");
+	} else {
+		WrConsole("nincs szerencséd");
+	}
+	cp.AddLP(-1);
+	return (d <= cp.lp);
+}
+
+function DexTest(){
+	d = dice() + dice();
+	WrConsole("ügyesség teszt: "+d);
+	if (d <= cp.dp){
+		WrConsole("sikerült");
+	} else {
+		WrConsole("nem sikerült");
+	}
+	return (d <= cp.dp);
+}
+
 //next action callback
 function next(){
 	NACB();
-}
-
-var actpage = -1;
-
-function prevPage(){
-	PAGES[--actpage].start()
-}
-
-function nextPage(){
-	PAGES[++actpage].start()
 }
 
 function startApp(){
@@ -455,7 +478,7 @@ function startApp(){
 	CONSOLE = document.getElementById("console");
 	NEXTBUTTON = document.getElementById("nextbutton");
 	
-	PAGES["0"].start();
+	PAGES[0].start();
 }
 
 </script>
@@ -463,7 +486,6 @@ function startApp(){
 <body onLoad="startApp()">
 
 <div id="playground">
-<button onClick="prevPage()">prev</button><button onClick="nextPage()">next</button>
 <table>
 <tr><td>
 	<div id="concont"></div>
@@ -1021,6 +1043,11 @@ Helló, segíthetek? - Ha szóba állsz vele, lapozz a <b>302</b>-re. Ha
 továbbmész és felhajtasz az autópályára, lapozz a <b>167</b>-re.
 </p>
 </div>
+<script>
+	p = new Page(34);
+	p.addLink(302);
+	p.addLink(167);
+</script>
 
 <div id="p35" class="kjkpage">
 <h1>35.</h1>
@@ -1065,6 +1092,16 @@ küzdesz meg vele, lapozz a <b>374</b>-re.
 </p>
 <p class="subillust"><img src="imgs/gunfight.jpg"/></p>
 </div>
+<script>
+	p = new Page(38);
+	p.addAction(function(){
+		WrConsole("-1 gyógyszercsomag");
+		cp.mk--;
+		cp.Render();
+	});
+	p.addLink(176);
+	p.addLink(374);
+</script>
 
 <div id="p39" class="kjkpage">
 <h1>39.</h1>
@@ -1319,6 +1356,10 @@ indulsz. Lapozz a <b>34</b>-re.
 </p>
 <p class="subillust"><img src="imgs/stuff.jpg"/></p>
 </div>
+<script>
+	p = new Page(57);
+	p.addLink(34);
+</script>
 
 <div id="p58" class="kjkpage">
 <h1>58.</h1>
@@ -1685,6 +1726,16 @@ visszhangzik füledben, lassan összecsuklasz. Dobj egy kockával, adjál
 <b>256</b>-ra.
 </p>
 </div>
+<script>
+	p = new Page(86);
+	p.addAction(function(){
+		d = dice();
+		WrConsole("Dobas :"+d);
+		cp.AddHP(-(d+2));
+	});
+	p.addLink(38);
+	p.addLink(256);
+</script>
 
 <div id="p87" class="kjkpage">
 <h1>87.</h1>
@@ -1718,6 +1769,10 @@ elszáguldasz. Lapozz a <b>34</b>-re.
 </p>
 <p class="subillust"><img src="imgs/gunfight.jpg"/></p>
 </div>
+<script>
+	p = new Page(89);
+	p.addLink(34);
+</script>
 
 <div id="p90" class="kjkpage">
 <h1>90.</h1>
@@ -1961,6 +2016,10 @@ Legnagyobb megkönnyebbülésedre a lövés talált, s a kutya azonnal felfordul
 Lapozz a <b>89</b>-re.
 </p>
 </div>
+<script>
+	p = new Page(108);
+	p.addLink(89);
+</script>
 
 <div id="p109" class="kjkpage">
 <h1>109.</h1>
@@ -2205,6 +2264,12 @@ lapozz a <b>155</b>-re.
 </p>
 <p class="subillust"><img src="imgs/carfight.jpg"/></p>
 </div>
+<script>
+	p = new Page(126);
+	p.addLink(274);
+	p.addLink(155);
+</script>
+
 
 <div id="p127" class="kjkpage">
 <h1>127.</h1>
@@ -2556,6 +2621,14 @@ helyzetből, lapozz a <b>219</b>-re. Ha a pisztolyod után nyúlsz, lapozz a
 <b>333</b>-ra.
 </p>
 </div>
+<script>
+	p = new Page(155);
+	p.addAction(function(){
+		cp.AddLP(-1);
+	});
+	p.addLink(219);
+	p.addLink(333);
+</script>
 
 <div id="p156" class="kjkpage">
 <h1>156.</h1>
@@ -2806,6 +2879,14 @@ Dobj két kockával. Ha az összeg akkora vagy kisebb, mint ügyesség pontjaid
 száma, lapozz a <b>108</b>-ra. Ha nagyobb, lapozz a <b>350</b>-re.
 </p>
 </div>
+<script>
+	p = new Page(176);
+	p.addAction(function(){
+		ACTPAGE.dexTest = DexTest();
+	});
+	p.addLink(108, function(){return ACTPAGE.dexTest;});
+	p.addLink(350, function(){return !ACTPAGE.dexTest;});
+</script>
 
 <div id="p177" class="kjkpage">
 <h1>177.</h1>
@@ -3361,6 +3442,14 @@ próbára Szerencséd! Ha szerencséd van, lapozz a <b>288</b>-ra. Ha nincs,
 lapozz a <b>236</b>-ra.
 </p>
 </div>
+<script>
+	p = new Page(219);
+	p.addAction(function(){
+		ACTPAGE.luckTest = LuckTest();
+	});
+	p.addLink(288, function(){return ACTPAGE.luckTest;});
+	p.addLink(236, function(){return !ACTPAGE.luckTest;});
+</script>
 
 <div id="p220" class="kjkpage">
 <h1>220.</h1>
@@ -3581,6 +3670,10 @@ magad, átkozott gyilkos. - Nincs más választásod, engedelmeskedned
 kell. Lapozz a <b>333</b>-ra.
 </p>
 </div>
+<script>
+	p = new Page(236);
+	p.addLink(333);
+</script>
 
 <div id="p237" class="kjkpage">
 <h1>237.</h1>
@@ -3816,6 +3909,16 @@ Lapozz a <b>34</b>-re.
 </p>
 <p class="subillust"><img src="imgs/gunfight.jpg"/></p>
 </div>
+<script>
+	p = new Page(256);
+	p.addAction(function(){
+		p.addAction(function(){
+		WrConsole("-1 gyógyszercsomag");
+		cp.mk--;
+		cp.Render();
+	});
+	p.addLink(34, function(){return ACTPAGE.luckTest;});
+</script>
 
 <div id="p257" class="kjkpage">
 <h1>257.</h1>
@@ -4052,6 +4155,10 @@ visszamész az Interceptorhoz. Erős motorja életre kel, mikor
 elfordítod az indítókulcsot, majd elrobogsz. Lapozz a <b>34</b>-re.
 </p>
 </div>
+<script>
+	p = new Page(274);
+	p.addLink(34);
+</script>
 
 <div id="p275" class="kjkpage">
 <h1>275.</h1>
@@ -4236,6 +4343,10 @@ Interceptorhoz. Erős motorja rögtön életre kel, ahogy elfordítod az
 indítókulcsot, és ismét elszáguldasz. Lapozz a <b>34</b>-re.
 </p>
 </div>
+<script>
+	p = new Page(288);
+	p.addLink(34);
+</script>
 
 <div id="p289" class="kjkpage">
 <h1>289.</h1>
@@ -4794,6 +4905,14 @@ Dobj két kockával. Ha az összeg akkora vagy kisebb, mint Ügyességed,
 lapozz az <b>57</b>-re. Ha az összeg nagyobb Ügyességednél, lapozz a <b>86</b>-ra.
 </p>
 </div>
+<script>
+	p = new Page(333);
+	p.addAction(function(){
+		ACTPAGE.dextest = DexTest();
+	});
+	p.addLink(57, function(){return ACTPAGE.dextest;});
+	p.addLink(86, function(){return !ACTPAGE.dextest;});
+</script>
 
 <div id="p334" class="kjkpage">
 <h1>334.</h1>
@@ -4984,6 +5103,17 @@ a <b>89</b>-re.
 </p>
 <p class="subillust"><img src="imgs/gunfight.jpg"/></p>
 </div>
+<script>
+	p = new Page(350);
+	p.addAction(function(){
+		dog = new Enemy("Vadkutya", 7, 5);
+		dog.hurtmod = 1;
+		actFight = new FightObj("hand", [dog]);
+		actFight.hurtmod = 1;
+		Fight();
+	});
+	p.addLink(89);
+</script>
 
 <div id="p351" class="kjkpage">
 <h1>351.</h1>
