@@ -52,3 +52,12 @@ table {
 	overflow-y: scroll;
 	overflow-x: hidden;
 }
+
+.enabledlink {
+	color: green;
+	cursor: pointer;
+}
+
+.forbiddenlink{
+	color: red;
+}

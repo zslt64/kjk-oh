@@ -1,6 +1,5 @@
 ﻿var CONCONT;
 var CONSOLE;
-var LINKCONT;
 var NEXTBUTTON;
 var PAGES = new Object();
 
@@ -17,11 +16,19 @@ function Link(page, destNum, cond){
 	}
 }
 Link.prototype.render = function(){
-	s = '<button id="'+this.id+'" onClick="PAGES['+this.destNum+'].start()" disabled>'+this.destNum+'</button></br>';
-	LINKCONT.innerHTML += s;
 }
 Link.prototype.activate = function(){
-	document.getElementById(this.id).disabled = !this.cond()
+	if (!this.tag){
+		return;
+	}
+	if (this.cond()){
+		this.tag.className = "enabledlink";
+		this.tag.addEventListener("click", function(){
+			PAGES[this.innerHTML].start()
+		});
+	} else {
+		this.tag.className = "forbiddenlink";
+	}
 }
 
 function Page(num){
@@ -31,7 +38,6 @@ function Page(num){
 	this.links = new Array();
 	this.actions = new Array();
 	this.actAction = 0;
-	
 }
 Page.prototype.addLink = function(destNum, cond){
 	this.links.push(new Link(this, destNum, cond));
@@ -62,9 +68,17 @@ Page.prototype.render = function(){
 	pageid = "p" + this.num;
     CONCONT.innerHTML = document.getElementById(pageid).innerHTML;
 	
+	bs = CONCONT.getElementsByTagName("b");
+	
 	LINKCONT.innerHTML = "";
-	for (i=0;i<this.links.length;++i){
-		this.links[i].render();
+	for (var i=0;i<this.links.length;++i){
+		alink = this.links[i];
+		for (var j=0;j<bs.length;++j){
+			if (alink.destNum == bs[j].innerHTML){
+				alink.tag = bs[j];
+			}
+		}		
+		alink.render();
 	}
 }
 Page.prototype.start = function() {

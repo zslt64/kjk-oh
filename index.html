@@ -1,5 +1,6 @@
-﻿<head>
-<link rel="stylesheet" type="text/css" href="style.css">
+﻿<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css"/>
 <script src="engine.js"></script>
 </head>
 <body onLoad="startApp()">
@@ -35,7 +36,6 @@
 		</tr>
 		</table>
 	</div>
-	<div id="linkcont"></div>
 	<button id="nextbutton" onclick="next()" disabled>next</button>
 	<div id="console"></div>
 </td></tr>
@@ -88,6 +88,9 @@ Végül fölveszed a pisztoly táskát és a bőrdzsekit, amelyben a tartalék g
 beülsz a vezetőülésbe. Az acélba vágott keskeny résen át, amely most a szélvédőd, látod, hogy az egész város összegyűlt, hogy búcsút intsen neked. 
 Beindítod az Interceptor motorját, és a külvilág felé vezető kapuhoz hajtasz. Jó egy éve is annak, hogy utoljára Új Remény falain túl jártál, 
 és kíváncsian várod, mit találsz odakint.
+</p>
+<p>
+Lapozz az <b>1</b>-re
 </p>
 <p class="subillust"><img src="imgs/carfight.jpg"/></p>
 </div>
@@ -602,7 +605,7 @@ Hatalmas szikladarab zuhan az Interceptor tetejére. Dobj két kockával, és az
 <p>
 Kiveszed a mentőládádból az egyik gyógyszercsomagot, és gyorsan kitisztítod a
 sebet. Kiveszed a golyót. és egy réteg műanyag bőrrel feded
-sérülésedet, majd bekötözöd. Felállsz, és be akarsz pattanni az
+sérülésedet, majd bekötözöd. <tag id="t38_0"></tag> Felállsz, és be akarsz pattanni az
 Interceptorba, amikor egy hatalmas, vad kutya tűnik föl az utca
 végén. Bundája rongyos a sok verekedéstől, nyitott szájából nyál
 csöpög. Valószínűleg veszett. Lehajol, aztán hirtelen, morogva feléd
@@ -1239,7 +1242,7 @@ Félig kihúztad a revolveredet a tokból. amikor az idegen meghúzza a puska
 ravaszát. Füstfelhőt látsz, s ebben a pillanatban éles fájdalmat
 érzel a jobb combodban. A falnak ütődsz, és miközben lövés zaja
 visszhangzik füledben, lassan összecsuklasz. Dobj egy kockával, adjál
-2-t a számhoz, és az összeget vond le életerődből. A férfi megfordul,
+2-t a számhoz, és az összeget vond le életerődből. <tag id="t86_0"></tag> A férfi megfordul,
 és sorsodra hagy. Ha azonnal be akarod kötni a sebedet, lapozz a
 <b>38</b>-ra. Ha inkább vissza akarsz mászni az autód biztonságába, lapozz a
 <b>256</b>-ra.
@@ -2135,7 +2138,7 @@ tart. Komoran néz rád. - Hasonlítasz arra a fickóra, aki rálőtt a
 furgonomra, és megölte a fiamat meg a feleségemet a múlt héten. Most
 bosszút állok. De én tisztességes vagyok. Ha elkészültél, nyúlj a
 pisztolyodért - mondja. Rájössz, hogy hiba volt hazudni neki. 1
-Szerencse pontot veszítesz. Ha megpróbálod kibeszélni magad a kínos
+Szerencse pontot veszítesz. <tag id="t155_0"></tag> Ha megpróbálod kibeszélni magad a kínos
 helyzetből, lapozz a <b>219</b>-re. Ha a pisztolyod után nyúlsz, lapozz a
 <b>333</b>-ra.
 </p>
@@ -2394,7 +2397,7 @@ A gránát nem robban fel, és tovább száguldasz a sárga kocsi előtt. Úgy
 <div id="p176" class="kjkpage">
 <h1>176.</h1>
 <p>
-Dobj két kockával. Ha az összeg akkora vagy kisebb, mint ügyesség pontjaid
+Dobj két kockával. <tag id="t176_0"></tag> Ha az összeg akkora vagy kisebb, mint ügyesség pontjaid
 száma, lapozz a <b>108</b>-ra. Ha nagyobb, lapozz a <b>350</b>-re.
 </p>
 </div>
@@ -2957,7 +2960,7 @@ nagyobb Ügyességednél, lapozz a <b>324</b>-re.
 <h1>219.</h1>
 <p>
 Gyorsan közlöd vele, hogy nem te ölted meg a feleségét és a fiát. Tedd
-próbára Szerencséd! Ha szerencséd van, lapozz a <b>288</b>-ra. Ha nincs,
+próbára Szerencséd! <tag id="t219_0"></tag> Ha szerencséd van, lapozz a <b>288</b>-ra. Ha nincs,
 lapozz a <b>236</b>-ra.
 </p>
 </div>
@@ -3422,7 +3425,7 @@ szerencséd, lapozz a <b>145</b>-re.
 <p>
 Bár erősen vérzel, eléred kocsidat. Beugrasz a vezetőülésre, és feltépsz
 egy gyógyszercsomagot. Gyorsan ellátod magad, kiveszed a golyót, és
-vékony műbőrrel vonod be a sebet, majd bekötöd, Jókedved némileg
+vékony műbőrrel vonod be a sebet, majd bekötöd. <tag id="t256_0"></tag> Jókedved némileg
 visszatér, amikor végre beletaposol a gázba és elhagyod a várost.
 Lapozz a <b>34</b>-re.
 </p>
@@ -3431,7 +3434,6 @@ Lapozz a <b>34</b>-re.
 <script>
 	p = new Page(256);
 	p.addAction(function(){
-		p.addAction(function(){
 		WrConsole("-1 gyógyszercsomag");
 		cp.mk--;
 		cp.Render();
@@ -4420,7 +4422,7 @@ nincs, lapozz a <b>84</b>-re.
 <div id="p333" class="kjkpage">
 <h1>333.</h1>
 <p>
-Dobj két kockával. Ha az összeg akkora vagy kisebb, mint Ügyességed,
+Dobj két kockával. <tag id="t333_0"></tag> Ha az összeg akkora vagy kisebb, mint Ügyességed,
 lapozz az <b>57</b>-re. Ha az összeg nagyobb Ügyességednél, lapozz a <b>86</b>-ra.
 </p>
 </div>
@@ -4615,6 +4617,7 @@ azzal védd magad.
 <table>
 <tr><td><i>Vadkutya</i></td><td>ÜGYESSÉG 7</td><td>ÉLETERŐ 5</td></tr>
 </table>
+<tag id="t350_0"></tag>
 <p>
 A Kézitusa szabályai szerint küzdd végig ezt a harcot (halálig). Késed
 és a kutya harapása egyaránt 2 Életerő pont levonását jelenti. Lapozz
@@ -5000,3 +5003,4 @@ küldetésed teljes sikerrel járt.
 </p>
 </div>
 </body>
+</html>
