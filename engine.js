@@ -70,7 +70,6 @@ Page.prototype.render = function(){
 	
 	bs = CONCONT.getElementsByTagName("b");
 	
-	LINKCONT.innerHTML = "";
 	for (var i=0;i<this.links.length;++i){
 		alink = this.links[i];
 		for (var j=0;j<bs.length;++j){
@@ -429,7 +428,6 @@ function startApp(){
 	cp.Generate();
 	vp.Generate();
 	CONCONT = document.getElementById("concont");
-	LINKCONT = document.getElementById("linkcont");
 	CONSOLE = document.getElementById("console");
 	NEXTBUTTON = document.getElementById("nextbutton");
 	
