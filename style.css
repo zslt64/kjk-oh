@@ -1,0 +1,54 @@
+﻿.kjkpage {
+	display: none;
+}
+
+p {
+	text-align: justify;
+}
+
+
+h1 {
+	text-align: center;
+	font-size: 1.5em;
+}
+
+#playground {
+	width: 600px;
+}
+
+#concont {
+	overflow-y: scroll;
+	overflow-x: hidden;
+	width: 400px;
+	height: 600px;
+	padding: 5px;
+}
+
+table {
+	width: 100%;
+}
+
+#datapane {
+	width: 100%;
+}
+
+.illust {
+	width: 100%;
+}
+
+.subillust {
+	width: 100%;
+	text-align: center;
+}
+
+.chdata {
+	width: 40px;
+}
+
+#console {
+	width: 100%;
+	height: 200px;
+	font-size: 0.8em;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
