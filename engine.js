@@ -1,6 +1,5 @@
 ﻿var CONCONT;
 var CONSOLE;
-var NEXTBUTTON;
 var PAGES = new Object();
 
 var ACTPAGE;
@@ -9,7 +8,6 @@ var NACB;
 function Link(page, destNum, cond){
 	this.page = page;
 	this.destNum = destNum;
-	this.id = "link"+page.num+"to"+destNum;
 	this.cond = cond
 	if (!cond){
 		this.cond = function() {return true;};
@@ -37,36 +35,57 @@ function Page(num){
 	
 	this.links = new Array();
 	this.actions = new Array();
-	this.actAction = 0;
+	this.actAction = -1;
 }
 Page.prototype.addLink = function(destNum, cond){
 	this.links.push(new Link(this, destNum, cond));
 }
-Page.prototype.addAction = function(action){
-	this.actions.push(action);
+Page.prototype.addAction = function(action, type){
+	
+	className="defaultAction";
+	autoNext = true;
+	if (type == 'fight'){
+		autoNext = false;
+	}
+	act = {
+		funct: action,
+		cls: className,
+		an: autoNext
+	}
+	this.actions.push(act);
 }
 Page.prototype.activateLinks = function(){
-	NEXTBUTTON.disabled = true;
-	if (this.actAction == this.actions.length){
-		for (i=0;i<this.links.length;++i){
-			this.links[i].activate();
-		}
+	for (i=0;i<this.links.length;++i){
+		this.links[i].activate();
 	}
 }
 Page.prototype.nextAction = function(){
-	if (this.actions.length <= this.actAction){
+	if (-1 < this.actAction){
+		act = this.actions[this.actAction];
+		act.marker.removeEventListener("click", next);
+		act.marker.className += " doneAction";
+	}
+	++this.actAction;
+	act = this.actions[this.actAction];
+	if (this.actAction == this.actions.length){
 		this.activateLinks();
 		return;
 	}
-	NACB = function() { 
-		ACTPAGE.nextAction(); 
+	NACB = function() {
+		var act = ACTPAGE.actions[ACTPAGE.actAction];
+		act.funct();
+		if (act.an){
+			ACTPAGE.nextAction();
+		}
 	};
-	this.actions[this.actAction]();
-	++this.actAction;
+	act = this.actions[this.actAction];
+	act.marker.addEventListener("click", next);
+	act.marker.className += " activeAction";
 }
 Page.prototype.render = function(){
 	pageid = "p" + this.num;
     CONCONT.innerHTML = document.getElementById(pageid).innerHTML;
+	CONCONT.scrollTop = 0;
 	
 	bs = CONCONT.getElementsByTagName("b");
 	
@@ -79,14 +98,28 @@ Page.prototype.render = function(){
 		}		
 		alink.render();
 	}
+	
+	as = CONCONT.getElementsByTagName("tag");
+	
+	if (!this.actions.length){
+		this.activateLinks();
+		return;
+	}
+	
+	for (var i=0;i<as.length;++i){
+		actionmarker = as[i]
+		actionmarker.innerHTML = "&nbsp;";
+		actionmarker.className = this.actions[i][1];
+		this.actions[i].marker = actionmarker;
+	}
+	
+	this.nextAction();
 }
 Page.prototype.start = function() {
 	ACTPAGE = this;
+	this.actAction = -1;
 	this.render();
-	this.actAction = 0;
-	NEXTBUTTON.disabled = false;
 	ClrConsole();
-	this.nextAction();
 }
 
 function dice()
@@ -429,7 +462,6 @@ function startApp(){
 	vp.Generate();
 	CONCONT = document.getElementById("concont");
 	CONSOLE = document.getElementById("console");
-	NEXTBUTTON = document.getElementById("nextbutton");
 	
 	PAGES[0].start();
 }

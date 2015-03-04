@@ -61,3 +61,33 @@ table {
 .forbiddenlink{
 	color: red;
 }
+
+.defaultAction{
+	border-style: solid;
+	border-width: 1px;
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	background-color: grey;
+	cursor: initial;
+}
+
+.activeAction {
+	border-style: solid;
+	border-width: 1px;
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	background-color: green;
+	cursor: pointer;
+}
+
+.doneAction {
+	border-style: solid;
+	border-width: 1px;
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	background-color: red;
+	cursor: initial;
+}
