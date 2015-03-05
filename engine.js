@@ -171,7 +171,7 @@ CharacterPage.prototype.AddDP = function(add){
 CharacterPage.prototype.AddHP = function(add){
 	this.hp += add;
 	if (this.mhp < this.hp) {
-		his.hp = this.mhp;
+		this.hp = this.mhp;
 	}
 	WrConsole("Életerő: "+add);
 	this.Render();
@@ -206,6 +206,7 @@ CharacterPage.prototype.HasStuff = function(stuff){
 }
 CharacterPage.prototype.AddStuff = function(stuff){
 	this.eq.push(stuff);
+	WrConsole("új cucc: "+stuff);
 	this.Render();
 }
 CharacterPage.prototype.RemoveStuff = function(stuff){
@@ -278,7 +279,7 @@ VehiclePage.prototype.Generate = function(){
 	this.in = 3;
 	this.oi = 2; 
 	this.sw = 2; 
-	this.ga = 0;
+	this.ga = 1;
 	this.Render();
 }
 var vp = new VehiclePage();
@@ -409,7 +410,7 @@ function Fight(){
 					WrConsole("végeztél vele");
 					en.active = false;				
 				}
-				if (en.hurtLimit && en.hurtlimit <= en.hurt){
+				if (en.hurtlimit && en.hurtlimit <= en.hurt){
 					WrConsole("kiütötted");
 					en.active = false;
 				}			
@@ -433,8 +434,8 @@ function Fight(){
 						break;
 					}
 				}
-				if (fobj.hurtlimit && fobj.hurtlimit < fobj.hurt){
-					WrConsole("kidőltél");
+				if (fobj.hurtlimit && fobj.hurtlimit <= fobj.hurt){
+					WrConsole("kiütöttek");
 					end = true;
 					break;
 				}
@@ -497,6 +498,7 @@ function UseRocket(){
 	}
 	vp.ro--;
 	vp.Render();
+	Fight();
 }
 
 function LuckTest(){
@@ -535,5 +537,5 @@ function startApp(){
 	MEDKITB = document.getElementById("medkitb");
 	ROCKETB = document.getElementById("rocketb");
 	
-	PAGES[284].start();
+	PAGES[1].start();
 }

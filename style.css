@@ -53,6 +53,11 @@ table {
 	overflow-x: hidden;
 }
 
+#eq {
+	width: 100%;
+	font-size: 0.8em;
+}
+
 .enabledlink {
 	color: green;
 	cursor: pointer;
