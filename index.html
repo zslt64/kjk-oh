@@ -1070,7 +1070,7 @@ vörös fényben fürdesz. Hirtelen úgy érzed, hogy sikerrel jársz majd,
 <p>
 A kerekek lecsapódnak a híd túloldalán, és teljes erővel kell tartanod
 a kormányt, hogy az Interceptor egyenesen haladjon. Átjutottál a
-hídon, de egy felborult teherautó felé száguldasz. Dobj két kockával.
+hídon, de egy felborult teherautó felé száguldasz. Dobj két kockával. <tag></tag>
 Ha az összeg akkora, vagy kisebb, mint ügyesség pontjaid száma,
 lapozz a <b>62</b>-re. Ha nagyobb, lapozz a <b>133</b>-ra.
 </p>
@@ -1816,6 +1816,12 @@ menj. Ha jobbra akarsz menni, lapozz a <b>203</b>-ra. Ha inkább balra
 fordulsz nyugat felé, lapozz a <b>344</b>-re.
 </p>
 </div>
+<script>
+	p = new Page(124);
+	p.addLink(203);
+	p.addLink(344);
+</script>
+
 
 <div id="p125" class="kjkpage">
 <h1>125.</h1>
@@ -3243,6 +3249,10 @@ lapozz a <b>273</b>-ra. Ha nincs, lapozz a <b>214</b>-re.
 gerendát. Hirtelen egy hangos robbanás a folyóba repíti az
 Interceptort. Valaki aláaknázta a hidat. Megbuktál a küldetéseden.
 </p>
+<script>
+	p = new Page(229);
+	//dead end
+</script>
 
 <div id="p230" class="kjkpage">
 <h1>230.</h1>
@@ -4894,6 +4904,11 @@ mentőautó alól felemelt kézzel. - Ha engedelmeskedsz, lapozz a
 <b>325</b>-re. Ha kigurulva a mentőautó alól rálősz a fickóra, lapozz a
 <b>12</b>-re.
 </p>
+<script>
+	p = new Page(356);
+	p.addLink(325);
+	p.addLink(12);
+</script>
 
 <div id="p357" class="kjkpage">
 <h1>357.</h1>
@@ -5067,7 +5082,7 @@ Anglo fekszik. Lapozz a <b>225</b>-re.
 <h1>372.</h1>
 <img class="illust" src="imgs/372.jpg"/>
 <p>
-Előrenyúlsz, és a műszerfaladon megnyomod a rakétavető gombját. Az Interceptor
+Előrenyúlsz, és a műszerfaladon megnyomod a rakétavető gombját. <tag></tag> Az Interceptor
 megrázkódik, ahogy a rakéta útnak indul, nyomban ezután fülsiketítő
 robbanás és vakító villanás jelzi a találatot. Amikor a füst
 eloszlik, szabad az út előtted. Hirtelen motorbúgást hallasz, és két
@@ -5078,6 +5093,15 @@ utánuk akarsz menni, lapozz a <b>95</b>-re. Ha futni hagyod őket, lapozz a
 <b>309</b>-re.
 </p>
 </div>
+<script>
+	p = new Page(372);
+	p.addAction(function(){
+		vp.ro--;
+		vp.Render();
+	}, "boom");
+	p.addLink(95);
+	p.addLink(309);
+</script>
 
 <div id="p373" class="kjkpage">
 <h1>373.</h1>
@@ -5094,7 +5118,7 @@ Másodpercek múlva már nem is látod. Lapozz a <b>96</b>-ra.
 Előhúzod késed, és készenlétben várod a kutyát.
 </p>
 <table>
-<tr><td><i>Vadkutya</i></td><td>ÜGYESSÉG 7</td><td>ÉLETERŐ 5</td></tr>
+<tr><td><i><en>Vadkutya</en></i></td><td>ÜGYESSÉG <pw>7</pw></td><td>ÉLETERŐ <hp>5</hp></td></tr>
 </table>
 <p>
 A Kézitusa szabályai szerint játszd ezt a küzdelmet egészen halálig.
@@ -5103,6 +5127,17 @@ Ha győzöl, lapozz a <b>89</b>-re.
 </p>
 <p class="subillust"><img src="imgs/gunfight.jpg"/></p>
 </div>
+<script>
+	p = new Page(374);
+	p.addAction(function(){
+		dog = new Enemy("Vadkutya", 7, 5);
+		dog.hurtmod = 1;
+		ACTFIGHT = new FightObj("hand", [dog]);
+		ACTFIGHT.hurtmod = 1;
+		Fight();
+	}, "fight");
+	p.addLink(89);
+</script>
 
 <div id="p375" class="kjkpage">
 <h1>375.</h1>
