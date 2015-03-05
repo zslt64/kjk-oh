@@ -13,28 +13,27 @@
 <td valign="top">
 	<div id="datapane">
 		<table>
-		<tr>
-		<td>mdp:</td><td><input type="text" class="chdata" id="mdp" readonly/></td>
-		<td>dp:</td><td><input type="text" class="chdata" id="dp" readonly/></td>
-		</tr>
-		<tr>
-		<td>mhp:</td><td><input type="text" class="chdata" id="mhp" readonly/></td>
-		<td>hp:</td><td><input type="text" class="chdata" id="hp" readonly/></td>
-		</tr>
-		<tr>
-		<td>mlp:</td><td><input type="text" class="chdata" id="mlp" readonly/></td>
-		<td>lp:</td><td><input type="text" class="chdata" id="lp" readonly/></td>
-		</tr>
-
-		<tr>
-		<td>mfp:</td><td><input type="text" class="chdata" id="mfp" readonly/></td>
-		<td>fp:</td><td><input type="text" class="chdata" id="fp" readonly/></td>
-		</tr>
-		<tr>
-		<td>map:</td><td><input type="text" class="chdata" id="map" readonly/></td>
-		<td>ap:</td><td><input type="text" class="chdata" id="ap" readonly/></td>
-		</tr>
+		<tr><td>ügyesség:</td><td><pw id="mdp">0</pw>/<pw id="dp">0</pw></td></tr>
+		<tr><td>életerő:</td><td><pw id="mhp">0</pw>/<pw id="hp">0</pw></td></tr>
+		<tr><td>szerencse:</td><td><pw id="mlp">0</pw>/<pw id="lp">0</pw></td></tr>
+		<tr><td>kredit:</td><td><pw id="cr">0</pw></td></tr>
+		<tr><td><button id="medkitb" onclick="cp.UseMedkit()">medkit</button></td><td><pw id="mk">0</pw></td></tr>
 		</table>
+		Tárgyak:
+		<div id="eq"></div>
+		<hr/>
+		<table>
+		<tr><td>tűzerő:</td><td><pw id="mfp">0</pw>/<pw id="fp">0</pw></td></tr>
+		<tr><td>páncélzat:</td><td><pw id="map">0</pw>/<pw id="ap">0</pw></td></tr>
+		<tr><td>vasszögek:</td><td><pw id="in">0</pw></td></tr>
+		<tr><td>olaj:</td><td><pw id="oi">0</pw></td></tr>
+		<tr><td>pótkerék:</td><td><pw id="sw">0</pw></td></tr>
+		<tr><td>üzemanyag:</td><td><pw id="ga">0</pw></td></tr>
+		<tr><td><button id="rocketb" onclick="UseRocket()" disabled>rocket</button></td><td><pw id="ro">0</pw></td></tr>
+		</table>
+		Szerkezeti módosítások:
+		<div id="mo"></div>
+		<hr/>
 	</div>
 	<div id="console"></div>
 </td></tr>
@@ -164,10 +163,10 @@ Mindkét motoros pisztollyal van felfegyverkezve. Te is leadsz egy lövést, és
 </p>
 
 <table>
-<tr><td><i>Első motoros</i></td><td>ÜGYESSÉG 6</td><td>ÉLETERŐ 15</td></tr>
-<tr><td><i>Második motoros</i></td><td>ÜGYESSÉG 7</td><td>ÉLETERŐ 15</td></tr>
+<tr><td><i><en>Első motoros</en></i></td><td>ÜGYESSÉG <pw>6</pw></td><td>ÉLETERŐ <hp>15</hp></td></tr>
+<tr><td><i><en>Második motoros</en></i></td><td>ÜGYESSÉG <pw>7</pw></td><td>ÉLETERŐ <hp>15</hp></td></tr>
 </table>
-
+<tag></tag>
 <p>
 Mindkét motoros külön-külön tüzel rád mindegyik fordulóban, s el kell döntened, te melyikükre lősz előbb. 
 A másik motoros ellen a szokásos módon használod Támadóerődet, de nem sebzed meg őt, még akkor sem, ha a te Támadóerőd a nagyobb. 
@@ -175,6 +174,16 @@ Vedd úgy, hogy ellenséged lövése nem talált. Természetesen ha az ő Támad
 de vonj le mindig egyet Ügyesség pontjaidból, ha egynél többször találtak el a motorosokkal vívott tűzharcodban.
 </p>
 </div>
+<script>
+	p = new Page(6);
+	p.addAction(function(){
+		rider1 = new Enemy("Első motoros", 6, 15);
+		rider2 = new Enemy("Második motoros", 7, 15);
+		ACTFIGHT = new FightObj("gun", [rider1, rider2]);
+		Fight();
+	}, "fight");
+	p.addLink(307);
+</script>
 
 <div id="p7" class="kjkpage">
 <h1>7.</h1>
@@ -3791,15 +3800,34 @@ A három autó egyre közelebb ér, és az elöl haladó Toyota tüzet nyit rád
 a fényszóróiba szerelt géppuskából.
 </p>
 <table>
-<tr><td><i>Toyota</i></td><td>TŰZERŐ 9</td><td>PÁNCÉLZAT 15</td></tr>
-<tr><td><i>Jaguár E-típus</i></td><td>TŰZERŐ 10</td><td>PÁNCÉLZAT 12</td></tr>
-<tr><td><i>Commodore</i></td><td>TŰZERŐ 8</td><td>PÁNCÉLZAT 13</td></tr>
+<tr><td><i><en>Toyota<en></i></td><td>TŰZERŐ <pw>9</pw></td><td>PÁNCÉLZAT <hp>15</hp></td></tr>
+<tr><td><i><en>Jaguár E-típus</en></i></td><td>TŰZERŐ <pw>10</pw></td><td>PÁNCÉLZAT <hp>12</hp></td></tr>
+<tr><td><i><en>Commodore</en></i></td><td>TŰZERŐ <pw>8</pw></td><td>PÁNCÉLZAT <hp>13</hp></td></tr>
 </table>
 <p>
-Egyenként küzdesz meg a három kocsival. Ha győzöl, lapozz a <b>265</b>-re.
+Egyenként küzdesz meg a három kocsival. <tag></tag> <tag></tag> <tag></tag> Ha győzöl, lapozz a <b>265</b>-re.
 </p>
 <p class="subillust"><img src="imgs/carfight.jpg"/></p>
 </div>
+<script>
+	p = new Page(284);
+	p.addAction(function(){
+		toyota = new Enemy("Toyota", 9, 15);
+		ACTFIGHT = new FightObj("car", [toyota]);
+		Fight();
+	}, "fight");
+	p.addAction(function(){
+		jaguar = new Enemy("Jaguár E-típus", 10, 12);
+		ACTFIGHT = new FightObj("car", [jaguar]);
+		Fight();
+	}, "fight");
+	p.addAction(function(){
+		commodore = new Enemy("Commodore", 8, 13);
+		ACTFIGHT = new FightObj("car", [commodore]);
+		Fight();
+	}, "fight");
+	p.addLink(265);
+</script>
 
 <div id="p285" class="kjkpage">
 <h1>285.</h1>
@@ -4614,7 +4642,7 @@ Lövésed nem talál, és a kutya rád veti magát. Gyorsan kirántod a késed, 
 azzal védd magad.
 </p>
 <table>
-<tr><td><i>Vadkutya</i></td><td>ÜGYESSÉG 7</td><td>ÉLETERŐ 5</td></tr>
+<tr><td><i><en>Vadkutya</en></i></td><td>ÜGYESSÉG <pw>7</pw></td><td>ÉLETERŐ <hp>5</hp></td></tr>
 </table>
 <tag></tag>
 <p>
@@ -4629,8 +4657,8 @@ a <b>89</b>-re.
 	p.addAction(function(){
 		dog = new Enemy("Vadkutya", 7, 5);
 		dog.hurtmod = 1;
-		actFight = new FightObj("hand", [dog]);
-		actFight.hurtmod = 1;
+		ACTFIGHT = new FightObj("hand", [dog]);
+		ACTFIGHT.hurtmod = 1;
 		Fight();
 	}, "fight");
 	p.addLink(89);

@@ -1,9 +1,10 @@
 ﻿var CONCONT;
 var CONSOLE;
 var PAGES = new Object();
-
 var ACTPAGE;
 var NACB;
+var MEDKITB;
+var ROCKETB;
 
 function Link(page, destNum, cond){
 	this.page = page;
@@ -50,6 +51,7 @@ Page.prototype.addAction = function(action, type){
 	act = {
 		funct: action,
 		cls: className,
+		typ: type, 
 		an: autoNext
 	}
 	this.actions.push(act);
@@ -99,17 +101,17 @@ Page.prototype.render = function(){
 		alink.render();
 	}
 	
-	as = CONCONT.getElementsByTagName("tag");
-	
 	if (!this.actions.length){
 		this.activateLinks();
 		return;
 	}
 	
+	as = CONCONT.getElementsByTagName("tag");
+	
 	for (var i=0;i<as.length;++i){
 		actionmarker = as[i]
 		actionmarker.innerHTML = "&nbsp;";
-		actionmarker.className = this.actions[i][1];
+		actionmarker.className = this.actions[i].cls;
 		this.actions[i].marker = actionmarker;
 	}
 	
@@ -139,14 +141,23 @@ function CharacterPage(){
 	this.mk = 0; //medkits
 }
 CharacterPage.prototype.Render = function(add){
-	document.getElementById("mdp").value = this.mdp;
-	document.getElementById("dp").value = this.dp;
-	document.getElementById("mhp").value = this.mhp;
-	document.getElementById("hp").value = this.hp;
-	document.getElementById("mlp").value = this.mlp;
-	document.getElementById("lp").value = this.lp;
-	//document.getElementById("mk").value = this.mk;
-	//document.getElementById("cr").value = this.cr;
+	document.getElementById("mdp").innerHTML = this.mdp;
+	document.getElementById("dp").innerHTML = this.dp;
+	document.getElementById("mhp").innerHTML = this.mhp;
+	document.getElementById("hp").innerHTML = this.hp;
+	document.getElementById("mlp").innerHTML = this.mlp;
+	document.getElementById("lp").innerHTML = this.lp;
+	document.getElementById("mk").innerHTML = this.mk;
+	document.getElementById("cr").innerHTML = this.cr;
+	
+	if (this.eq.length){
+		eqlist = this.eq[0];
+		for (var i=1;i<this.eq.length;++i){
+			eqlist += ", " + this.eq[i];
+		}
+		document.getElementById("eq").innerHTML = eqlist;
+	}
+	
 }
 CharacterPage.prototype.AddDP = function(add){
 	this.dp += add;
@@ -182,6 +193,9 @@ CharacterPage.prototype.UseMedkit = function(){
 	if (this.mk <= 0){
 		return
 	}
+	if (this.mhp <= this.hp){
+		return;
+	}	
 	this.mk--;
 	WrConsole("EU csomag használat");
 	this.AddHP(4);
@@ -224,14 +238,23 @@ function VehiclePage(){
 	this.mo = new Array(); //modifications
 }
 VehiclePage.prototype.Render = function(add){
-	document.getElementById("mfp").value = this.mfp;
-	document.getElementById("fp").value = this.fp;
-	document.getElementById("map").value = this.map;
-	document.getElementById("ap").value = this.ap;
-	//document.getElementById("ro").value = this.ro;
-	//document.getElementById("in").value = this.in;
-	//document.getElementById("sw").value = this.sw;
-	//document.getElementById("ga").value = this.ga;
+	document.getElementById("mfp").innerHTML = this.mfp;
+	document.getElementById("fp").innerHTML = this.fp;
+	document.getElementById("map").innerHTML = this.map;
+	document.getElementById("ap").innerHTML = this.ap;
+	document.getElementById("ro").innerHTML = this.ro;
+	document.getElementById("in").innerHTML = this.in;
+	document.getElementById("oi").innerHTML = this.oi;
+	document.getElementById("sw").innerHTML = this.sw;
+	document.getElementById("ga").innerHTML = this.ga;
+	
+	if (this.mo.length){
+		molist = this.mo[0];
+		for (var i=1;i<this.mo.length;++i){
+			molist += ", " + this.mo[i];
+		}
+		document.getElementById("mo").innerHTML = molist;
+	}
 }
 VehiclePage.prototype.AddFP = function(add){
 	this.fp += add;
@@ -250,7 +273,6 @@ VehiclePage.prototype.AddAP = function(add){
 VehiclePage.prototype.Generate = function(){
 	this.mfp = this.fp = dice() + 6;
 	this.map = this.ap = dice() + dice() + 24;
-	this.cr = 200;
 	this.mk = 10;
 	this.ro = 4; 
 	this.in = 3;
@@ -294,16 +316,39 @@ function FightObj(type, enemies){
 	this.win = false;
 }
 
-var actFight;
+var ACTFIGHT;
 
 function Fight(){
 	
-	var fobj = actFight;
+	var fobj = ACTFIGHT;
 	
 	fobj.rounds++;
 	if (fobj.rounds == 0){
 		WrConsole("harc kezdődik");
-		//todo: disable medkits, enadble rockets
+		
+		if (fobj.type == "car"){
+			ROCKETB.disabled = false;
+		} else if (fobj.type == "gun" || fobj.type == "hand"){
+			MEDKITB.disabled = true;
+		}
+		
+		hm = CONCONT.getElementsByTagName("hp");
+		
+		var ahm;
+		try {
+			ahm = ACTPAGE.hms[ACTPAGE.hmind];
+		}
+		catch(err) {
+			ACTPAGE.hms = CONCONT.getElementsByTagName("hp");
+			ACTPAGE.hmind = 0;
+		}
+		
+		for (var i=0;i<fobj.enemies.length;++i){
+			ahm = ACTPAGE.hms[ACTPAGE.hmind];
+			en = fobj.enemies[i];
+			en.hmark = ahm;
+			++ACTPAGE.hmind;
+		}
 		NACB = Fight;
 		return;
 	}
@@ -313,7 +358,7 @@ function Fight(){
 	if (fobj.type == 'hand' || fobj.type == 'gun'){
 		myp = cp.dp;
 	} else if (fobj.type == 'car'){
-		myp = vc.fp;
+		myp = vp.fp;
 	}
 	
 	var end = false;
@@ -353,6 +398,11 @@ function Fight(){
 					hurt += fobj.hurtmod;
 					en.hurt += hurt;
 					en.h -= hurt;
+					if (en.h < 0){
+						en.h = 0;
+					}
+					
+					en.hmark.innerHTML = en.h;
 					WrConsole("eltaláltad, sebzés: " + hurt + " maradt : " + en.h);
 				}
 				if (en.h <= 0){
@@ -413,8 +463,11 @@ function Fight(){
 	}
 	
 	if (end){
-		//todo: enable medkits, disable rockets
-		//todo: assing next action to NACB
+		if (fobj.type == "car"){
+			ROCKETB.disabled = true;
+		} else if (fobj.type == "gun" || fobj.type == "hand"){
+			MEDKITB.disabled = false;
+		}
 		ACTPAGE.nextAction();
 		return;
 	}
@@ -427,6 +480,23 @@ function Fight(){
 			}
 		}
 	}
+}
+
+function UseRocket(){
+	if (vp.ro <= 0){
+		return;
+	}
+	WrConsole("BUMMM, rakéta támadás");
+	for (var i = 0; i<ACTFIGHT.enemies.length; ++i){
+		en = ACTFIGHT.enemies[i];
+		en.hp = 0;
+		en.active = false;
+		en.hmark.innerHTML = en.hp;
+		
+		WrConsole(en.n + " kapmec");
+	}
+	vp.ro--;
+	vp.Render();
 }
 
 function LuckTest(){
@@ -462,6 +532,8 @@ function startApp(){
 	vp.Generate();
 	CONCONT = document.getElementById("concont");
 	CONSOLE = document.getElementById("console");
+	MEDKITB = document.getElementById("medkitb");
+	ROCKETB = document.getElementById("rocketb");
 	
-	PAGES[0].start();
+	PAGES[284].start();
 }
