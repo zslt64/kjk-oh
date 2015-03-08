@@ -172,7 +172,7 @@ Mindkét motoros pisztollyal van felfegyverkezve. Te is leadsz egy lövést, és
 Mindkét motoros külön-külön tüzel rád mindegyik fordulóban, s el kell döntened, te melyikükre lősz előbb. 
 A másik motoros ellen a szokásos módon használod Támadóerődet, de nem sebzed meg őt, még akkor sem, ha a te Támadóerőd a nagyobb. 
 Vedd úgy, hogy ellenséged lövése nem talált. Természetesen ha az ő Támadóereje nagyobb, megsebzett téged. Ha győzöl, lapozz a <b>307</b>-re, 
-de vonj le mindig egyet Ügyesség pontjaidból, ha egynél többször találtak el a motorosokkal vívott tűzharcodban.
+de vonj le mindig egyet Ügyesség pontjaidból, ha egynél többször találtak el a motorosokkal vívott tűzharcodban. <tag></tag>
 </p>
 </div>
 <script>
@@ -183,6 +183,11 @@ de vonj le mindig egyet Ügyesség pontjaidból, ha egynél többször találtak
 		ACTFIGHT = new FightObj("gun", [rider1, rider2]);
 		Fight();
 	}, "fight");
+	p.addAction(function(){
+		if (1 < ACTFIGHT.hitcount){
+			cp.AddDP(-1);
+		}
+	},"rest");
 	p.addLink(307);
 </script>
 
@@ -1305,7 +1310,7 @@ továbbmész kelet felé? Lapozz a <b>45</b>-re.
 </div>
 <script>
 	p = new Page(78);
-	p.addLink(199);
+	p.addLink(199, function(){ return 0 < vp.ro; });
 	p.addLink(377);
 	p.addLink(45);
 </script>
@@ -1969,7 +1974,7 @@ remény vörös körrel van rajta megjelölve, egy Sziklaváros nevű
 helység attól nem messze délkeletre pedig vörös kereszttel. Nem
 kétséges, hogy ez a motorosok ideiglenes otthona. Úgy döntesz, hogy
 otthagyod a motorosokat, a társaik majd csak megtalálják őket, és
-kicseréled az Interceptor megrongálódott kerekét. <tag></tag> Lapozz a <b>346</b>-ra.
+kicseréled az Interceptor megrongálódott kerekét. Lapozz a <b>346</b>-ra.
 </p>
 <p class="subillust"><img src="imgs/gunfight.jpg"/></p>
 </div>
@@ -1978,9 +1983,6 @@ kicseréled az Interceptor megrongálódott kerekét. <tag></tag> Lapozz a <b>34
 	p.addAction(function(){
 		cp.AddCR(200);
 	}, "loot");
-	p.addAction(function(){
-		vp.AddSW(-1);
-	}, "loose");
 	p.addLink(346);
 </script>
 
@@ -3098,7 +3100,7 @@ ollód, lapozz a <b>85</b>-re. Ha nincs, lapozz a <b>255</b>-re.
 <div id="p199" class="kjkpage">
 <h1>199.</h1>
 <p>
-A farmház könnyű célpont, és a rakéta nem téveszt célt. A robbanás
+A farmház könnyű célpont, és a rakéta nem téveszt célt. <tag></tag> A robbanás
 lerombolja a házat, tégla- és fadarabok szállnak szanaszét. Ahogy a
 por leszáll, óvatosan előreindulsz, egyik ujjadat a géppuska ravaszán
 tartva. Megállsz az égő épület mellett, de nem látod élet jelét.
@@ -3109,7 +3111,12 @@ felé, lapozz a <b>353</b>-ra.
 </p>
 </div>
 <script>
-	LinkPage(199, [262, 353]);
+	p = new Page(199);
+	p.addAction(function(){
+		vp.AddRO(-1);
+	}, "boom");
+	p.addLink(262);
+	p.addLink(353);
 </script>
 
 <div id="p200" class="kjkpage">
@@ -3158,7 +3165,7 @@ veszélyt szimatolva szemügyre veszed a terepet. Mit teszel?
 </div>
 <script>
 	p = new Page(203);
-	p.addLink(372);
+	p.addLink(372, function(){ return 0 < vp.ro;});
 	p.addLink(317);
 	p.addLink(278);
 </script>
@@ -3191,7 +3198,7 @@ kör van Új Remény köré húzva. Nyilván a két férfi annak a bandának a
 tagja, amely megtámadta városodat. Egy Sziklaváros nevű helység
 kereszttel van megjelölve a térképen. Nincs messze onnan, ahol vagy,
 dél felé. Nem kétséges előtted, hogy ez a motorosok lakóhelye. Úgy
-döntesz, hogy kicseréled az Interceptor kerekét <tag></tag> , mielőtt a motorosok
+döntesz, hogy kicseréled az Interceptor kerekét, mielőtt a motorosok
 barátai megérkeznének. Lapozz a <b>346</b>-ra.
 </p>
 </div>
@@ -3201,9 +3208,6 @@ barátai megérkeznének. Lapozz a <b>346</b>-ra.
 		cp.AddCR(200);
 		cp.AddStuff("bilincs");
 	}, "loot");
-	p.addAction(function(){
-		vp.AddSW(-1);
-	}, "loose");
 	p.addLink(346);
 </script>
 
@@ -3289,7 +3293,7 @@ Az autó porfelhőt kavarva, csúszkálva megáll, és revolvereddel tüzelve
 kiugrasz belőle. A két motoros viszonozza a tüzet, de sikerül
 eltávolodnod az Interceptortól, s a földre vetned magad egy bokor
 mögé, mielőtt az akna robbanna. A robbanás tönkreteszi az egyik
-kerekedet, és 2 Páncélzat pontot veszítesz.<tag></tag> Mikor a por leszáll, egy
+kerekedet, és 2 Páncélzat pontot veszítesz. <tag></tag> Mikor a por leszáll, egy
 ideig csend van, majd az egyik motoros megszólal: - Dobd ide a
 pisztolyt és a kulcsokat. Csak a kocsidat akarjuk. - Ha
 engedelmeskedsz, lapozz a <b>283</b>-ra. Ha inkább harcolsz, lapozz a <b>6</b>-ra.
@@ -4697,6 +4701,9 @@ akarod nyitni, lapozz a <b>206</b>-ra. Ha nem vesztegeted az időt, inkább
 rögtön kereket cserélsz az Interceptoron, lapozz a <b>346</b>-ra.
 </p>
 </div>
+<script>
+	LinkPage(307, [206, 346]);
+</script>
 
 <div id="p308" class="kjkpage">
 <h1>308.</h1>
@@ -4790,10 +4797,18 @@ tovább hajthatsz. Lapozz a <b>351</b>-re.
 <h1>315.</h1>
 <p>
 Valaki egy páncélököllel lőtt rád, és telibe talált. Dobj két kockával, és
-az összeget vond le az Interceptor Páncélzatából. Ha túlélted a
+az összeget vond le az Interceptor Páncélzatából. <tag></tag> Ha túlélted a
 lövést, lapozz az <b>53</b>-ra.
 </p>
 </div>
+<script>
+	p = new Page(315);
+	p.addAction(function(){
+		d = dice() + dice();
+		vp.AddAP(-d);
+	}, "dice");
+	p.addLink(53, function(){return 0 < vp.ap;});
+</script>
 
 <div id="p316" class="kjkpage">
 <h1>316.</h1>
@@ -4815,7 +4830,7 @@ Lehajtasz az útról, s köves földön, bozótosban manőverezel, amikor hirtel
 veszedelmes kinézetű bőrruhás fickó ugrik ki egy bokor mögül. Az
 egyik pisztolyából tüzel rád, hogy fedezze társát, aki mágneses aknát
 tapaszt az Interceptor hátsó sárvédőjére. 1 Szerencse pontot
-veszítesz.<tag></tag> Mire észbe kapsz és a géppuska ravasza felé nyúlsz, már
+veszítesz. <tag></tag> Mire észbe kapsz és a géppuska ravasza felé nyúlsz, már
 fedezékbe ugrottak. Kétségbeesetten gondolkodsz, mit tegyél.
 </p>
 <p>Hajts tovább? Lapozz a <b>17</b>-re.</p>
@@ -5587,8 +5602,7 @@ utánuk akarsz menni, lapozz a <b>95</b>-re. Ha futni hagyod őket, lapozz a
 <script>
 	p = new Page(372);
 	p.addAction(function(){
-		vp.ro--;
-		vp.Render();
+		vp.AddRO(-1);
 	}, "boom");
 	p.addLink(95);
 	p.addLink(309);

@@ -282,6 +282,11 @@ VehiclePage.prototype.AddGA = function(add){
 	WrConsole("Kanna benzin: "+add);
 	this.Render();
 }
+VehiclePage.prototype.AddRO = function(add){
+	this.ro += add;
+	WrConsole("Rakéta: "+add);
+	this.Render();
+}
 VehiclePage.prototype.Generate = function(){
 	this.mfp = this.fp = dice() + 6;
 	this.map = this.ap = dice() + dice() + 24;
@@ -509,8 +514,7 @@ function UseRocket(){
 		
 		WrConsole(en.n + " kapmec");
 	}
-	vp.ro--;
-	vp.Render();
+	vp.AddRO(-1);
 	Fight();
 }
 
@@ -550,5 +554,5 @@ function startApp(){
 	MEDKITB = document.getElementById("medkitb");
 	ROCKETB = document.getElementById("rocketb");
 	
-	PAGES[95].start();
+	PAGES[0].start();
 }
