@@ -164,7 +164,6 @@ CharacterPage.prototype.AddDP = function(add){
 	if (this.mdp < this.dp) {
 		this.dp = this.mdp;
 	}
-	this.dp = ndp;
 	WrConsole("Ügyesség: "+add);
 	this.Render();
 }
@@ -262,6 +261,7 @@ VehiclePage.prototype.AddFP = function(add){
 	if (this.mfp < this.fp) {
 		this.fp = this.mfp;
 	}
+	WrConsole("Tűzerő: "+add);
 	this.Render();
 }
 VehiclePage.prototype.AddAP = function(add){
@@ -269,6 +269,7 @@ VehiclePage.prototype.AddAP = function(add){
 	if (this.map < this.ap) {
 		this.ap = this.map;
 	}
+	WrConsole("Páncélzat: "+add);
 	this.Render();
 }
 VehiclePage.prototype.Generate = function(){
@@ -314,6 +315,7 @@ function FightObj(type, enemies){
 	this.attackmod = 0;
 	this.powermod = 0;
 	this.hurtmod = 0;
+	this.hitcount = 0;
 	this.win = false;
 }
 
@@ -417,7 +419,8 @@ function Fight(){
 			} else {
 				//enemy succes
 				hurt += en.hurtmod;
-				fobj.hurt += hurt; 
+				fobj.hurt += hurt;
+				fobj.hitcount++;
 				WrConsole("eltaláltak, sérülés: " + hurt);
 				if (fobj.type == 'hand' || fobj.type == 'gun'){
 					cp.AddHP(-hurt);
@@ -537,5 +540,5 @@ function startApp(){
 	MEDKITB = document.getElementById("medkitb");
 	ROCKETB = document.getElementById("rocketb");
 	
-	PAGES[1].start();
+	PAGES[149].start();
 }
