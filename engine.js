@@ -272,6 +272,16 @@ VehiclePage.prototype.AddAP = function(add){
 	WrConsole("Páncélzat: "+add);
 	this.Render();
 }
+VehiclePage.prototype.AddSW = function(add){
+	this.sw += add;
+	WrConsole("Pótkerék: "+add);
+	this.Render();
+}
+VehiclePage.prototype.AddGA = function(add){
+	this.ga += add;
+	WrConsole("Kanna benzin: "+add);
+	this.Render();
+}
 VehiclePage.prototype.Generate = function(){
 	this.mfp = this.fp = dice() + 6;
 	this.map = this.ap = dice() + dice() + 24;
@@ -540,5 +550,5 @@ function startApp(){
 	MEDKITB = document.getElementById("medkitb");
 	ROCKETB = document.getElementById("rocketb");
 	
-	PAGES[149].start();
+	PAGES[95].start();
 }

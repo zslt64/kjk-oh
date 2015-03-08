@@ -410,8 +410,7 @@ Gyorsan kereket cserélsz <tag></tag> , és hamarosan úton vagy kelet felé. La
 <script>
 	p = new Page(19);
 	p.addAction(function(){
-		vp.sw--;
-		vp.Render();
+		vp.AddSW(-1)
 	}, "loose");
 	p.addLink(119);
 </script>
@@ -1256,8 +1255,7 @@ Levonod a tanulságot, hogy a jövőben nem kell olyan könnyelműen szóba
 <script>
 	p = new Page(75);
 	p.addAction(function(){
-		vp.sw--;
-		vp.Render();
+		vp.AddSW(-1);
 	}, "loose");
 	p.addAction(function(){
 		cp.AddLP(-1);
@@ -1560,6 +1558,7 @@ Interceptorral, ujjaid a géppuska ravaszára kulcsolódnak.
 <table>
 <tr><td><i><en>Motorkerékpár</en></i></td><td>TŰZERŐ <pw>6</pw></td><td>PÁNCÉLZAT <hp>9</hp></td></tr>
 </table>
+<tag></tag>
 <p>
 Ha
 győzöl, lapozz a <b>249</b>-re.
@@ -1980,9 +1979,7 @@ kicseréled az Interceptor megrongálódott kerekét. <tag></tag> Lapozz a <b>34
 		cp.AddCR(200);
 	}, "loot");
 	p.addAction(function(){
-		vp.sw--;
-		WrConsole("1 pótkerék felhasználva");
-		vp.Render();
+		vp.AddSW(-1);
 	}, "loose");
 	p.addLink(346);
 </script>
@@ -2930,8 +2927,7 @@ lapozz a <b>66</b>-ra.
 <script>
 	p = new Page(188);
 	p.addAction(function(){
-		vp.ga--;
-		vp.Render();
+		vp.AddGA(-1);
 	}, "gas");
 	p.addLink(341);
 	p.addLink(66);
@@ -3083,8 +3079,7 @@ teszel?
 <script>
 	p = new Page(176);
 	p.addAction(function(){
-		vp.ga--;
-		vp.Render();
+		vp.AddGA(-1);
 	}, "loose");
 	p.addLink(4);
 	p.addLink(321);
@@ -3196,8 +3191,8 @@ kör van Új Remény köré húzva. Nyilván a két férfi annak a bandának a
 tagja, amely megtámadta városodat. Egy Sziklaváros nevű helység
 kereszttel van megjelölve a térképen. Nincs messze onnan, ahol vagy,
 dél felé. Nem kétséges előtted, hogy ez a motorosok lakóhelye. Úgy
-döntesz, hogy kicseréled az Interceptor kerekét, mielőtt a motorosok
-berátai megérkeznének. Lapozz a <b>346</b>-ra.
+döntesz, hogy kicseréled az Interceptor kerekét <tag></tag> , mielőtt a motorosok
+barátai megérkeznének. Lapozz a <b>346</b>-ra.
 </p>
 </div>
 <script>
@@ -3206,6 +3201,9 @@ berátai megérkeznének. Lapozz a <b>346</b>-ra.
 		cp.AddCR(200);
 		cp.AddStuff("bilincs");
 	}, "loot");
+	p.addAction(function(){
+		vp.AddSW(-1);
+	}, "loose");
 	p.addLink(346);
 </script>
 
@@ -5209,8 +5207,7 @@ inkább továbbmész kelet felé, lapozz a <b>45</b>-re.
 <script>
 	p = new Page(346);
 	p.addAction(function(){
-		vp.sw--;
-		vp.Render();
+		vp.AddSW(-1);
 	}, "loose");
 	p.addLink(157);
 	p.addLink(45);
@@ -5405,9 +5402,7 @@ hamarosan ismét úton vagy dél felé. Lapozz a <b>149</b>-re.
 	p = new Page(359);
 	p.addAction(function(){
 		cp.AddStuff("feszítővas");
-		vp.ga++;
-		vp.Render();
-		WrConsole("+1 kanna benzin");
+		vp.AddGA(1);
 	}, "loot");
 	p.addLink(149);
 </script>
