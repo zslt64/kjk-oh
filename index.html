@@ -144,10 +144,13 @@ Ha szerencséd van, lapozz a <b>354</b>-re. Ha nem, lapozz a 247-re.
 <p>
 Lehúzódsz az útról, és egy alacsony fal mellett állítod le az Interceptort. Ahogy kikapcsolod a motort, feltűnik, milyen halálos csend van. 
 Vajon halotta-e valaki is jöttödet? Gyorsan megeszed a vacsorádat, de megvárod, míg teljesen be nem sötétedik, s csak akkor fekszel le aludni. 
-Reggel kipihenten ébredsz. 2 Életerő pontot nyertél. Indítasz, és továbbhajtasz az Interceptorral dél felé. Lapozz a <b>254</b>-re.
+Reggel kipihenten ébredsz. 2 Életerő pontot nyertél. <tag></tag> Indítasz, és továbbhajtasz az Interceptorral dél felé. Lapozz a <b>254</b>-re.
 </p>
 <p class="subillust"><img src="imgs/gunfight.jpg"/></p>
 </div>
+<script>
+	LinkPage(4, [254], [function(){cp.AddHP(2);}]);
+</script>
 
 <div id="p5" class="kjkpage">
 <h1>5.</h1>
@@ -322,7 +325,7 @@ tüzet? Lapozz a <b>282</b>-re.
 <h1>14.</h1>
 <p>
 Az ágy nagyon kényelmes, s csak jóval napkelte után ébredsz. Nyugodt és
-friss vagy az éjszakai pihenő után. 3 Életerő pontot nyersz.
+friss vagy az éjszakai pihenő után. 3 Életerő pontot nyersz. <tag></tag>
 Leszaladsz a lépcsőn, és kilépsz az ajtón, de hirtelen megtorpansz.
 Egy fehér ruhás férfi épp egy kanna benzint locsol az Interceptorra,
 majd motyogva hátralép, egy doboz gyufát húz elő. Ha rákiáltasz
@@ -330,6 +333,9 @@ lapozz a <b>260</b>-ra. Ha inkább odarohansz hozzá, hogy kiüsd a gyufát a
 kezéből, lapozz a <b>217</b>-re.
 </p>
 </div>
+<script>
+	LinkPage(14, [260, 217], [function(){cp.AddHP(3);}]);
+</script>
 
 <div id="p15" class="kjkpage">
 <h1>15.</h1>
@@ -348,12 +354,15 @@ ajánlatot és továbbmész kelet felé, lapozz a <b>259</b>-re.
 <div id="p16" class="kjkpage">
 <h1>16.</h1>
 <p>
-Kora reggel kipihenten, felfrissülve ébredsz. 2 Életerő pontot nyersz.
+Kora reggel kipihenten, felfrissülve ébredsz. 2 Életerő pontot nyersz. <tag></tag>
 Ha át akarod kutatni a kávézót, lapozz a <b>26</b>-ra. Ha inkább rögtön
 útnak indulsz, lapozz a <b>254</b>-re.
 </p>
 <p class="subillust"><img src="imgs/riders.jpg"/></p>
 </div>
+<script>
+	LinkPage(16, [26, 254], [function(){cp.AddHP(2);}]);
+</script>
 
 <div id="p17" class="kjkpage">
 <h1>17.</h1>
@@ -473,6 +482,9 @@ pontszámodnál, lapozz a <b>342</b>-re.
 </p>
 <p class="subillust"><img src="imgs/carfight.jpg"/></p>
 </div>
+<script>
+	DexTestPage(23, 137, 342);
+</script>
 
 <div id="p24" class="kjkpage">
 <h1>24.</h1>
@@ -490,6 +502,9 @@ kapun, lapozz a <b>300</b>-ra. Ha inkább gyorsan hátrálni kezdesz és
 visszamész a főútra, dél felé, lapozz az <b>59</b>-re.
 </p>
 </div>
+<script>
+	LinkPage(24, [300, 59]);
+</script>
 
 <div id="p25" class="kjkpage">
 <h1>25.</h1>
@@ -515,6 +530,9 @@ egy szálat. Ha rákiáltasz, lapozz a <b>260</b>-ra. Ha inkább odarohansz,
 hogy kiüsd a gyufát a kezéből, lapozz a <b>217</b>-re.
 </p>
 </div>
+<script>
+	LinkPage(26, [260, 217]);
+</script>
 
 <div id="p27" class="kjkpage">
 <h1>27.</h1>
@@ -581,7 +599,7 @@ mint az övé, lapozz a <b>74</b>-re. Ha kisebb, akkor lapozz a <b>226</b>-ra.
 <h1>31.</h1>
 <p>
 A farmház könnyű célpont, másodpercek alatt betáplálod a komputerbe, és
-megnyomod a gombot, tüzelsz. A rakéta célba talál. A robbanás
+megnyomod a gombot, tüzelsz. <tag></tag> A rakéta célba talál. A robbanás
 lerombolja a farmot, tégla és fadarabok repülnek szanaszét. Rögtön
 fogod az U-Fix ragasztóval teli kannát, és kijavítod a kocsidon
 keletkezett lyukat.
@@ -594,6 +612,9 @@ kocsiból, hogy segíts, lapozz a <b>262</b>-re. Ha inkább távozol a városbó
 </p>
 <p class="subillust"><img src="imgs/hotrod.jpg"/></p>
 </div>
+<script>
+	LinkPage(31, [262, 353], [function(){vp.AddRO(-1);}]);
+</script>
 
 <div id="p32" class="kjkpage">
 <h1>32.</h1>
@@ -763,10 +784,13 @@ kézifékes kanyarral szembefordulj vele, lapozz a <b>77</b>-re.
 Sötétség száll a tájra, és bekapcsolod fényszóróidat. Egyenletesen haladsz,
 kikerülve az akadályokat s a vadállatokat, melyeknek vörös szeme
 meg-megvillan reflektorod fényében. Elfáradsz mire éjszaka lesz. Dobj
-két kockával. Ha az összeg annyi, vagy kevesebb, mint ügyességed,
+két kockával. <tag></tag> Ha az összeg annyi, vagy kevesebb, mint ügyességed,
 lapozz a <b>161</b>-re. Ha nagyobb, lapozz a <b>186</b>-ra.
 </p>
 </div>
+<script>
+	DexTestPage(42, 161, 186);
+</script>
 
 <div id="p43" class="kjkpage">
 <h1>43.</h1>
@@ -894,6 +918,10 @@ gyufát a kocsidra dobja. Az Interceptor azonnal lángokba borul.
 Hasztalan dühöngsz, az őrölt férfi véget vetett küldetésednek.
 </p>
 </div>
+<script>
+	p = new Page(50);
+	//dead end
+</script>
 
 <div id="p51" class="kjkpage">
 <h1>51.</h1>
@@ -960,10 +988,18 @@ hajigálva, a szekrények üresek. Egy lépcső vezet föl a
 lakóhelyiségekbe, amelyekben hasonló kép fogad. Miután semmi
 érdekeset nem találsz, leülsz, és saját, gyorsan fogyó elemózsiádból
 eszel valamennyit. Amikor teljesen besötétedik, revolveredet a párna
-alá téve lefekszel az ágyra. Dobj egy kockával. Ha 1, 2 vagy 3-at
+alá téve lefekszel az ágyra. Dobj egy kockával. <tag></tag> Ha 1, 2 vagy 3-at
 dobsz, lapozz a <b>110</b>-re. Ha 4, 5 vagy 6-ot, lapozz a <b>14</b>-re
 </p>
 </div>
+<script>
+	p = new Page(55);
+	p.addAction(function(){
+		ACTPAGE.diced = dice();
+	}, "dice");
+	p.addLink(110, function(){return ACTPAGE.diced < 4;});
+	p.addLink(14, function(){return ACTPAGE.diced >= 4;});
+</script>
 
 <div id="p56" class="kjkpage">
 <h1>56.</h1>
@@ -1062,6 +1098,9 @@ Az út keletnek vezet, és nyugodtan haladsz rajta, mígnem egy újabb
 felé tartó San Angló-i útra. Lapozz a <b>272</b>-re.
 </p>
 </div>
+<script>
+	LinkPage(61, [272]);
+</script>
 
 <div id="p62" class="kjkpage">
 <h1>62.</h1>
@@ -1170,6 +1209,9 @@ eltűnik, és megújult erővel vezetsz tovább San Anglo felé. Lapozz a
 </p>
 <p class="subillust"><img src="imgs/gunfight.jpg"/></p>
 </div>
+<script>
+	LinkPage(68, [254]);
+</script>
 
 <div id="p69" class="kjkpage">
 <h1>69.</h1>
@@ -1216,11 +1258,14 @@ lapozz a <b>37</b>-re.
 <p>
 Amikor az ajtót kinyitod, az megránt egy zsinórt, s így meghúzza a túloldali
 falon lévő nyílpuska ravaszát. A nyíl kipattan, és a válladba
-fúródik. Dobj egy kockával, és az eredményt vond le életerődből. Ha
+fúródik. Dobj egy kockával, és az eredményt vond le életerődből. <tag></tag> Ha
 életben maradsz, lapozz a <b>233</b>-ra.
 </p>
 <p class="subillust"><img src="imgs/stuff.jpg"/></p>
 </div>
+<script>
+	LinkPage(72, [233], [function(){ cp.AddHP(-dice()); }]);
+</script>
 
 <div id="p73" class="kjkpage">
 <h1>73.</h1>
@@ -1282,10 +1327,18 @@ kúszhatsz a kerítés felé. Lapozz a <b>198</b>-ra.
 <p>
 Élesen balra rántod a kormányt, és ugyanakkor berántod a kéziféket. A kocsi
 fara jobbra perdül, és rögtön a gázra kell lépned, hogy megállítsd a
-csúszást. Dobj két kockával. Ha az összeg akkora, vagy kisebb, mint
+csúszást. Dobj két kockával. <tag></tag> Ha az összeg akkora, vagy kisebb, mint
 szerencséd, lapozz a <b>290</b>-re. Ha az összeg nagyobb, lapozz a <b>352</b>-re.
 </p>
 </div>
+<script>
+	p = new Page(77);
+	p.addAction(function(){
+		ACTPAGE.ddice = dice() + dice();
+	}, "dice");
+	p.addLink(290, function(){return ACTPAGE.ddice <= cp.lp;});
+	p.addLink(352, function(){return ACTPAGE.ddice > cp.lp;});
+</script>
 
 <div id="p78" class="kjkpage">
 <h1>78.</h1>
@@ -1398,10 +1451,13 @@ Nem tudod, de a melléképületben lévő sötétség és meleg igen kedvező a
 vöröshátú pókoknak. Zavaros álmodban forgolódsz és csapkodsz, közben
 karod az egyik pókhoz ér. Az ösztönösen beléd mar, és mérget
 fecskendez ereidbe. Dobj egy kockával, és a számot vond le
-életerődből. Ha életben maradsz, lapozz a <b>258</b>-ra.
+életerődből. <tag></tag> Ha életben maradsz, lapozz a <b>258</b>-ra.
 </p>
 <p class="subillust"><img src="imgs/hotrod.jpg"/></p>
 </div>
+<script>
+	LinkPage(84, [258], [function(){cp.AddHP(-dice());}]);
+</script>
 
 <div id="p85" class="kjkpage">
 <h1>85.</h1>
@@ -1530,16 +1586,22 @@ fordulhatsz. Ez az út visz délnek, San Anglo felé. Lapozz a <b>272</b>-re.
 </p>
 <p class="subillust"><img src="imgs/carfight.jpg"/></p>
 </div>
+<script>
+	LinkPage(92, [272]);
+</script>
 
 <div id="p93" class="kjkpage">
 <h1>93.</h1>
 <p>
 Megpróbálod újraindítani a lefulladt motort, hogy elhúzz, mielőtt a
 törvényenkívüliek odaérnének megnézni, mit zsákmányoltak. Tedd
-próbára szerencséd! Ha szerencséd van, lapozz a <b>268</b>-ra. Ha nincs,
+próbára szerencséd! <tag></tag> Ha szerencséd van, lapozz a <b>268</b>-ra. Ha nincs,
 lapozz a <b>178</b>-ra.
 </p>
 </div>
+<script>
+	LuckTestPage(93, 268, 178);
+</script>
 
 <div id="p94" class="kjkpage">
 <h1>94.</h1>
@@ -1644,12 +1706,15 @@ küldetésed kudarccal végződött.
 <h1>101.</h1>
 <p>
 Csodával határos módon keresztülhajtasz az aknamezőn, anélkül, hogy egy aknát
-is felrobbantanál. 1 szerencse pontot nyersz. Még csak tudatában sem
+is felrobbantanál. 1 szerencse pontot nyersz. <tag></tag> Még csak tudatában sem
 vagy, micsoda mázlid volt, miközben tovább utazol dél felé. Lapozz a
 <b>303</b>-ra.
 </p>
 <p class="subillust"><img src="imgs/riders.jpg"/></p>
 </div>
+<script>
+	LinkPage(101, [303], [function(){cp.AddLP(1);}]);
+</script>
 
 <div id="p102" class="kjkpage">
 <h1>102.</h1>
@@ -1715,9 +1780,17 @@ a <b>306</b>-ra. Ha nincs, lapozz a <b>187</b>-re.
 <p>
 Egy golyó fúródik az első kerekedbe, és a kocsi farolva megáll, pont a
 felrobbanó akna előtt. Dobj két kockával, és az összeget vond le
-autód páncélzatából. Ha túlélted a robbanást, lapozz a <b>292</b>-re.
+autód páncélzatából. <tag></tag> Ha túlélted a robbanást, lapozz a <b>292</b>-re.
 </p>
 </div>
+<script>
+	p = new Page(105);
+	p.addAction(function(){
+		d = dice() + dice();
+		vp.AddAP(-d);
+	}, "dice");
+	p.addLink(292, function(){return 0 < vp.ap;});
+</script>
 
 <div id="p106" class="kjkpage">
 <h1>106.</h1>
@@ -1769,11 +1842,14 @@ törődve továbbmész dél felé, lapozz a <b>49</b>-re.
 <div id="p110" class="kjkpage">
 <h1>110.</h1>
 <p>
-Kora reggel kipihenten, frissen ébredsz. 2 életerő pontot nyersz.
+Kora reggel kipihenten, frissen ébredsz. 2 életerő pontot nyersz. <tag></tag>
 Leszaladsz a lépcsőn, beugrasz az Interceptorba, és minden késedelem
 nélkül útnak indulsz dél felé. Lapozz a <b>254</b>-re.
 </p>
 </div>
+<script>
+	LinkPage(110, [254], [function(){cp.AddHP(2);}]);
+</script>
 
 <div id="p111" class="kjkpage">
 <h1>111.</h1>
@@ -1801,14 +1877,17 @@ melyik bandába tartozol? - Mit felelsz?
 <h1>112.</h1>
 <p>
 A vegyesboltban találsz egy húskonzervet, s mohón befalod. Rég ettél
-ilyen jól, s 2 életerő pontot nyersz. Még fontosabb, hogy két teli
+ilyen jól, s 2 életerő pontot nyersz. <tag></tag> Még fontosabb, hogy két teli
 kanna benzint is
-találsz, s rögtön berakod az Interceptorba. Ha eddig nem tetted meg,
-átkutathatod a legközelebbi házat (lapozz a 252-re). Ha inkább
+találsz <tag></tag> , s rögtön berakod az Interceptorba. Ha eddig nem tetted meg,
+átkutathatod a legközelebbi házat (lapozz a <b>252</b>-re). Ha inkább
 továbbhajtasz délnek, lapozz a <b>353</b>-ra.
 </p>
 <p class="subillust"><img src="imgs/hotrod.jpg"/></p>
 </div>
+<script>
+	LinkPage(112, [252, 353], [function(){cp.AddHP(2);}, function(){vp.ga+=2;vp.Render();}]);
+</script>
 
 <div id="p113" class="kjkpage">
 <h1>113.</h1>
@@ -2072,15 +2151,21 @@ kocsit, de ügyesen mégis az úton tudod tartani. Mit teszel?
 <p>Olajat engedsz az útra? Lapozz a <b>165</b>-re.</p>
 <p>Egy gyors kézifékes fordulattal szembefordulsz a páncélkocsival?	Lapozz a <b>77</b>-re.</p>
 </div>
+<script>
+	LinkPage(128, [312, 165, 77]);
+</script>
 
 <div id="p129" class="kjkpage">
 <h1>129.</h1>
 <p>
 Hirtelen fülsiketítő robbanás hallatszik, és egy akna oldalt repíti az
 Interceptort. Dobj két kockával, és az összeget vond le az
-Interceptor páncélzatából. Ha túléled a robbanást, lapozz a <b>93</b>-ra.
+Interceptor páncélzatából. <tag></tag> Ha túléled a robbanást, lapozz a <b>93</b>-ra.
 </p>
 </div>
+<script>
+	LinkPage(129, [93], [function(){vp.AddAP( -(dice()+dice()) );}]);
+</script>
 
 <div id="p130" class="kjkpage">
 <h1>130.</h1>
@@ -2197,6 +2282,9 @@ híd alatt. Ha meg akarsz állni, hogy elbánj támadóddal, lapozz a
 <b>281</b>-re. Ha inkább tovább mész dél felé, lapozz a <b>150</b>-re.
 </p>
 </div>
+<script>
+	LinkPage(137, [281, 150]);
+</script>
 
 <div id="p138" class="kjkpage">
 <h1>138.</h1>
@@ -2236,6 +2324,9 @@ Jó nyolcvan kilométert haladsz, mikor az út egy T elágazáshoz ér. Úgy
 döntesz, hogy jobbra fordulsz, San Anglo irányába. Lapozz a <b>23</b>-ra.
 </p>
 </div>
+<script>
+	LinkPage(140, [23]);
+</script>
 
 <div id="p141" class="kjkpage">
 <h1>141.</h1>
@@ -2292,6 +2383,9 @@ Dobj két kockával. Ha az összeg akkora vagy kisebb, mint ügyességed,
 lapozz a <b>68</b>-ra. Ha nagyobb ügyességednél, lapozz a <b>168</b>-ra.
 </p>
 </div>
+<script>
+	DexTestPage(144, 68, 168);
+</script>
 
 <div id="p145" class="kjkpage">
 <h1>145.</h1>
@@ -2417,6 +2511,9 @@ egy T alakú elágazásba torkollik, ahol úgy döntesz, hogy délnek
 fordulsz, San Anglo felé. Lapozz a <b>225</b>-re.
 </p>
 </div>
+<script>
+	LinkPage(153, [225]);
+</script>
 
 <div id="p154" class="kjkpage">
 <h1>154.</h1>
@@ -2541,6 +2638,10 @@ sugarai bearanyozzák a láthatárt, fáradtságod mintha elfújták volna.
 Megújult lelkesedéssel mész tovább San Anglo felé. Lapozz a <b>128</b>-ra.
 </p>
 </div>
+<script>
+	LinkPage(161, [128]);
+</script>
+
 
 <div id="p162" class="kjkpage">
 <h1>162.</h1>
@@ -2583,13 +2684,25 @@ megkezdődik. Dobj egy kockával, és ezt a számot add az útonálló 7
 <div id="p165" class="kjkpage">
 <h1>165.</h1>
 <p>
-Előrehajolsz, és megnyomod a gombot a műszerfalon, kiengeded az olajat. A
+Előrehajolsz, és megnyomod a gombot a műszerfalon, kiengeded az olajat. <tag></tag> A
 páncélkocsi egyenesen ráhajt az olajfoltra, és elégedetten figyeled,
 amint vezetője kétségbeesetten próbálja visszanyerni az uralmat a
-csúszkáló kocsi fölött. Dobj egy kockával. Ha az összeg 1 és 5 között
+csúszkáló kocsi fölött. Dobj egy kockával. <tag></tag> Ha az összeg 1 és 5 között
 van, lapozz a <b>234</b>-re. Ha 6 jön ki, lapozz a <b>280</b>-ra.
 </p>
 </div>
+<script>
+	p = new Page(165);
+	p.addAction(function(){
+		vp.oi--;
+		vp.Render();
+	});
+	p.addAction(function(){
+		ACTPAGE.ddice = dice();
+	}, "dice");
+	p.addLink(234, function(){return ACTPAGE.ddice < 6;});
+	p.addLink(280, function(){return ACTPAGE.ddice = 6;});
+</script>
 
 <div id="p166" class="kjkpage">
 <h1>166.</h1>
@@ -2641,9 +2754,18 @@ Ha sikerül győznöd a Chevrolet ellen ebben az Autós Csatában, lapozz a
 <p>
 Késő éjszaka olyan fáradt vagy, hogy reakcióidőd lelassul. Egy busz
 jelenik meg fényszóróid fényében, és későn próbálod kikerülni. Dobj
-két kockával, és az összeget vond le az Interceptor páncélzatából. Ha
+két kockával, és az összeget vond le az Interceptor páncélzatából. <tag></tag> Ha
 túléled a karambolt, lapozz a <b>327</b>-re.
 </p>
+<script>
+	p = new Page(168);
+	p.addAction(function(){
+		d = dice() + dice();
+		vp.AddAP(-d);
+	}, "dice");
+	p.addLink(327, function(){return 0 < vp.ap;});
+</script>
+
 
 <div id="p169" class="kjkpage">
 <h1>169.</h1>
@@ -2700,6 +2822,10 @@ Lapozz a <b>351</b>-re.
 Interceptorra. Nem éled túl a robbanást.
 </p>
 </div>
+<script>
+	p = new Page(173);
+	//dead end
+</script>
 
 <div id="p174" class="kjkpage">
 <h1>174.</h1>
@@ -2773,15 +2899,33 @@ Stetson-kalapig. Szájából cigaretta lóg. Halkan rád mordul. - Védd
 magad.
 </p>
 <table>
-<tr><td><i>Törvényenkívüli</i></td><td>ÜGYESSÉG 9</td><td>ÉLETERŐ 12</td></tr>
+<tr><td><i><en>Törvényenkívüli</en></i></td><td>ÜGYESSÉG <pw>9</pw></td><td>ÉLETERŐ <hp>12</hp></td></tr>
 </table>
+<tag></tag>
 <p>
 A Tűzharc szabályai szerint játszd le a küzdelmet, de Ügyességedből
 vonj le 2 pontot az első fordulóban, mert a törvényenkívülié a
 kezdeményezés. Ha győzöl, lapozz a <b>375</b>-re, de vonj le mindig 1
-Ügyesség pontot, ha egynél többször eltaláltak.
+Ügyesség pontot, ha egynél többször eltaláltak. <tag></tag>
 </p>
 </div>
+<script>
+	p = new Page(178);
+	p.addAction(function(){
+		outlaw = new Enemy("Törvényenkívüli", 7, 5);
+		ACTFIGHT = new FightObj("gun", [outlaw]);
+		cp.AddDP(-2);
+		Fight();
+		Fight();
+		cp.AddDP(2);
+	}, "fight");
+	p.addAction(function(){
+		if (1 < ACTFIGHT.hitcount){
+			cp.AddDP(-1);
+		}
+	}, "rest");
+	p.addLink(375);
+</script>
 
 <div id="p179" class="kjkpage">
 <h1>179.</h1>
@@ -2877,21 +3021,27 @@ A szobát, amelybe az ajtó nyílik, láthatóan lakják. Az asztalon egy
 csészében kávé, a falnak támasztva egy motor első kereke, a belső a
 padlón hever. Valaki nyilvánvalóan épp kereket akart javítani. Egy
 szerszámkészlet is van az asztalon, amelyben egy komoly drótvágót is
-találsz, amelyet magaddal viszel. Ha eddig nem tetted meg,
+találsz, amelyet magaddal viszel. <tag></tag> Ha eddig nem tetted meg,
 kinyithatod a szemben levő ajtót is - lapozz a <b>72</b>-re; vagy
 elhagyhatod a házat - lapozz a <b>246</b>-ra.
 </p>
 </div>
+<script>
+	LinkPage(185, [72, 246], [function(){ cp.AddStuff("drótvágó");}]);
+</script>
 
 <div id="p186" class="kjkpage">
 <h1>186.</h1>
 Szinte szünet nélkül ásítasz már, és nagyon nehéz a vezetésre figyelni a
 nyílegyenes úton. A fárasztó nap után egyszerűen elalszol a
 kormánynál, s belerohansz egy elhagyott teherautóba. Dobj két
-kockával, és az összeget vond le az Interceptor páncélzatából. Ha
+kockával, és az összeget vond le az Interceptor páncélzatából. <tag></tag> Ha
 túléled az ütközést, lapozz a <b>348</b>-ra.
 </p>
 </div>
+<script>
+	LinkPage(186, [348], [function(){vp.AddAD(-dice()-dice());}]);
+</script>
 
 <div id="p187" class="kjkpage">
 <h1>187.</h1>
@@ -2944,6 +3094,9 @@ folytatod az utat San Anglo felé, lapozz a <b>207</b>-re.
 </p>
 <p class="subillust"><img src="imgs/stuff.jpg"/></p>
 </div>
+<script>
+	LinkPage(189, [24, 207]);
+</script>
 
 <div id="p190" class="kjkpage">
 <h1>190.</h1>
@@ -2963,14 +3116,27 @@ szerencséd van, lapozz a <b>345</b>-re. Ha nincs, lapozz a <b>30</b>-ra.
 Egy golyó kilyukasztja az első kerekedet. Egy pillanatra elveszted
 uralmad a kocsi fölött, és nagy sebességgel egy sziklának ütközöl.
 Dobj egy kockával, és az eredményt vond le a kocsi páncélzatából az
-ütközés miatt. Defektes gumival nem hajthatsz tovább, de veszélyes
+ütközés miatt. <tag></tag> Defektes gumival nem hajthatsz tovább, de veszélyes
 volna kiszállnod a kocsiból, amíg lőnek rád. Hirtelen újabb vakító
 villanást látsz, a farmház emeleti ablakából egy páncélököllel lőnek.
 Mozdulatlan célpont vagy, és el is találnak. Dobj két kockával, és az
-összeget vond le autód páncélzatából. Ha túléled a robbanást, lapozz
+összeget vond le autód páncélzatából. <tag></tag> Ha túléled a robbanást, lapozz
 a <b>292</b>-re.
 </p>
 </div>
+<script>
+	p = new Page(191);
+	p.addAction(function(){
+		d = dice();
+		vp.AddAP(-d);
+	}, "dice");
+	p.addAction(function(){
+		d = dice() + dice();
+		vp.AddAP(-d);
+	}, "dice");
+	p.addLink(292, function(){return 0 < cp.ap;});
+</script>
+
 
 <div id="p192" class="kjkpage">
 <h1>192.</h1>
@@ -3079,7 +3245,7 @@ teszel?
 <p class="subillust"><img src="imgs/gunfight.jpg"/></p>
 </div>
 <script>
-	p = new Page(176);
+	p = new Page(197);
 	p.addAction(function(){
 		vp.AddGA(-1);
 	}, "loose");
@@ -3229,6 +3395,9 @@ lapozz a <b>28</b>-ra. Ha inkább udvariasan vissza utasítod az ajánlatát,
 és továbbhajtasz dél felé, lapozz a <b>88</b>-ra.
 </p>
 </div>
+<script>
+	LinkPage(207, [28, 88]);
+</script>
 
 
 <div id="p208" class="kjkpage">
@@ -3367,12 +3536,15 @@ dél felé. Lapozz a <b>243</b>-ra.
 A férfit nem zavarja, hogy felé futsz. Tovább énekel valami olyasmit,
 hogy meg kell tisztítani a földet a dekadens múlt összes
 maradványától. Épp akkor érsz oda hozzá, amikor a meggyújtott gyufát
-az Interceptorra akarja dobni. Dobj két kockával. Ha az összeg akkora
+az Interceptorra akarja dobni. Dobj két kockával. <tag></tag> Ha az összeg akkora
 vagy kisebb, mint Ügyességed, lapozz a <b>285</b>-re. Ha nagyobb
 Ügyességednél, lapozz az <b>50</b>-re.
 </p>
 <p class="subillust"><img src="imgs/carfight.jpg"/></p>
 </div>
+<script>
+	DexTestPage(217, 285, 50);
+</script>
 
 <div id="p218" class="kjkpage">
 <h1>218.</h1>
@@ -3518,8 +3690,8 @@ kanna benzint szerezned, lapozz a <b>197</b>-re. Ha nem sikerült, lapozz a
 </div>
 <script>
 	p = new Page(225);
-	p.addLink(197, function(){return 0 < vp.ga);
-	p.addLink(364, function(){return 0 >= vp.ga);
+	p.addLink(197, function(){return 0 < vp.ga;});
+	p.addLink(364, function(){return 0 >= vp.ga;});
 </script>
 
 <div id="p226" class="kjkpage">
@@ -3631,11 +3803,14 @@ vissza a dél felé vezető főútra. Lapozz a <b>207</b>-re.
 <p>
 Körülnézel, de nem találsz semmit, csak szemetet és törött bútorokat. Az ajtó
 csak azért volt csapdával összekötve, hogy elrettentse a
-behatolókat. 1 Szerencse pontot veszítesz. Ha eddig nem tetted meg, kinyitod a
+behatolókat. 1 Szerencse pontot veszítesz. <tag></tag> Ha eddig nem tetted meg, kinyitod a
 szemközti ajtót is - lapozz a <b>185</b>-re; vagy elhagyhatod a házat -
 lapozz a <b>246</b>-ra.
 </p>
 </div>
+<script>
+	LinkPage(233, [185, 246], [function(){cp.AddLP(-1);}]);
+</script>
 
 <div id="p234" class="kjkpage">
 <h1>234.</h1>
@@ -3797,6 +3972,9 @@ Ha nem akarod, úgy érzed, nincs itt semmi dolgod, s továbbmész dél
 felé, lapozz a <b>353</b>-ra.
 </p>
 </div>
+<script>
+	LinkPage(246, [112, 353]);
+</script>
 
 <div id="p247" class="kjkpage">
 <h1>247.</h1>
@@ -3873,6 +4051,9 @@ ajtót választod, lapozz a <b>72</b>-re.
 </p>
 <p class="subillust"><img src="imgs/riders.jpg"/></p>
 </div>
+<script>
+	LinkPage(252, [185, 72]);
+</script>
 
 <div id="p253" class="kjkpage">
 <h1>253.</h1>
@@ -3891,11 +4072,19 @@ már mindent elhasználtál, lapozz a <b>357</b>-re.
 <p>
 Szép vidék tárul eléd a reggeli fényben, de veszélyes is. Nem tudod, hogy
 az utat nem aknázták-e alá az útonállók, akik ki akarják rabolni az
-erre járókat. Dobj egy kockával. Ha 1-et, 2-t vagy 3-at dobsz, lapozz
+erre járókat. Dobj egy kockával. <tag></tag> Ha 1-et, 2-t vagy 3-at dobsz, lapozz
 a <b>129</b>-re. Ha 4-et, 5-öt vagy 6-ot, lapozz a <b>101</b>-re.
 </p>
 <p class="subillust"><img src="imgs/gunfight.jpg"/></p>
 </div>
+<script>
+	p = new Page(254);
+	p.addAction(function(){
+		ACTPAGE.diced = dice();
+	}, "dice");
+	p.addLink(129, function(){return ACTPAGE.diced < 4});
+	p.addLink(101, function(){return ACTPAGE.diced >= 4});
+</script>
 
 <div id="p255" class="kjkpage">
 <h1>255.</h1>
@@ -3947,12 +4136,15 @@ nyugat felé, lapozz a <b>337</b>-re. Ha tilalmát elengeded a füled mellett,
 Kirohansz a melléképületből, és a kocsiból felkapod a mentőládát. Egy csomag
 gyógyszert használsz fel, de az most nem hozza helyre életerődet,
 mindössze megakadályozza, hogy a méreg továbbterjedjen a
-szervezetedben. Nem akarod az éjszaka hátralevő részét a színben
+szervezetedben. <tag></tag> Nem akarod az éjszaka hátralevő részét a színben
 tölteni, el kell határoznod, mitévő legyél. Ha a kocsiban akarsz
 aludni, lapozz a <b>297</b>-re. Ha továbbindulsz, és egész éjszaka vezetsz,
 lapozz a <b>144</b>-re.
 </p>
 </div>
+<script>
+	LinkPage(258, [297, 144], [function(){cp.mk--; cp.Render();}]);
+</script>
 
 <div id="p259" class="kjkpage">
 <h1>259.</h1>
@@ -3980,6 +4172,10 @@ borul. Haragod hasztalan, az őrült véget vetett küldetésednek.
 </p>
 <p class="subillust"><img src="imgs/carfight.jpg"/></p>
 </div>
+<script>
+	p = new Page(260);
+	//dead end
+</script>
 
 <div id="p261" class="kjkpage">
 <h1>261.</h1>
@@ -3998,7 +4194,7 @@ A segélykiáltás irányába mész. Egy kunyhóból jön, amely a vegyesbolt
 mögött van. Megkérdezed, ki van odabenn, s megörülsz a válasznak.
 Sinclair az, Új Remény tanácsának vezetője. Körülnézel, és egy
 vasrúddal levered a lakatot az ajtóról. Sinclair hamarosan szabad. 1
-Szerencse pontot nyersz ezzel. Sinclair elmeséli neked az Új Remény
+Szerencse pontot nyersz ezzel. <tag></tag> Sinclair elmeséli neked az Új Remény
 elleni ostromot és elrablását. Megkér, tudasd rádión Új Reménnyel,
 hogy motorral elindult hazafelé. Két motor parkol a vegyesbolt előtt,
 s ő egy öreg Harley Davidsont választ. Megköszöni segítséged, s
@@ -4008,6 +4204,9 @@ búcsút intve eldübörög észak felé. Mit teszel?
 <p>Átkutatod a legközelebbi házat? Lapozz a <b>252</b>-re.</p>
 <p>Elindulsz dél felé? Lapozz a <b>353</b>-ra.</p>
 </div>
+<script>
+	LinkPage(262, [112, 252, 353], [function(){cp.AddLP(1);}]);
+</script>
 
 <div id="p263" class="kjkpage">
 <h1>263.</h1><p>
@@ -4077,6 +4276,9 @@ elhajtasz, örülsz, hogy túlélted a kalandot. Lapozz a <b>303</b>-ra.
 </p>
 <p class="subillust"><img src="imgs/hotrod.jpg"/></p>
 </div>
+<script>
+	LinkPage(268, [303]);
+</script>
 
 
 <div id="p269" class="kjkpage">
@@ -4151,6 +4353,11 @@ a kilométerórádon, hogy mennyit jöttél eddig, s közben látod, hogy a
 benzined fogytán van. Ha utad során szert tettél egy teli kanna
 benzinre, lapozz a <b>323</b>-ra. Ha nem, akkor lapozz a <b>364</b>-re.
 </div>
+<script>
+	p = new Page(272);
+	p.addLink(323, function(){return 0 < vp.ga;});
+	p.addLink(364, function(){return 0 >= vp.ga;});
+</script>
 
 <div id="p273" class="kjkpage">
 <h1>273.</h1>
@@ -4209,12 +4416,15 @@ odakint, és eltűnődsz azon, vajon hallotta-e valaki, hogy megálltál.
 Úgy döntesz, hogy csak akkor alszol el, amikor már teljesen
 besötétedik. Sokáig eszel, majd amikor végül megbizonyosodsz róla,
 hogy senki sem jár erre, kinyújtózkodsz és elalszol. Kora reggel
-kipihenten ébredsz. 2 Életerő pontot nyersz. Nem vesztegeted az időt,
+kipihenten ébredsz. 2 Életerő pontot nyersz. <tag></tag> Nem vesztegeted az időt,
 rögtön útra kelsz, és visszatérve az útra délnek hajtasz. Lapozz a
 <b>128</b>-ra.
 </p>
 <p class="subillust"><img src="imgs/hotrod.jpg"/></p>
 </div>
+<script>
+	LinkPage(276, [128], [function(){cp.AddHP(2);}]);
+</script>
 
 <div id="p277" class="kjkpage">
 <h1>277.</h1>
@@ -4344,12 +4554,15 @@ Egyenként küzdesz meg a három kocsival. <tag></tag> <tag></tag> <tag></tag> H
 <p>
 Ráveted magad a férfira, és lerántod a földre. Esés közben kiütöd a
 meggyújtott gyufát a kezéből, és megmented a kocsidat. 1 Szerencse
-pontot nyersz. A férfi átkozódva elszalad. Hagyod futni, fontosabb,
+pontot nyersz. <tag></tag> A férfi átkozódva elszalad. Hagyod futni, fontosabb,
 hogy megvédd az Interceptort az esetleges többi mániákustól. Nem
 vesztegeted tovább az időt, és elhajtasz dél felé. Lapozz a <b>254</b>-re.
 </p>
 <p class="subillust"><img src="imgs/hotrod.jpg"/></p>
 </div>
+<script>
+	LinkPage(285, [254], [function(){cp.AddLP(1)}]);
+</script>
 
 <div id="p286" class="kjkpage">
 <h1>286.</h1>
@@ -4461,6 +4674,12 @@ Ha maradt még rakétád, lapozz a <b>31</b>-re. Ha már mind elhasználtad, lap
 a <b>173</b>-ra.
 </p>
 </div>
+<script>
+	p = new Page(292);
+	p.addLink(31, function(){return 0 < vp.ro;});
+	p.addLink(173, function(){return 0 >= vp.ro;});
+</script>
+
 
 <div id="p293" class="kjkpage">
 <h1>293.</h1>
@@ -4536,10 +4755,13 @@ mellényt viselsz, lapozz a <b>174</b>-re. Ha nem, lapozz a <b>263</b>-ra.
 <h1>297.</h1>
 <p>
 Másnap reggel elzsibbadt karral ébredsz, de jobban érzed magad. 2 Életerő
-pontot nyersz. Ha át akarod kutatni a kávézót, lapozz a <b>26</b>-ra. Ha
+pontot nyersz. <tag></tag> Ha át akarod kutatni a kávézót, lapozz a <b>26</b>-ra. Ha
 inkább azonnal továbbmész, lapozz a <b>254</b>-re.
 </p>
 </div>
+<script>
+	LinkPage(297, [26, 254], [function(){ cp.AddHP(2);}]);
+</script>
 
 <div id="p298" class="kjkpage">
 <h1>298.</h1>
@@ -4608,6 +4830,9 @@ hívni a Versenyre, lapozz a <b>240</b>-re. Ha csak nézed a Versenyt, lapozz
 a <b>224</b>-re.
 </p>
 </div>
+<script>
+	LinkPage(300, [240, 224]);
+</script>
 
 <div id="p301" class="kjkpage">
 <h1>301.</h1>
@@ -4649,6 +4874,9 @@ felé, lapozz a <b>140</b>-re. Ha inkább tovább haladsz déli irányban, lapoz
 a <b>189</b>-re.
 </p>
 </div>
+<script>
+	LinkPage(303, [140, 189]);
+</script>
 
 <div id="p304" class="kjkpage">
 <h1>304.</h1>
@@ -4762,11 +4990,23 @@ a <b>124</b>-re.
 <h1>312.</h1>
 <p>
 Megnyomod a műszerfalon a gombot, s azonnal vasszögek szóródnak mögötted az
-útra. Tükrödben figyeled, ahogy a páncélautó feléjük közeledik. Tedd
-próbára a Szerencsédet! Ha Szerencséd van, lapozz a <b>181</b>-re. Ha nincs
+útra. <tag></tag> Tükrödben figyeled, ahogy a páncélautó feléjük közeledik. Tedd
+próbára a Szerencsédet! <tag></tag> Ha Szerencséd van, lapozz a <b>181</b>-re. Ha nincs
 Szerencséd, lapozz a <b>41</b>-re.
 </p>
 </div>
+<script>
+	p = new Page(312);
+	p.addAction(function(){
+		vp.in--;
+		vp.Render();
+	});
+	p.addAction(function(){
+		ACTPAGE.luckTest = LuckTest();
+	}, "dice");
+	p.addLink(181, function(){return ACTPAGE.luckTest;});
+	p.addLink(41, function(){return !ACTPAGE.luckTest;});
+</script>
 
 <div id="p313" class="kjkpage">
 <h1>313.</h1>
@@ -4877,6 +5117,11 @@ még rakétád, lapozz a <b>31</b>-re. Ha már mind felhasználtad, lapozz a
 </p>
 <p class="subillust"><img src="imgs/gunfight.jpg"/></p>
 </div>
+<script>
+	p = new Page(176);
+	p.addLink(31, function(){return 0 < vp.ro;});
+	p.addLink(173, function(){return 0 >= vp.ro;});
+</script>
 
 <div id="p321" class="kjkpage">
 <h1>321.</h1>
@@ -4890,6 +5135,9 @@ Ha ágyban akarsz aludni a kávézó feletti szobában, lapozz az <b>55</b>-re.
 Ha kinn a faházikóban alszol, lapozz a <b>332</b>-re.
 </p>
 </div>
+<script>
+	LinkPage(321, [55, 332]);
+</script>
 
 <div id="p322" class="kjkpage">
 <h1>322.</h1>
@@ -4906,7 +5154,7 @@ lapozz a <b>162</b>-re.
 <div id="p323" class="kjkpage">
 <h1>323.</h1>
 <p>
-Megállsz, és kiszállva a tankba öntöd a tartalék üzemanyagot. Nem sok volt
+Megállsz, és kiszállva a tankba öntöd a tartalék üzemanyagot. <tag></tag> Nem sok volt
 benne, és rádöbbensz, hogy üzemanyagot kell találnod, ha el akarod
 érni San Anglót. Esteledik, mire elindulsz, és a jobb oldali ablakon
 keresztül látod, ahogy lenyugszik a nap. Hamarosan sötét lesz, és el
@@ -4915,6 +5163,9 @@ töltöd az éjszakát, lapozz a <b>276</b>-ra. Ha inkább egész éjjel vezetsz
 lapozz a <b>42</b>-re.
 </p>
 </div>
+<script>
+	LinkPage(323, [276, 42], [function(){vp.AddGA(-1);}]);
+</script>
 
 <div id="p324" class="kjkpage">
 <h1>324.</h1>
@@ -4970,10 +5221,13 @@ célozva. Dobj két kockával. Ha az összeg akkora vagy kisebb, mint
 <h1>327.</h1>
 <p>
 Úgy döntesz, hogy csak reggel mész tovább. Korán ébredsz, de a rövid
-alvás is jót tett. 1 Életerő pontot nyersz. Miután kiszabadítod az
+alvás is jót tett. 1 Életerő pontot nyersz. <tag></tag> Miután kiszabadítod az
 Interceptort a roncsból, ismét elindulsz dél felé. Lapozz a <b>254</b>-re.
 </p>
 </div>
+<script>
+	LinkPage(327, [254], [function(){cp.AddHP(1);}]);
+</script>
 
 <div id="p328" class="kjkpage">
 <h1>328.</h1>
@@ -5043,11 +5297,14 @@ A faházban meleg és sötét van. Alvóhelyet keresel a farönkök között,
 amelyeket valamikor tüzelőnek gyűjthettek össze a kávézó számára.
 Amikor sötétedik, eszel valamit, és a nap eseményein rágódsz. Holnap
 talán eléred San Anglót. Amikor teljesen besötétedik, nyugovóra
-térsz. Tedd próbára Szerencséd! Ha szerencséd van, lapozz a <b>16</b>-ra. Ha
+térsz. Tedd próbára Szerencséd! <tag></tag> Ha szerencséd van, lapozz a <b>16</b>-ra. Ha
 nincs, lapozz a <b>84</b>-re.
 </p>
 <p class="subillust"><img src="imgs/stuff.jpg"/></p>
 </div>
+<script>
+	LuckTestPage(332, 16, 84);
+</script>
 
 <div id="p333" class="kjkpage">
 <h1>333.</h1>
@@ -5113,6 +5370,9 @@ az emeleti ablakból lőnek. Élesen balra rántod a kormányt, hogy
 elkerüld a robbanást. Tedd próbára Szerencséd! Ha szerencséd van,
 lapozz a <b>320</b>-ra. Ha nincs, lapozz a <b>105</b>-re.
 </p>
+<script>
+	LuckTestPage(338, 320, 105);
+</script>
 
 <div id="p339" class="kjkpage">
 <h1>339.</h1>
@@ -5160,10 +5420,13 @@ felé, lapozz a <b>22</b>-re.
 <h1>342.</h1>
 <p>
 Nem sikerül időben kormányoznod, és az egyik kőpillérnek ütközöl. Dobj
-egy kockával, és az eredményt vond le kocsid Páncélzatából. Ha
+egy kockával, és az eredményt vond le kocsid Páncélzatából. <tag></tag> Ha
 túléled a karambolt, lapozz a <b>79</b>-re.
 </p>
 </div>
+<script>
+	LinkPage(342, [79], [function(){vp.AddAP(-dice());}]);
+</script>
 
 <div id="p343" class="kjkpage">
 <h1>343.</h1>
@@ -5244,12 +5507,15 @@ lapozz a <b>204</b>-re. Ha nincs szerencséd, lapozz a <b>65</b>-re.
 <p>
 Úgy döntesz, hogy nem mész tovább éjszaka, inkább alszol egy keveset
 hajnal előtt. Ösztönösen felébredsz, ahogy a nap első sugarai
-bearanyozzák a láthatárt. 1 Életerő pontot nyersz. Szemügyre veszed,
+bearanyozzák a láthatárt. 1 Életerő pontot nyersz. <tag></tag> Szemügyre veszed,
 milyen károkat szenvedett az Interceptor, s látod, hogy bár nehéz
 kormányozni, de használható maradt. Míg visszaülsz és továbbindulsz
 dél felé, nem bánod, hogy manapság nem ellenőrzi a rendőrség a kocsik
 műszaki állapotát. Lapozz a <b>128</b>-ra.
 </p>
+<script>
+	LinkPage(348, [128], [function(){cp.AddHP(1);}]);
+</script>
 
 <div id="p349" class="kjkpage">
 <h1>349.</h1>
@@ -5342,6 +5608,9 @@ lapozz a <b>61</b>-re. Ha nyugat felé, lapozz a <b>371</b>-re.
 </p>
 <p class="subillust"><img src="imgs/riders.jpg"/></p>
 </div>
+<script>
+	LinkPage(353, [61, 371]);
+</script>
 
 <div id="p354" class="kjkpage">
 <h1>354.</h1>
@@ -5408,13 +5677,16 @@ lapozz a <b>322</b>-re.
 <p>
 Egy öreg Ford csomagtartójában találsz valamit, amitől csaknem
 indiántáncot jársz örömödben. Egy teli kanna benzin az. 1 Szerencse
-pontot nyersz. A feszítővassal és a teli kannával a kocsik tetején át
+pontot nyersz.<tag></tag> A feszítővassal és a teli kannával a kocsik tetején át
 visszamész az Interceptorhoz. <tag></tag> Szerencsére ott van, ahol hagytad, és
 hamarosan ismét úton vagy dél felé. Lapozz a <b>149</b>-re.
 </p>
 </div>
 <script>
 	p = new Page(359);
+	p.addAction(function(){
+		cp.AddLP(1);
+	}, "loot");
 	p.addAction(function(){
 		cp.AddStuff("feszítővas");
 		vp.AddGA(1);
@@ -5452,6 +5724,9 @@ lapozz a <b>153</b>-ra.
 </p>
 <p class="subillust"><img src="imgs/gunfight.jpg"/></p>
 </div>
+<script>
+	LinkPage(362, [92, 153]);
+</script>
 
 <div id="p363" class="kjkpage">
 <h1>363.</h1>
@@ -5477,6 +5752,10 @@ ismét megkísérelj eljutni San Anglóba.
 </p>
 <p class="subillust"><img src="imgs/hotrod.jpg"/></p>
 </div>
+<script>
+	p = new Page(364);
+	//dead end
+</script>
 
 <div id="p365" class="kjkpage">
 <h1>365.</h1>
@@ -5583,6 +5862,9 @@ Anglo fekszik. Lapozz a <b>225</b>-re.
 </p>
 <p class="subillust"><img src="imgs/gunfight.jpg"/></p>
 </div>
+<script>
+	LinkPage(371, [225]);
+</script>
 
 <div id="p372" class="kjkpage">
 <h1>372.</h1>
@@ -5647,12 +5929,15 @@ Ha győzöl, lapozz a <b>89</b>-re.
 <div id="p375" class="kjkpage">
 <h1>375.</h1>
 <p>
-Úgy döntesz, hogy elveszed a törvényenkívüli Magnumját, mert veszélyesebb
+Úgy döntesz, hogy elveszed a törvényenkívüli Magnumját <tag></tag> , mert veszélyesebb
 fegyver, mint a te revolvered. Ezentúl 1 plusz Ügyesség pontod van
 minden tűzharcban. Elfordítod az indítókulcsot, és a motor életre
 kel. Hamarosan ismét dél felé száguldasz. Lapozz a <b>303</b>-ra.
 </p>
 </div>
+<script>
+	LinkPage(375, [303], [function(){cp.AddStuff("magnum")}]);
+</script>
 
 <div id="p376" class="kjkpage">
 <h1>376.</h1>

@@ -1,7 +1,12 @@
-function LinkPage(pageNum, links){
+function LinkPage(pageNum, links, actions){
 	var p = new Page(pageNum);
 	for (var i=0;i<links.length;++i){
 		p.addLink(links[i]);
+	}
+	if (actions){
+		for (var i=0;i<actions.length;++i){
+			p.addAction(actions[i]);
+		}
 	}
 }
 

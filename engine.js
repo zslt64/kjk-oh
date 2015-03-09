@@ -375,6 +375,9 @@ function Fight(){
 	
 	if (fobj.type == 'hand' || fobj.type == 'gun'){
 		myp = cp.dp;
+		if (fobj.type == 'gun' && cp.HasStuff("magnum")){
+			myp += 1;
+		}
 	} else if (fobj.type == 'car'){
 		myp = vp.fp;
 	}
@@ -554,5 +557,5 @@ function startApp(){
 	MEDKITB = document.getElementById("medkitb");
 	ROCKETB = document.getElementById("rocketb");
 	
-	PAGES[0].start();
+	PAGES[112].start();
 }
