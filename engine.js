@@ -188,6 +188,10 @@ CharacterPage.prototype.AddCR = function(add){
 	WrConsole("Kredit: "+add);
 	this.Render();
 }
+CharacterPage.prototype.AddMK = function(add){
+	this.mk += add;
+	WrConsole("EU csomag: "+add);
+}
 CharacterPage.prototype.UseMedkit = function(){
 	if (this.mk <= 0){
 		return
@@ -195,8 +199,7 @@ CharacterPage.prototype.UseMedkit = function(){
 	if (this.mhp <= this.hp){
 		return;
 	}	
-	this.mk--;
-	WrConsole("EU csomag használat");
+	this.AddMK(-1);
 	this.AddHP(4);
 	this.Render();
 }
@@ -287,6 +290,14 @@ VehiclePage.prototype.AddRO = function(add){
 	WrConsole("Rakéta: "+add);
 	this.Render();
 }
+VehiclePage.prototype.HasMod = function(mod){
+	return this.mo.indexOf(mod) != -1
+}
+VehiclePage.prototype.AddMod = function(mod){
+	this.mo.push(mod);
+	WrConsole("upgrade: "+mod);
+	this.Render();
+}
 VehiclePage.prototype.Generate = function(){
 	this.mfp = this.fp = dice() + 6;
 	this.map = this.ap = dice() + dice() + 24;
@@ -324,10 +335,9 @@ function FightObj(type, enemies){
 	this.enemies = enemies;
 	this.target = 0;
 	this.rounds = -1;
-	this.roundsLimit = 0;
+	this.roundLimit = 0;
 	this.hurt = 0;
 	this.hurtLimit = 0;
-	this.attackmod = 0;
 	this.powermod = 0;
 	this.hurtmod = 0;
 	this.hitcount = 0;
@@ -371,14 +381,14 @@ function Fight(){
 		return;
 	}
 	
-	var myp = 0;
+	var myp = fobj.powermod;
 	
 	if (fobj.type == 'hand' || fobj.type == 'gun'){
 		myp = cp.dp;
 		if (fobj.type == 'gun' && cp.HasStuff("magnum")){
 			myp += 1;
 		}
-	} else if (fobj.type == 'car'){
+	} else if (fobj.type == 'car' || fobj.type == 'bumpcar'){
 		myp = vp.fp;
 	}
 	
@@ -405,7 +415,7 @@ function Fight(){
 		else
 		{
 			var hurt = 0;
-			if (fobj.type == 'hand'){
+			if (fobj.type == 'hand' || fobj.type == 'bumpcar'){
 				hurt = 1;
 			} else if (fobj.type == 'gun' || fobj.type == 'car'){
 				hurt = dice();
@@ -557,5 +567,5 @@ function startApp(){
 	MEDKITB = document.getElementById("medkitb");
 	ROCKETB = document.getElementById("rocketb");
 	
-	PAGES[112].start();
+	PAGES[0].start();
 }
