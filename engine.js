@@ -474,7 +474,7 @@ function Fight(){
 		}
 	}
 	
-	if (fobj.roundLimit <= fobj.rounds){
+	if (0 < fobj.roundLimit && fobj.roundLimit <= fobj.rounds){
 		WrConsole("harc vége");
 		end = true;
 	}
