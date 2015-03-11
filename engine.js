@@ -192,6 +192,7 @@ CharacterPage.prototype.AddCR = function(add){
 CharacterPage.prototype.AddMK = function(add){
 	this.mk += add;
 	WrConsole("EU csomag: "+add);
+	this.Render();
 }
 CharacterPage.prototype.UseMedkit = function(){
 	if (this.mk <= 0){
