@@ -139,6 +139,7 @@ function CharacterPage(){
 	this.eq = new Array(); //equipment
 	this.cr = 0; //credit
 	this.mk = 0; //medkits
+	this.ratbite = false; //surprise
 }
 CharacterPage.prototype.Render = function(add){
 	document.getElementById("mdp").innerHTML = this.mdp;
@@ -552,6 +553,34 @@ function DexTest(){
 		WrConsole("nem sikerült");
 	}
 	return (d <= cp.dp);
+}
+
+var RACEMOD = 0;
+ 
+function race(){
+
+	if(typeof ACTPAGE.myloc === 'undefined'){
+		ACTPAGE.myloc = 0;
+		ACTPAGE.enloc = 0;
+		WrConsole("verseny kezdődik");
+	}
+	ACTPAGE.myloc += dice()+RACEMOD;
+	ACTPAGE.enloc += dice();
+	
+	WrConsole("te: "+ACTPAGE.myloc+" ellenfél: "+ACTPAGE.enloc);
+	if (24 <= ACTPAGE.enloc){
+		ACTPAGE.winner = false;
+		WrConsole("vesztettél");
+		ACTPAGE.nextAction();
+		return;
+	}
+	if (24 <= ACTPAGE.myloc){
+		ACTPAGE.winner = true;
+		WrConsole("nyertél");
+		ACTPAGE.nextAction();
+		return;
+	}
+	NACB = race;
 }
 
 //next action callback
