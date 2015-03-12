@@ -9,24 +9,6 @@ var HIST = new Array();
 var ACTHIST = 0;
 var HISTACT = "";
 
-function clone_object(o){
-    var n=Object.create(
-        Object.getPrototypeOf(o),
-        Object.getOwnPropertyNames(o).reduce(
-            function(prev,cur){
-                prev[cur]=Object.getOwnPropertyDescriptor(o,cur);
-                return prev;
-            },
-            {}
-        )
-    );
-    if(!Object.isExtensible(o)){Object.preventExtensions(n);}
-    if(Object.isSealed(o)){Object.seal(n);}
-    if(Object.isFrozen(o)){Object.freeze(n);}
-
-    return n;
-}
-
 function Link(page, destNum, cond){
 	this.page = page;
 	this.destNum = destNum;
@@ -146,8 +128,8 @@ Page.prototype.start = function() {
 	if (HISTACT == ""){
 		histObj = {
 			pagenum: ACTPAGE.num,
-			cp: clone_object(cp),
-			vp: clone_object(vp)
+			cp: cp.Clone(),
+			vp: vp.Clone()
 		}
 		if (ACTHIST != HIST.length){
 			HIST = HIST.slice(0,ACTHIST+1)
@@ -194,7 +176,7 @@ function dice()
 
 function CharacterPage(){
 	this.mdp = 0; //maximum dexterity
-	this.dp = //dexterity
+	this.dp = 0;//dexterity
 	this.mhp = 0; //maximum health point
 	this.hp = 0; //health point
 	this.mlp = 0; //maximum luck
@@ -215,12 +197,14 @@ CharacterPage.prototype.Render = function(add){
 	document.getElementById("cr").innerHTML = this.cr;
 	
 	if (this.eq.length){
-		eqlist = this.eq[0];
+		slist = this.eq[0];
 		for (var i=1;i<this.eq.length;++i){
-			eqlist += ", " + this.eq[i];
+			slist += ", " + this.eq[i];
 		}
-		document.getElementById("eq").innerHTML = eqlist;
+	} else {
+		slist = ""
 	}
+	document.getElementById("eq").innerHTML = slist;
 	
 }
 CharacterPage.prototype.AddDP = function(add){
@@ -305,6 +289,21 @@ CharacterPage.prototype.Generate = function(){
 	this.mk = 10;
 	this.Render();
 }
+CharacterPage.prototype.Clone = function(){
+	//this clone method is a shitty fuck ... pls help !
+	ret = new CharacterPage();
+	ret.mdp = this.mdp;
+	ret.dp = this.dp;
+	ret.mhp = this.mhp;
+	ret.hp = this.hp;
+	ret.mlp = this.mlp;
+	ret.lp = this.lp;
+	ret.eq = this.eq.slice();
+	ret.cr = this.cr;
+	ret.mk = this.mk;
+	ret.memo = this.memo.slice();
+	return ret;
+}
 var cp = new CharacterPage();
 
 function VehiclePage(){
@@ -331,12 +330,14 @@ VehiclePage.prototype.Render = function(add){
 	document.getElementById("ga").innerHTML = this.ga;
 	
 	if (this.mo.length){
-		molist = this.mo[0];
+		slist = this.mo[0];
 		for (var i=1;i<this.mo.length;++i){
-			molist += ", " + this.mo[i];
+			slist += ", " + this.mo[i];
 		}
-		document.getElementById("mo").innerHTML = molist;
+	} else {
+		slist = ""
 	}
+	document.getElementById("mo").innerHTML = slist;
 }
 VehiclePage.prototype.AddFP = function(add){
 	this.fp += add;
@@ -388,6 +389,22 @@ VehiclePage.prototype.Generate = function(){
 	this.ga = 1;
 	this.Render();
 }
+VehiclePage.prototype.Clone = function(){
+	ret = new VehiclePage();
+	ret.mfp = this.mfp;
+	ret.fp = this.fp;
+	ret.map = this.map;
+	ret.ap = this.ap;
+	ret.ro = this.ro;
+	ret.in = this.in;
+	ret.oi = this.oi; 
+	ret.sw = this.sw; 
+	ret.ga = this.ga; 
+	ret.mo = this.mo.slice();
+	
+	return ret;
+}
+
 var vp = new VehiclePage();
 
 function ClrConsole(){

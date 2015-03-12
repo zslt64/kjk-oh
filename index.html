@@ -304,7 +304,7 @@ meg láthatatlan ellenfeled felé. Nem találtál. Az egyik szikla mögül
 A Tűzharc szabályai szerint harcold végig ezt a küzdelmet, de
 sebesülésed miatt vonj le 1-et Ügyesség pontjaidból a harc
 időtartamára. Ha győzöl, lapozz a <b>131</b>-re, de vonj le magadtól mindig
-1 Ügyesség pontot, ha egynél többször eltalálnak.<tag></tag>
+1 Ügyesség pontot, ha egynél többször eltalálnak. <tag></tag>
 </p>
 </div>
 <script>
@@ -312,14 +312,13 @@ időtartamára. Ha győzöl, lapozz a <b>131</b>-re, de vonj le magadtól mindig
 	p.addAction(function(){
 		hwm = new Enemy("Útonálló", 8, 12);
 		ACTFIGHT = new FightObj("gun", [hwm]);
-		cp.AddDP(-1);
+		ACTFIGHT.powermod = -1;
 		Fight();
 	}, "fight");
 	p.addAction(function(){
-		if (ACTFIGHT.hitcount < 2){
-			cp.AddDP(1);
-		} else {
+		if (1 < ACTFIGHT.hitcount){
 			WrConsole("egynél többször sérültél");
+			cp.AddDP(-1);
 		}
 	}, "rest");
 	p.addLink(131);
