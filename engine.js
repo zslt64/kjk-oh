@@ -144,9 +144,9 @@ Page.prototype.start = function() {
 }
 function loadHist(){
 	histObj = HIST[ACTHIST];
-	cp = histObj.cp;
+	cp = histObj.cp.Clone();
 	cp.Render();
-	vp = histObj.vp;
+	vp = histObj.vp.Clone();
 	vp.Render();
 	PAGES[histObj.pagenum].start();
 }
@@ -161,7 +161,7 @@ function undo(){
 }
 
 function redo(){
-	if (HIST.length <= ACTHIST){
+	if (HIST.length-1 <= ACTHIST){
 		return;
 	}
 	HISTACT = "redo";

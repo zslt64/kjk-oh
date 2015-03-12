@@ -1206,7 +1206,7 @@ elindulsz dél felé. Lapozz a <b>150</b>-re.
 <p class="subillust"><img src="imgs/hotrod.jpg"/></p>
 </div>
 <script>
-	LinkPage(58, [150], [function(){cp.AddHP(2);}]);
+	LinkPage(58, [150], [function(){cp.AddHP(2);cp.AddStuff("kézigránát");}]);
 </script>
 
 <div id="p59" class="kjkpage">
@@ -1929,7 +1929,7 @@ a robbanást, lapozz a <b>294</b>-re.
 <div id="p99" class="kjkpage">
 <h1>99.</h1>
 <p>
-Megállsz, és egy teli kanna tartalmát a kocsiba öntőd. <tag></tag> Szemügyre veszed az
+Megállsz, és egy teli kanna tartalmát a kocsiba öntöd. <tag></tag> Szemügyre veszed az
 Interceptort, elég siralmasan néz ki, és kétled, hogy kibírja az
 utat. Ha neki állsz egy kicsit helyre pofozni, lapozz a <b>21</b>-re. Ha
 inkább tovább mész, lapozz a <b>221</b>-re.
@@ -3037,7 +3037,7 @@ túlélsz három fordulót az Autós Csatában, lapozz a <b>67</b>-re.
 	p.addAction(function(){
 		van = new Enemy("Furgon", 10, 19);
 		ACTFIGHT = new FightObj("car", [van]);
-		ACTFIGHT.roundlimit = 3;
+		ACTFIGHT.roundLimit = 3;
 		Fight();
 		ROCKETB.disabled = true;
 	}, "fight");
@@ -3161,13 +3161,13 @@ van, lapozz a <b>234</b>-re. Ha 6 jön ki, lapozz a <b>280</b>-ra.
 <p>
 Mindössze egy kerék maradt többé-kevésbé használható állapotban az elhagyott
 Interceptoron. A gumi lapos ugyan, de meg tudod ragasztani. Nem tart
-soká leszerelni a kereket, és betenni a saját kocsidba. Ha meg akarod
+soká leszerelni a kereket, és betenni a saját kocsidba. <tag></tag> Ha meg akarod
 nézni az összetűrt kocsi belsejét, lapozz a <b>253</b>-ra. Ha inkább
 továbbhajtasz dél felé, lapozz a <b>13</b>-ra.
 </p>
 </div>
 <script>
-	LinkPage(166, [253, 13]);
+	LinkPage(166, [253, 13], [function(){vp.AddSW(1);}]);
 </script>
 
 <div id="p167" class="kjkpage">
@@ -5458,8 +5458,8 @@ lapozz a <b>208</b>-ra.
 	p = new Page(291);
 	p.addAction(function(){
 		duello = new Enemy("Párbajhős", 9, 9);
-		ACTFIGHT = new FightObj("hun", [duello]);
-		ACTFIGHT.roundlimit = 1;
+		ACTFIGHT = new FightObj("gun", [duello]);
+		ACTFIGHT.roundLimit = 1;
 		Fight();
 	}, "fight");
 	p.addLink(208);
