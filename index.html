@@ -3147,7 +3147,7 @@ van, lapozz a <b>234</b>-re. Ha 6 jön ki, lapozz a <b>280</b>-ra.
 		ACTPAGE.ddice = dice();
 	}, "dice");
 	p.addLink(234, function(){return ACTPAGE.ddice < 6;});
-	p.addLink(280, function(){return ACTPAGE.ddice = 6;});
+	p.addLink(280, function(){return ACTPAGE.ddice == 6;});
 </script>
 
 <div id="p166" class="kjkpage">
@@ -6520,6 +6520,7 @@ villanásait.
 <table>
 <tr><td><i><en>Páncélautó</en></i></td><td>TŰZERŐ <pw>9</pw></td><td>PÁNCÉLZAT <hp>20</hp></td></tr>
 </table>
+<tag></tag>
 <p>
 Tűzerődet 2-vel csökkenti ebben az Autós Csatában kocsid mozdíthatatlansága. Ha
 győzöl, lapozz a <b>33</b>-ra.
