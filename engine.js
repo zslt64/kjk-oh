@@ -20,7 +20,7 @@ Link.prototype.activate = function(){
 	if (!this.tag){
 		return;
 	}
-	if (this.cond()){
+	if (IamAlive() && this.cond()){
 		this.tag.className = "enabledlink";
 		this.tag.addEventListener("click", function(){
 			PAGES[this.innerHTML].start()
@@ -386,12 +386,12 @@ function Fight(){
 	var myp = fobj.powermod;
 	
 	if (fobj.type == 'hand' || fobj.type == 'gun'){
-		myp = cp.dp;
+		myp += cp.dp;
 		if (fobj.type == 'gun' && cp.HasStuff("magnum")){
 			myp += 1;
 		}
 	} else if (fobj.type == 'car' || fobj.type == 'bumpcar'){
-		myp = vp.fp;
+		myp += vp.fp;
 	}
 	
 	var end = false;
@@ -554,6 +554,10 @@ function DexTest(){
 		WrConsole("nem sikerült");
 	}
 	return (d <= cp.dp);
+}
+
+function IamAlive(){
+	return (0 < vp.ap && 0 < cp.hp); 
 }
 
 var RACEMOD = 0;
