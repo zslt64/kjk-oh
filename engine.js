@@ -5,6 +5,27 @@ var ACTPAGE;
 var NACB;
 var MEDKITB;
 var ROCKETB;
+var HIST = new Array();
+var ACTHIST = 0;
+var HISTACT = "";
+
+function clone_object(o){
+    var n=Object.create(
+        Object.getPrototypeOf(o),
+        Object.getOwnPropertyNames(o).reduce(
+            function(prev,cur){
+                prev[cur]=Object.getOwnPropertyDescriptor(o,cur);
+                return prev;
+            },
+            {}
+        )
+    );
+    if(!Object.isExtensible(o)){Object.preventExtensions(n);}
+    if(Object.isSealed(o)){Object.seal(n);}
+    if(Object.isFrozen(o)){Object.freeze(n);}
+
+    return n;
+}
 
 function Link(page, destNum, cond){
 	this.page = page;
@@ -115,13 +136,55 @@ Page.prototype.render = function(){
 		this.actions[i].marker = actionmarker;
 	}
 	
+	this.hms = CONCONT.getElementsByTagName("hp");
+	this.hmind = 0;
+	
 	this.nextAction();
 }
 Page.prototype.start = function() {
 	ACTPAGE = this;
+	if (HISTACT == ""){
+		histObj = {
+			pagenum: ACTPAGE.num,
+			cp: clone_object(cp),
+			vp: clone_object(vp)
+		}
+		if (ACTHIST != HIST.length){
+			HIST = HIST.slice(0,ACTHIST+1)
+		}
+		HIST.push(histObj);
+		ACTHIST = HIST.length-1;
+	}
+	HISTACT = "";
 	this.actAction = -1;
 	this.render();
 	ClrConsole();
+}
+function loadHist(){
+	histObj = HIST[ACTHIST];
+	cp = histObj.cp;
+	cp.Render();
+	vp = histObj.vp;
+	vp.Render();
+	PAGES[histObj.pagenum].start();
+}
+
+function undo(){
+	if (0 == ACTHIST){
+		return;
+	}
+	HISTACT = "undo";
+	ACTHIST--;
+	loadHist();
+}
+
+function redo(){
+	if (HIST.length <= ACTHIST){
+		return;
+	}
+	HISTACT = "redo";
+	ACTHIST++;
+	loadHist();
 }
 
 function dice()
@@ -378,17 +441,8 @@ function Fight(){
 		
 		hm = CONCONT.getElementsByTagName("hp");
 		
-		var ahm;
-		try {
-			ahm = ACTPAGE.hms[ACTPAGE.hmind];
-		}
-		catch(err) {
-			ACTPAGE.hms = CONCONT.getElementsByTagName("hp");
-			ACTPAGE.hmind = 0;
-		}
-		
 		for (var i=0;i<fobj.enemies.length;++i){
-			ahm = ACTPAGE.hms[ACTPAGE.hmind];
+			var ahm = ACTPAGE.hms[ACTPAGE.hmind];
 			en = fobj.enemies[i];
 			en.hmark = ahm;
 			++ACTPAGE.hmind;
