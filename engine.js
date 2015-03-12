@@ -139,7 +139,7 @@ function CharacterPage(){
 	this.eq = new Array(); //equipment
 	this.cr = 0; //credit
 	this.mk = 0; //medkits
-	this.ratbite = false; //surprise
+	this.memo = new Array(); //secret memories
 }
 CharacterPage.prototype.Render = function(add){
 	document.getElementById("mdp").innerHTML = this.mdp;
@@ -209,6 +209,10 @@ CharacterPage.prototype.HasStuff = function(stuff){
 	return this.eq.indexOf(stuff) != -1
 }
 CharacterPage.prototype.AddStuff = function(stuff){
+	var i = this.eq.indexOf(stuff);
+	if (i != -1){
+		return;
+	}
 	this.eq.push(stuff);
 	WrConsole("új cucc: "+stuff);
 	this.Render();
@@ -219,6 +223,16 @@ CharacterPage.prototype.RemoveStuff = function(stuff){
 		this.eq.splice(i,1)
 	}
 	this.Render()
+}
+CharacterPage.prototype.HasMemo = function(memo){
+	return this.memo.indexOf(memo) != -1
+}
+CharacterPage.prototype.AddMemo = function(memo){
+	var i = this.memo.indexOf(memo);
+	if (i != -1){
+		return;
+	}
+	this.memo.push(memo);
 }
 CharacterPage.prototype.Generate = function(){
 	this.mdp = this.dp = dice() + 6;

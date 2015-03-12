@@ -1444,7 +1444,7 @@ fúródik. Dobj egy kockával, és az eredményt vond le életerődből. <tag></
 <p class="subillust"><img src="imgs/stuff.jpg"/></p>
 </div>
 <script>
-	LinkPage(72, [233], [function(){ cp.AddHP(-dice()); }]);
+	LinkPage(72, [233], [function(){ cp.AddHP(-dice()); cp.AddMemo("loot72"); }]);
 </script>
 
 <div id="p73" class="kjkpage">
@@ -2172,7 +2172,11 @@ továbbhajtasz délnek, lapozz a <b>353</b>-ra.
 <p class="subillust"><img src="imgs/hotrod.jpg"/></p>
 </div>
 <script>
-	LinkPage(112, [252, 353], [function(){cp.AddHP(2);}, function(){vp.ga+=2;vp.Render();}]);
+	p = new Page(112);
+	p.addAction(function(){cp.AddHP(2);cp.AddMemo("loot112")}, "heal");
+	p.addAction(function(){vp.AddGA(2);}, "gass");
+	p.addLink(252, function(){return !cp.HasMemo("loot252")});
+	p.addLink(353);
 </script>
 
 <div id="p113" class="kjkpage">
@@ -2571,8 +2575,8 @@ nélkül, lapozz a <b>380</b>-ra.
 </div>
 <script>
 	p = new Page(132);
-	p.addLink(275, function(){return cp.ratbite;});
-	p.addLink(380, function(){return !cp.ratbite;});
+	p.addLink(275, function(){return cp.HasMemo("ratbite");});
+	p.addLink(380, function(){return !cp.HasMemo("ratbite");});
 </script>
 
 <div id="p133" class="kjkpage">
@@ -3525,7 +3529,11 @@ elhagyhatod a házat - lapozz a <b>246</b>-ra.
 </p>
 </div>
 <script>
-	LinkPage(185, [72, 246], [function(){ cp.AddStuff("drótvágó");}]);
+	p = new Page(185);
+	p.addAction(function(){ cp.AddStuff("drótvágó"); cp.AddMemo("loot185")}, "loot");
+	p.addLink(72, function(){return !cp.HasMemo("loot72");});
+	p.addLink(246);
+</script>
 </script>
 
 <div id="p186" class="kjkpage">
@@ -4418,7 +4426,10 @@ lapozz a <b>246</b>-ra.
 </p>
 </div>
 <script>
-	LinkPage(233, [185, 246], [function(){cp.AddLP(-1);}]);
+	p = new Page(233);
+	p.addAction(function(){cp.AddLP(-1);}, "hurt");
+	p.addLink(185, function(){return !cp.HasMemo("loot185")});
+	p.addLink(246);
 </script>
 
 <div id="p234" class="kjkpage">
@@ -4553,7 +4564,7 @@ parkolóhelyig, ahol a kabinban alszol. Lapozz a <b>218</b>-ra.
 <p class="subillust"><img src="imgs/hotrod.jpg"/></p>
 </div>
 <script>
-	LinkPage(241, [218], [function(){cp.AddHP(-1);cp.ratbite = true;}]);
+	LinkPage(241, [218], [function(){cp.AddHP(-1);cp.AddMemo("ratbite");}]);
 </script>
 
 <div id="p242" class="kjkpage">
@@ -4624,7 +4635,9 @@ felé, lapozz a <b>353</b>-ra.
 </p>
 </div>
 <script>
-	LinkPage(246, [112, 353]);
+	p = new Page(246);
+	p.addLink(112, function(){return !cp.HasMemo("loot112")});
+	p.addLink(353);
 </script>
 
 <div id="p247" class="kjkpage">
@@ -4716,14 +4729,14 @@ lapozz a <b>343</b>-ra.
 <div id="p252" class="kjkpage">
 <h1>252.</h1>
 <p>
-Benyitsz a házba, és belépsz. A hallból két ajtó nyílik egymással szemben. Ha
+Benyitsz a házba, és belépsz. <tag></tag> A hallból két ajtó nyílik egymással szemben. Ha
 a bal oldali ajtót akarod kinyitni, lapozz a <b>185</b>-re. Ha a jobb oldali
 ajtót választod, lapozz a <b>72</b>-re.
 </p>
 <p class="subillust"><img src="imgs/riders.jpg"/></p>
 </div>
 <script>
-	LinkPage(252, [185, 72]);
+	LinkPage(252, [185, 72], [function(){cp.AddMemo("loot252");}]);
 </script>
 
 <div id="p253" class="kjkpage">
