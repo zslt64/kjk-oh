@@ -1,5 +1,5 @@
 ﻿var CONCONT;
-var CONSOLE;
+var CONSOLE = false;
 var PAGES = new Object();
 var ACTPAGE;
 var NACB;
@@ -8,6 +8,15 @@ var ROCKETB;
 var HIST = new Array();
 var ACTHIST = 0;
 var HISTACT = "";
+
+
+function WrChange(cat, add){
+	var ps = "";
+	if (0 < add){
+		ps = "+"
+	}
+	WrConsole(cat+": "+ps+add)
+}
 
 function Link(page, destNum, cond){
 	this.page = page;
@@ -169,9 +178,22 @@ function redo(){
 	loadHist();
 }
 
+function dicehtml(d){
+	return '<img src="imgs/d'+d+'.png" width="20" height="20"/>';
+}
+
 function dice()
 {
-	return Math.floor((Math.random() * 6) + 1);
+	d = Math.floor((Math.random() * 6) + 1);
+	WrConsole(dicehtml(d));
+	return d;
+}
+
+function doubledice(){
+	d1 = Math.floor((Math.random() * 6) + 1);
+	d2 = Math.floor((Math.random() * 6) + 1);
+	WrConsole(dicehtml(d1) + " " + dicehtml(d2));
+	return d1 + d2;
 }
 
 function CharacterPage(){
@@ -212,7 +234,8 @@ CharacterPage.prototype.AddDP = function(add){
 	if (this.mdp < this.dp) {
 		this.dp = this.mdp;
 	}
-	WrConsole("Ügyesség: "+add);
+
+	WrChange("Ügyesség", add);
 	this.Render();
 }
 CharacterPage.prototype.AddHP = function(add){
@@ -220,7 +243,7 @@ CharacterPage.prototype.AddHP = function(add){
 	if (this.mhp < this.hp) {
 		this.hp = this.mhp;
 	}
-	WrConsole("Életerő: "+add);
+	WrChange("Életerő", add);
 	this.Render();
 }
 CharacterPage.prototype.AddLP = function(add){
@@ -228,17 +251,17 @@ CharacterPage.prototype.AddLP = function(add){
 	if (this.mlp < this.lp) {
 		this.lp = this.mlp;
 	}
-	WrConsole("Szerencse: "+add);
+	WrChange("Szerencse", add);
 	this.Render();
 }
 CharacterPage.prototype.AddCR = function(add){
 	this.cr += add;
-	WrConsole("Kredit: "+add);
+	WrChange("Kredit", add);
 	this.Render();
 }
 CharacterPage.prototype.AddMK = function(add){
 	this.mk += add;
-	WrConsole("EU csomag: "+add);
+	WrChange("EÜ csomag: ", add);
 	this.Render();
 }
 CharacterPage.prototype.UseMedkit = function(){
@@ -283,7 +306,7 @@ CharacterPage.prototype.AddMemo = function(memo){
 }
 CharacterPage.prototype.Generate = function(){
 	this.mdp = this.dp = dice() + 6;
-	this.mhp = this.hp = dice() + dice() + 24;
+	this.mhp = this.hp = doubledice() + 24;
 	this.mlp = this.lp = dice() + 6;
 	this.cr = 200;
 	this.mk = 10;
@@ -344,7 +367,7 @@ VehiclePage.prototype.AddFP = function(add){
 	if (this.mfp < this.fp) {
 		this.fp = this.mfp;
 	}
-	WrConsole("Tűzerő: "+add);
+	WrChange("Tűzerő", add);
 	this.Render();
 }
 VehiclePage.prototype.AddAP = function(add){
@@ -352,22 +375,22 @@ VehiclePage.prototype.AddAP = function(add){
 	if (this.map < this.ap) {
 		this.ap = this.map;
 	}
-	WrConsole("Páncélzat: "+add);
+	WrChange("Páncélzat", add);
 	this.Render();
 }
 VehiclePage.prototype.AddSW = function(add){
 	this.sw += add;
-	WrConsole("Pótkerék: "+add);
+	WrChange("Pótkerék", add);
 	this.Render();
 }
 VehiclePage.prototype.AddGA = function(add){
 	this.ga += add;
-	WrConsole("Kanna benzin: "+add);
+	WrChange("Kanna benzin", add);
 	this.Render();
 }
 VehiclePage.prototype.AddRO = function(add){
 	this.ro += add;
-	WrConsole("Rakéta: "+add);
+	WrChange("Rakéta", add);
 	this.Render();
 }
 VehiclePage.prototype.HasMod = function(mod){
@@ -380,7 +403,7 @@ VehiclePage.prototype.AddMod = function(mod){
 }
 VehiclePage.prototype.Generate = function(){
 	this.mfp = this.fp = dice() + 6;
-	this.map = this.ap = dice() + dice() + 24;
+	this.map = this.ap = doubledice() + 24;
 	this.mk = 10;
 	this.ro = 4; 
 	this.in = 3;
@@ -412,6 +435,9 @@ function ClrConsole(){
 }
 
 function WrConsole(message){
+	if (!CONSOLE){
+		return;
+	}
 	CONSOLE.innerHTML += message + '</br>';
 	CONSOLE.scrollTop = CONSOLE.scrollHeight;
 }
@@ -487,48 +513,58 @@ function Fight(){
 		if (!en.active){
 			continue;
 		}		
-		WrConsole("támad: " + en.n);
+		WrConsole("<br/><i>" + en.n + "</i> támadóereje:");
 		var enp = en.p;
-		var endice = dice() + dice();
+		var endice = doubledice();
 		var enps = enp+endice;
-		WrConsole("ellenfél támadóereje : " + enp + " + " + endice + " = " + enps)
-		var mydice = dice() + dice();
+		WrConsole( endice + " + " + enp + " = " + enps)
+		WrConsole("Saját támadóerő:");
+		var mydice = doubledice();
 		var myps = myp+mydice;
-		WrConsole("saját támadóerő : " + myp + " + " + mydice + " = " + myps)
+		WrConsole( mydice + " + " + myp + " = " + myps)
 		
 		if (enps == myps){
 			WrConsole("egál, senki se sérül");
 		}
 		else
 		{
+			if (enps < myps && i != fobj.target){
+				WrConsole("nem talál el");
+				continue;
+			}
+			
+			if (enps < myps){
+				WrConsole("Sikeres támadás!");
+			} else {
+				WrConsole("Eltalált!");
+			}
+			
 			var hurt = 0;
 			if (fobj.type == 'hand' || fobj.type == 'bumpcar'){
 				hurt = 1;
 			} else if (fobj.type == 'gun' || fobj.type == 'car'){
+				WrConsole("Sebzés dobás:");
 				hurt = dice();
 			}
 			
-			if (enps < myps){
-				//my succes
-				if (i != fobj.target){
-					WrConsole("nem talál el");
-				} else {
-					hurt += fobj.hurtmod;
-					en.hurt += hurt;
-					en.h -= hurt;
-					if (en.h < 0){
-						en.h = 0;
-					}
-					
-					en.hmark.innerHTML = en.h;
-					WrConsole("eltaláltad, sebzés: " + hurt + " maradt : " + en.h);
+			if (enps < myps && i == fobj.target){
+			
+				hurt += fobj.hurtmod;
+				en.hurt += hurt;
+				en.h -= hurt;
+				if (en.h < 0){
+					en.h = 0;
 				}
+				
+				en.hmark.innerHTML = en.h;
+				WrConsole("Bevitt sérülés: " + hurt);
+					
 				if (en.h <= 0){
-					WrConsole("végeztél vele");
+					WrConsole("Végeztél vele!");
 					en.active = false;				
 				}
 				if (en.hurtlimit && en.hurtlimit <= en.hurt){
-					WrConsole("kiütötted");
+					WrConsole("Kiütötted!");
 					en.active = false;
 				}			
 			} else {
@@ -536,24 +572,23 @@ function Fight(){
 				hurt += en.hurtmod;
 				fobj.hurt += hurt;
 				fobj.hitcount++;
-				WrConsole("eltaláltak, sérülés: " + hurt);
 				if (fobj.type == 'hand' || fobj.type == 'gun'){
 					cp.AddHP(-hurt);
 					if (cp.hp <= 0){
-						WrConsole("véged");
+						WrConsole("Véged!");
 						end = true;
 						break;
 					}
 				} else if (fobj.type == 'car') {
 					vp.AddAP(-hurt);
 					if (vp.ap <= 0){
-						WrConsole("kilőttek");
+						WrConsole("Kilőttek!");
 						end = true;
 						break;
 					}
 				}
 				if (fobj.hurtlimit && fobj.hurtlimit <= fobj.hurt){
-					WrConsole("kiütöttek");
+					WrConsole("Kiütöttek!");
 					end = true;
 					break;
 				}
@@ -562,7 +597,7 @@ function Fight(){
 	}
 	
 	if (0 < fobj.roundLimit && fobj.roundLimit <= fobj.rounds){
-		WrConsole("harc vége");
+		WrConsole("Harc vége");
 		end = true;
 	}
 	var actenemy = 0;
@@ -576,7 +611,7 @@ function Fight(){
 		}
 	}
 	if (actenemy == 0){		
-		WrConsole("győztél");
+		WrConsole("Győzelem!");
 		fobj.win = true;
 		end = true;
 	}
@@ -619,20 +654,22 @@ function UseRocket(){
 }
 
 function LuckTest(){
-	d = dice() + dice();
-	WrConsole("szerencseteszt: "+d);
+	WrConsole("Szerencse teszt:");
+	d = doubledice();
+	var ret = false;
 	if (d <= cp.lp){
+		ret = true;
 		WrConsole("szerencséd van");
 	} else {
 		WrConsole("nincs szerencséd");
 	}
 	cp.AddLP(-1);
-	return (d <= cp.lp);
+	return ret;
 }
 
 function DexTest(){
-	d = dice() + dice();
-	WrConsole("ügyesség teszt: "+d);
+	WrConsole("Ügyesség teszt:");
+	d = doubledice();
 	if (d <= cp.dp){
 		WrConsole("sikerült");
 	} else {
@@ -661,12 +698,16 @@ function race(){
 	if (24 <= ACTPAGE.enloc){
 		ACTPAGE.winner = false;
 		WrConsole("vesztettél");
+		ACTPAGE.myloc = 0;
+		ACTPAGE.enloc = 0;
 		ACTPAGE.nextAction();
 		return;
 	}
 	if (24 <= ACTPAGE.myloc){
 		ACTPAGE.winner = true;
 		WrConsole("nyertél");
+		ACTPAGE.myloc = 0;
+		ACTPAGE.enloc = 0;
 		ACTPAGE.nextAction();
 		return;
 	}

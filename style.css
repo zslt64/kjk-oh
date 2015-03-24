@@ -13,15 +13,16 @@ h1 {
 }
 
 #playground {
-	width: 600px;
+	width: 550px;
 }
 
 #concont {
 	overflow-y: scroll;
 	overflow-x: hidden;
-	width: 400px;
-	height: 680px;
+	width: 350px;
+	height: 600px;
 	padding: 5px;
+	font-size: 0.9em;
 }
 
 table {
@@ -29,7 +30,7 @@ table {
 }
 
 #datapane {
-	width: 100%;
+	width: 200px;
 }
 
 .illust {
