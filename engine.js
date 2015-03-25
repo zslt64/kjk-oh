@@ -579,7 +579,7 @@ function Fight(){
 						end = true;
 						break;
 					}
-				} else if (fobj.type == 'car') {
+				} else if (fobj.type == 'car' || fobj.type == 'bumpcar') {
 					vp.AddAP(-hurt);
 					if (vp.ap <= 0){
 						WrConsole("Kilőttek!");
