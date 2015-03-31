@@ -200,11 +200,7 @@ de vonj le mindig egyet Ügyesség pontjaidból, ha egynél többször találtak
 		ACTFIGHT = new FightObj("gun", [rider1, rider2]);
 		Fight();
 	}, "fight");
-	p.addAction(function(){
-		if (1 < ACTFIGHT.hitcount){
-			cp.AddDP(-1);
-		}
-	},"rest");
+	p.addAction(rest,"rest");
 	p.addLink(307);
 </script>
 
@@ -315,12 +311,7 @@ időtartamára. Ha győzöl, lapozz a <b>131</b>-re, de vonj le magadtól mindig
 		ACTFIGHT.powermod = -1;
 		Fight();
 	}, "fight");
-	p.addAction(function(){
-		if (1 < ACTFIGHT.hitcount){
-			WrConsole("egynél többször sérültél");
-			cp.AddDP(-1);
-		}
-	}, "rest");
+	p.addAction(rest, "rest");
 	p.addLink(131);
 </script>
 
@@ -1998,11 +1989,7 @@ téged. Ha győzöl, lapozz a <b>154</b>-re, de vonjál le 1 pontot
 		ACTFIGHT = new FightObj("gun", [doomdog1, doomdog2]);
 		Fight();
 	}, "fight");
-	p.addAction(function(){
-		if (1 < ACTFIGHT.hitcount){
-			cp.AddDP(-1);
-		}
-	}, "rest");
+	p.addAction(function(){rest, "rest");
 	p.addLink(154);
 </script>
 
@@ -2266,18 +2253,11 @@ egynél többször eltaláltak.<tag></tag>
 	}, "dice");
 	p.addAction(function(){
 		hwt = new Enemy("Útonálló", 8, 12);
-		cp.AddDP(-2);
 		ACTFIGHT = new FightObj("gun", [hwt]);
+		ACTFIGHT.powermod = -2;
 		Fight();
 	}, "fight");
-	p.addAction(function(){
-		if (ACTFIGHT.hitcount < 2){
-			cp.AddDP(2);
-		} else {
-			WrConsole("egynél többször sérültél");
-			cp.AddDP(1);
-		}
-	}, "rest");
+	p.addAction(function(){rest, "rest");
 	p.addLink(131);
 </script>
 
@@ -3382,16 +3362,12 @@ kezdeményezés. Ha győzöl, lapozz a <b>375</b>-re, de vonj le mindig 1
 	p.addAction(function(){
 		outlaw = new Enemy("Törvényenkívüli", 7, 5);
 		ACTFIGHT = new FightObj("gun", [outlaw]);
-		cp.AddDP(-2);
+		ACTFIGHT.powermod = -2;
 		Fight();
 		Fight();
 		cp.AddDP(2);
 	}, "fight");
-	p.addAction(function(){
-		if (1 < ACTFIGHT.hitcount){
-			cp.AddDP(-1);
-		}
-	}, "rest");
+	p.addAction(rest "rest");
 	p.addLink(375);
 </script>
 
@@ -3495,11 +3471,7 @@ megsebesít. Ha győzöl, lapozz a <b>69</b>-re, de vonj le 1 pontot végleg
 		ACTFIGHT = new FightObj("gun", [doomdog1, doomdog2]);
 		Fight();
 	}, "fight");
-	p.addAction(function(){
-		if (1 < ACTFIGHT.hitcount){
-			cp.AddDP(-1);
-		}
-	}, "rest");
+	p.addAction(rest, "rest");
 	p.addLink(69);
 </script>
 
@@ -3675,11 +3647,7 @@ többször eltaláltak a tűzharcban. <tag></tag>
 		ACTFIGHT.powermod = 1;
 		Fight();
 	}, "fight");
-	p.addAction(function(){
-		if (1 < ACTFIGHT.hitcount){
-			cp.AddDP(-1);
-		}
-	},"rest");
+	p.addAction(function(){rest, "rest");
 	p.addLink(64);
 </script>
 
@@ -4309,7 +4277,7 @@ viszonzod a tüzet.
 A Tűzharc szabályai szerint játszd le ezt a küzdelmet, de vonjál le
 Ügyességedből 1 pontot sebesülésed miatt. Ha győzöl, lapozz a <b>131</b>-re,
 de vonjál le Ügyességedből végleg 1 pontot, ha egynél többször
-megsebesültél.<tag></tag>
+megsebesültél. <tag></tag>
 </p>
 </div>
 <script>
@@ -4317,16 +4285,10 @@ megsebesültél.<tag></tag>
 	p.addAction(function(){
 		hwm = new Enemy("Útonálló", 8, 12);
 		ACTFIGHT = new FightObj("gun", [hwm]);
-		cp.AddDP(-1);
+		ACTFIGHT.powermod = -1;
 		Fight();
 	}, "fight");
-	p.addAction(function(){
-		if (ACTFIGHT.hitcount < 2){
-			cp.AddDP(1);
-		} else {
-			WrConsole("egynél többször sérültél");
-		}
-	}, "rest");
+	p.addAction(rest, "rest");
 	p.addLink(131);
 </script>
 
@@ -5617,11 +5579,7 @@ ha egynél többször eltaláltak. <tag></tag>
 		ACTFIGHT = new FightObj("gun", [bike1, bike2]);
 		Fight();
 	}, "fight");
-	p.addAction(function(){
-		if (1 < ACTFIGHT.hitcount){
-			cp.AddDP(-1);
-		}		
-	}, "rest");
+	p.addAction(rest, "rest");
 	p.addLink(97);
 </script>
 
@@ -6797,11 +6755,7 @@ mögött fedezékben vagy. Ha győzöl, lapozz a <b>64</b>-re, de vonj le végle
 		ACTFIGHT.powermod = 1
 		Fight();
 	}, "fight");
-	p.addAction(function(){
-		if (1 < ACTFIGHT.hitcount){
-			cp.AddDP(-1);
-		}
-	},"rest");
+	p.addAction(rest,"rest");
 	p.addLink(64);
 </script>
 

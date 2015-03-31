@@ -28,3 +28,10 @@ function LuckTestPage(pageNum, succLink, failLink){
 	p.addLink(succLink, function(){return ACTPAGE.luckTest;});
 	p.addLink(failLink, function(){return !ACTPAGE.luckTest;});
 }
+
+function rest(){
+	WrConsole("<br/>Sérüléseid száma: " + ACTFIGHT.hitcount);
+	if (1 < ACTFIGHT.hitcount){
+		cp.AddDP(-1);
+	}
+}
