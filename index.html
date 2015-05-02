@@ -8,7 +8,8 @@
 
 <div id="playground">
 <table>
-<tr><td>
+<tr>
+<td valign="top">
 	<div id="concont"></div>
 </td>
 <td valign="top">
@@ -1989,7 +1990,7 @@ téged. Ha győzöl, lapozz a <b>154</b>-re, de vonjál le 1 pontot
 		ACTFIGHT = new FightObj("gun", [doomdog1, doomdog2]);
 		Fight();
 	}, "fight");
-	p.addAction(function(){rest, "rest");
+	p.addAction(rest, "rest");
 	p.addLink(154);
 </script>
 
@@ -2257,7 +2258,7 @@ egynél többször eltaláltak.<tag></tag>
 		ACTFIGHT.powermod = -2;
 		Fight();
 	}, "fight");
-	p.addAction(function(){rest, "rest");
+	p.addAction(rest, "rest");
 	p.addLink(131);
 </script>
 
@@ -3367,7 +3368,7 @@ kezdeményezés. Ha győzöl, lapozz a <b>375</b>-re, de vonj le mindig 1
 		Fight();
 		cp.AddDP(2);
 	}, "fight");
-	p.addAction(rest "rest");
+	p.addAction(rest, "rest");
 	p.addLink(375);
 </script>
 
@@ -3647,7 +3648,7 @@ többször eltaláltak a tűzharcban. <tag></tag>
 		ACTFIGHT.powermod = 1;
 		Fight();
 	}, "fight");
-	p.addAction(function(){rest, "rest");
+	p.addAction(rest, "rest");
 	p.addLink(64);
 </script>
 
