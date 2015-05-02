@@ -178,6 +178,10 @@ function redo(){
 	loadHist();
 }
 
+function rules(){
+	PAGES[381].start();
+}
+
 function dicehtml(d){
 	return '<img src="imgs/d'+d+'.png" width="20" height="20"/>';
 }

@@ -14,17 +14,19 @@
 </td>
 <td valign="top">
 	<div id="datapane">
-		<button onclick="undo()">undo</button><button onclick="redo()">redo</button>
+		<button onclick="undo()">vissza</button><button onclick="redo()">előre</button>|<button onclick="rules()">szabályok</button>
+		
+		<p style="border-top-style: solid; border-bottom-style: solid; width: 100%; text-align: center; margin-bottom: 0px;"><b>KALANDLAP</b></p>
 		<table>
 		<tr><td>ügyesség:</td><td><pw id="dp">0</pw>/<pw id="mdp">0</pw></td></tr>
 		<tr><td>életerő:</td><td><pw id="hp">0</pw>/<pw id="mhp">0</pw></td></tr>
 		<tr><td>szerencse:</td><td><pw id="lp">0</pw>/<pw id="mlp">0</pw></td></tr>
 		<tr><td>kredit:</td><td><pw id="cr">0</pw></td></tr>
-		<tr><td><button id="medkitb" onclick="cp.UseMedkit()">medkit</button></td><td><pw id="mk">0</pw></td></tr>
+		<tr><td><button id="medkitb" onclick="cp.UseMedkit()">elsősegély</button></td><td><pw id="mk">0</pw></td></tr>
 		</table>
 		Tárgyak:
 		<div id="eq"></div>
-		<hr/>
+		<p style="border-top-style: solid; border-bottom-style: solid; width: 100%; text-align: center; margin-bottom: 0px;"><b>D</b>odge <b>I</b>nterceptor jellemzői</p>
 		<table>
 		<tr><td>tűzerő:</td><td><pw id="fp">0</pw>/<pw id="mfp">0</pw></td></tr>
 		<tr><td>páncélzat:</td><td><pw id="ap">0</pw>/<pw id="map">0</pw></td></tr>
@@ -32,16 +34,16 @@
 		<tr><td>olaj:</td><td><pw id="oi">0</pw></td></tr>
 		<tr><td>pótkerék:</td><td><pw id="sw">0</pw></td></tr>
 		<tr><td>üzemanyag:</td><td><pw id="ga">0</pw></td></tr>
-		<tr><td><button id="rocketb" onclick="UseRocket()" disabled>rocket</button></td><td><pw id="ro">0</pw></td></tr>
+		<tr><td><button id="rocketb" onclick="UseRocket()" disabled>rakéta</button></td><td><pw id="ro">0</pw></td></tr>
 		</table>
 		Szerkezeti módosítások:
 		<div id="mo"></div>
-		<hr/>
 	</div>
 	<div id="console"></div>
 </td></tr>
 </table>
 </div>
+
 
 
 <div id="p0" class="kjkpage">
@@ -6952,7 +6954,178 @@ küldetésed teljes sikerrel járt.
 </div>
 <script>
 	p = new Page(380);
-	//wictory !
+	//victory !
 </script>
+
+<div id="p381" class="kjkpage">
+<p style="text-align: center; font-size: 1em"><i><b>Egyéni adottságok</b></i></p>
+<p>Mint a korábbi kalandos, fantasztikus játékregényekben, itt is
+kockadobással tudod meghatározni adottságaidat, melyeket aztán föl
+kell jegyezned a Kalandlapra. A következő három adottsággal
+rendelkezel:</p>
+
+<p style="text-align: center">Ügyesség</p>
+<p>Dobj egy dobókockával. Adjál 6-ot a kapott számhoz, és az összeget írd a
+Kalandlap Ügyesség rovatába. Ez a szám autóvezetési, -szerelési
+tudásodat, küzdőképességedet jelzi. Ügyesség pontjaid növekedhetnek,
+de csökkenhetnek is utad során, ám soha nem léphetik túl a kezdeti
+értéket.</p>
+<p style="text-align: center">Életerő</p>
+
+<p>Dobj két kockával. Adjál 24-et a kapott számhoz, és az összeget jegyezd
+fel a Kalandlap Életerő rovatába. Életerő pontszámod fizikai
+állapotodat és erőnlétedet mutatja. Életerőd csökken, amikor
+megsérülsz. A magaddal vitt mentődoboz tíz gyógyszercsomagot
+tartalmaz, amelyekkel sebeidet gyógyíthatod. A &bdquo;kezelés&quot;
+4-gyel növeli Életerő pontjaid számát. Bármikor használhatod a
+mentőládát, kivéve, amikor éppen harcolsz valakivel, de ne feledd el
+soha áthúzni a Kalandlapon, ha elhasználtál egy gyógyszercsomagot.
+Azt se feledd, hogy Életerő pontjaid sem léphetik túl kezdeti
+értéküket.</p>
+<p style="text-align: center">Szerencse</p>
+<p>Dobj egy kockával. Adjál 6-ot a kapott számhoz, és írd az összeget a
+Kalandlap Szerencse rovatába. Ez a pontszám a Szerencsédet jelzi, azt
+mutatja, milyen jövő van megírva számodra a sors könyvében. Utad
+során többször is előfordul majd - küzdelem közben vagy bármely más
+helyzetben -, hogy próbára teheted a Szerencsédet, remélve, hogy az
+események kedvezőbben alakulnak. (Ennek a részleteit az adott
+oldalakon tudod meg.) De jól vigyázz. Kockázatos a Szerencsére
+építeni, mert ha nincs Szerencséd, az eredmény végzetes lehet.
+<p>Szerencsédet a következő módon teheted próbára. Dobj két kockával. Ha a kapott
+szám akkora vagy kisebb, mint ahány Szerencse ponttal rendelkezel,
+akkor Szerencséd volt, és az események kedvezően alakulnak. Ám ha a
+kapott szám magasabb, akkor nem volt Szerencséd, és viselned kell a
+következményeket. A játékban úgy hívjuk ezt: Tedd próbára
+Szerencsédet. Minden alkalommal, ahányszor csak próbára teszed
+Szerencsédet, 1-et le kell vonnod Szerencse pontjaidból. így hamar
+rádöbbensz arra, hogy minél inkább a Szerencsére hagyatkozol, annál
+kockázatosabbá válik ez számodra. Szerencse pontjaidat növelheted is,
+ha néha különlegesen szerencsés voltál. De ne feledd, hogy Szerencse
+pontjaid sem léphetik túl kezdeti értéküket.</p>
+<p class="subillust"><img src="imgs/gunfight.jpg"/></p>
+<p style="text-align: center; font-size: 1em"><b>Járműved jellemzői</b></p>
+<p>Autód páncélzatát és fegyverzetét is dobókockák segítségével állapíthatod
+meg, majd feljegyzed a Kalandlapra. Két alapvető tulajdonságot kell
+tudnod:</p>
+<p style="text-align: center">Tűzerő</p>
+<p>Dobj egy kockával. Adjál 6-ot a kapott számhoz, és írd az Összeget a
+Kalandlap Tűzerő rovatába. Ez a szám autód motorjának erejét és
+géppuskáinak hatékonyságát jelzi. A Tűzerő növekedhet is, csökkenhet
+is utad során, de soha nem lépheti túl kezdeti értékét. (Az autó
+rakétavetőjének használatát az Autós Csata cím alatt magyarázzuk el.)</p>
+<p style="text-align: center">Páncélzat</p>
+<p>Dobj két kockával. Adjál 24-et a kapott számhoz, és az összeget jegyezd
+fel Kalandlapod Páncélzat rovatába. Ez jelzi autód védelmét. A
+géppuskák és a korlátlan számú golyó mellett az autón különleges
+fegyverek is vannak, amelyeket úgyszintén felhasználhatsz. Négy
+rakéta áll rendelkezésedre (lásd: Autós Csata); ezenkívül három doboz
+vasszög, és két olajtartály a kocsi aljára szerelve. Ezeket akkor
+használhatod fel, amikor lehetőséget kapsz rá, s ha egyet
+felhasználtál, ki kell húznod a Kalandlapról.</p>
+<p>Tankolhatsz is utad során, de ezt is fel kell tüntetned a Kalandlapon a megfelelő
+rovatban. Úgyszintén jegyezned kell minden átalakítást, amit
+útközben végzel a kocsin, és minden kiegészítő felszerelést. A Páncélzat
+értéke csökkenhet autód sérülésekor, vagy növekedhet annak
+javításakor, de soha nem lépheti túl a kezdeti értéket.</p>
+<p style="text-align: center; font-size: 1em"><b>Harc</b></p>
+<p>Utad során minden bizonnyal jó néhány gazemberrel találkozol, akik rád
+támadnak, akár akkor, amikor autódban ülsz, akár akkor, amikor gyalog
+mész. A játékban háromfajta küzdelem van.</p>
+<p style="text-align: center">Kézitusa</p>
+<p>Ide tartozik mindenféle lőfegyverek nélküli küzdelem, puszta kézzel vagy
+mondjuk egy hokiütővel. A Kézitusa a következő módon zajlik.</p>
+<ol>
+	<li>Dobj két kockával. Az összeghez add hozzá ellenfeled Ügyesség pontjainak
+	számát. A kapott eredmény ellenfeled Támadóereje.</li>
+	<li>Dobj két kockával. Az összeghez add hozzá saját Ügyesség pontjaid számát.
+	A kapott eredmény a te Támadóerőd.</li>
+	<li>Ha az ellenfél Támadóereje nagyobb, mint a tied, eltalált. Menj a 6.
+	lépésre.</li>
+	<li>Ha a te Támadóerőd a nagyobb, te találtad el ellenfeledet. Lépj a 6.
+	lépésre.</li>
+	<li>Ha a két Támadóerő egyforma, egyikőtök sem talált. Kezdd elölről az 1.
+	lépéstől a következő fordulót.</li>
+	<li>A sikeres találat sérülést okoz, ezért pontot kell levonni a sebesült
+	Életerejéből. A puszta kezes találat 1 ponttal csökkenti az
+	Életerőt, de ha valakit egy tárggyal, mondjuk egy hokiütővel találtak el, további
+	pontokat is le kell vonni.</li>
+	<li>Kezdd el a következő fordulót, vagyis az 1-6. tartó lépéseket ismételd
+	egészen addig, amíg akár te, akár ellenfeled 6 Életerő pontot nem
+	vesztett.</li>
+	<li>Ha ellenfeled veszített előbb 6 Életerő pontot, kiütötted, és
+	folytathatod utadat.</li>
+	<li>Ha te veszítesz előbb 6 Életerő pontot, kiütöttek, és hogy mi vár rád,
+	azt megtudod annál a bekezdésnél, amelyre lapoznod kell.
+	Természetesen ha egy Kézitusa közben Életerőd nullára csökkent,
+	halott vagy.</li>
+</ol>
+<p style="text-align: center">Tűzharc</p>
+<p>Vagyis pisztolyokkal, puskákkal, dobókésekkel, nyilakkal stb. vívott
+küzdelem (Revolveredhez korlátlanul van muníció). A következőképpen
+zajlik:</p>
+<ol>
+	<li>Dobj két kockával. A kapott összeghez add hozzá ellenfeled Ügyesség
+	pontjainak számát. Az eredmény ellenfeled Támadóereje.</li>
+	<li>Dobj ismét két kockával. Az összeghez add hozzá a te Ügyesség pontjaidat.
+	Ez a te Támadóerőd.</li>
+	<li>Ha ellenfeled Támadóereje nagyobb, mint a tied, eltaláltak. Menj a 6.
+	lépésre.</li>
+	<li>Ha a te Támadóerőd a nagyobb, eltaláltad ellenfeledet. Menj a 6.
+	lépésre.</li>
+	<li>Ha mindkét Támadóerő egyforma, egyikőtök sem talált. Kezdd el a
+	következő fordulót.</li>
+	<li>A sikeres találat sérülést okoz, ezért pontot kell levonni a sebesült
+	Életerejéből. A fegyverek különböző méretű sebeket okoznak. Dobj
+	egy kockával, az így kapott számot vond le a sebesült Életerejéből.
+	Egy golyó példának okáért üthet jelentéktelen felületi sebet, de akár
+	rögtön meg is ölhet.</li>
+	<li>Kezdd el a következő fordulót, vagyis ismételd a lépéseket 1-6-ig, s addig
+	folytasd ezt, amíg akár a te, akár ellenfeled Életereje nullára nem
+	csökkent. (Halál.)</li>
+</ol>
+<p style="text-align: center">Autós Csata</p>
+<p>Ez többnyire az autókból vívott géppuskacsatát jelenti. Kocsidon egy
+forgatható toronyra szerelt, számítógép által vezérelt géppuska van,
+amely minden irányban képes tüzelni, te ezzel harcolsz. Az autós
+párviadalok a következőképp történnek.</p>
+<ol>
+	<li>Dobj két kockával. Az eredményhez add hozzá ellenfeled járművének
+	Tűzerejét. A kapott összeg az ellenfél Támadóereje.</li>
+	<li>Dobj ismét két kockával. Az eredményhez add hozzá a te járműved
+	Tűzerejét, az összeg a te Támadóerődet mutatja.</li>
+	<li>Ha az ellenfél Támadóereje nagyobb, mint a tied, eltaláltak. Menj a 6.
+	lépésre.</li>
+	<li>Ha a te Támadóerőd nagyobb, te találtad el az ellenséges járművet. Menj
+	a 6. lépésre.</li>
+	<li>Ha mindkét Támadóerő egyenlő, egyikőtök sem talált. Kezdd el a
+	következő fordulót az 1. lépésről.</li>
+	<li>Minden sikeres találat károkat okoz, melynek eredményeként le kell vonnod
+	az eltalált jármű Páncélzat pontjaiból. Hogy mennyit? Dobj egy
+	kockával, és a kapott számot vond le az eltalált jármű Páncélzat
+	pontjaiból.</li>
+	<li>Kezdd el a következő fordulót (ismételd az 1-6-ig
+	tartó lépéssort), egészen addig, míg Páncélzatod vagy az ellenfél
+	járművéé nullára nem csökkent (kilőve). Feltételezhető, hogy egy
+	kilőtt kocsi vezetője nem éli túl a robbanást vagy a kocsi
+	összeroncsolását.</li>
+</ol>
+<p>Ha az Autós Csata során rakétát akarsz kilőni ellenségedre, bármelyik
+forduló előtt megteheted, de ilyenkor ne feledj egy rakétát kihúzni a
+Kalandlapról. Automatikusan találsz el és semmisítesz meg bármely
+célpontot.</p>
+<p style="text-align: center; font-size: 1em"><b>Hitel</b></p>
+<p>Hitelnek hívják a XXI. század szükségpénzét. 200 Hitellel kezded utadat (lásd
+a Kalandlapot), de valószínű, hogy ennél sokkal többet kell költened,
+illetve megszerezned útközben. Azonban az emberek többsége nem bízik
+a szükségpénzben, és inkább csencsel. Lehet, hogy példának okáért
+gyógyszert kell adnod valamiért. Ha így történik, Kalandlapodról húzd
+ki, amit cseréltél.</p>
+<p class="subillust"><img src="imgs/riders.jpg"/></p>
+</div>
+<script>
+	p = new Page(381);
+</script>
+
+
 </body>
 </html>
