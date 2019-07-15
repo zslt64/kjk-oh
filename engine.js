@@ -658,13 +658,17 @@ function UseRocket(){
 		return;
 	}
 	WrConsole("BUMMM, rakéta támadás");
+	var en;
 	for (var i = 0; i<ACTFIGHT.enemies.length; ++i){
 		en = ACTFIGHT.enemies[i];
-		en.hp = 0;
-		en.active = false;
-		en.hmark.innerHTML = en.hp;
+		if (en.active) {
+			en.hp = 0;
+			en.active = false;
+			en.hmark.innerHTML = en.hp;
 		
-		WrConsole(en.n + " kampec");
+			WrConsole(en.n + " kampec");
+			break;
+		}
 	}
 	vp.AddRO(-1);
 	Fight();
