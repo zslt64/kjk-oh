@@ -1,6 +1,6 @@
 ﻿var CONCONT;
 var CONSOLE = false;
-var DEBUG = true;
+var DEBUG = false;
 var PAGES = new Object();
 var ACTPAGE;
 var NACB;
