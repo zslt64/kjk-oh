@@ -26,7 +26,7 @@
 		</table>
 		Tárgyak:
 		<div id="eq"></div>
-		<p style="border-top-style: solid; border-bottom-style: solid; width: 100%; text-align: center; margin-bottom: 0px;"><b>D</b>odge <b>I</b>nterceptor jellemzői</p>
+		<p id="parag_vehicle" style="border-top-style: solid; border-bottom-style: solid; width: 100%; text-align: center; margin-bottom: 0px;"><b>D</b>odge <b>I</b>nterceptor jellemzői</p>
 		<table>
 		<tr><td>tűzerő:</td><td><pw id="fp">0</pw>/<pw id="mfp">0</pw></td></tr>
 		<tr><td>páncélzat:</td><td><pw id="ap">0</pw>/<pw id="map">0</pw></td></tr>
@@ -1589,7 +1589,7 @@ tartod túszodat, míg a Pusztulás Kutyái valamennyien visszavonulnak a
 sivatagba. Aztán hagyod, hogy ő is a barátai után menjen a San
 Angló-i olajfinomító lakóinak üdvrivalgása közepette. Segítesz nekik
 megjavítani a bejáratot, aztán közlöd, hogy ideje távoznod. Beülsz az
-óriási benzinszállítóba, és búcsút intesz. Szomorú elválnod hűséges
+óriási benzinszállítóba <tag></tag>, és búcsút intesz. Szomorú elválnod hűséges
 Interceptorodtól, de tisztában vagy a vállalkozás jelentőségével. Két
 kocsi egész a sivatag határáig kísér észak felé. Ott visszafordulnak,
 s ismét egyedül vagy az országúton. Úgy döntesz, hogy egyenesen észak
@@ -1601,7 +1601,20 @@ látsz fényt a motel ablakában. Ha a kabinban akarsz aludni, lapozz a
 </p>
 </div>
 <script>
-	LinkPage(81, [218, 335]);
+	LinkPage(81, [218, 335], [
+	function(){
+		vp.fp = 1;
+		vp.ap = 1;
+		vp.ro = 0;
+		vp.in = 0;
+		vp.oi = 0;
+		vp.sw = 0;
+		vp.ga = 0;
+		vp.mo = new Array();
+		document.getElementById("parag_vehicle").innerHTML = "Benzinszállító jellemzői";
+		vp.Render();
+		}
+	]);
 </script>
 
 <div id="p82" class="kjkpage">
