@@ -1,5 +1,6 @@
 ﻿var CONCONT;
 var CONSOLE = false;
+var DEBUG = false;
 var PAGES = new Object();
 var ACTPAGE;
 var NACB;
@@ -49,6 +50,9 @@ function Page(num){
 	this.links = new Array();
 	this.actions = new Array();
 	this.actAction = -1;
+	if (DEBUG) {
+		document.getElementById("debug").style.visibility="visible";
+	}
 }
 Page.prototype.addLink = function(destNum, cond){
 	this.links.push(new Link(this, destNum, cond));
@@ -180,6 +184,15 @@ function redo(){
 
 function rules(){
 	PAGES[381].start();
+}
+
+function jump(page){
+	PAGES[page].start();
+}
+
+function jumpByInput(id){
+	var page = document.getElementById(id).value;
+	jump(page);
 }
 
 function dicehtml(d){
