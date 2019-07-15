@@ -6354,12 +6354,12 @@ mint neki, lapozz a <b>226</b>-ra.
 <script>
 	p = new Page(345);
 	p.addAction(function(){
-		ACTPAGE.ende = 7+dice();
-		WrConsole("ellenfél pontja: "+ACTPAGE.ende);
-	}, "dice");
-	p.addAction(function(){
 		ACTPAGE.myde = cp.dp+dice();
 		WrConsole("saját pontjiad: "+ACTPAGE.myde);
+	}, "dice");
+	p.addAction(function(){
+		ACTPAGE.ende = 7+dice();
+		WrConsole("ellenfél pontja: "+ACTPAGE.ende);
 	}, "dice");
 	p.addLink(74, function(){return ACTPAGE.ende <= ACTPAGE.myde;});
 	p.addLink(226, function(){return ACTPAGE.ende > ACTPAGE.myde;});
