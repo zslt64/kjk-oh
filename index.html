@@ -1463,11 +1463,14 @@ képes. Egy váratlan rajtaütési kísérlettől eltekintve, amelyet
 könnyűszerrel kivédesz, a páncélozott tartálykocsiddal incidensek
 nélkül utazol. Már csaknem leszáll a nap, amikor eléred Új remény
 határát, annak magasról őrzött előfalait. Elszoktál tőle, mégis
-csodálatos látvány. Ha megúsztad harapás nélkül, lapozz a <b>380</b>-ra.
+csodálatos látvány. Ha útközben hazafelé megharapott egy patkány, lapozz a <b>275</b>-re.
+Ha megúsztad harapás nélkül, lapozz a <b>380</b>-ra.
 </p>
 </div>
 <script>
-	LinkPage(74, [380]);
+	p = new Page(74);
+	p.addLink(275, function(){return cp.HasMemo("ratbite");});
+	p.addLink(380, function(){return !cp.HasMemo("ratbite");});
 </script>
 
 <div id="p75" class="kjkpage">
