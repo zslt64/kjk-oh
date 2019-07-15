@@ -2329,7 +2329,7 @@ hogy kihúzd késed, s azzal védd magad.
 <tr><td><i><en>Első Farkas<en></i></td><td>ÜGYESSÉG <pw>8</pw></td><td>ÉLETERŐ <hp>7</hp></td></tr>
 <tr><td><i><en>Második Farkas<en></i></td><td>ÜGYESSÉG <pw>8</pw></td><td>ÉLETERŐ <hp>8</hp></td></tr>
 </table>
-<tag></tag><tag></tag>
+<tag></tag>
 <p>
 A Kézitusa szabályai szerint egyenként küzdesz meg a farkasokkal. Késed
 és farkasok harapása egyaránt 2 Életerő pont levonását jelenti. Ha
@@ -2340,15 +2340,10 @@ győzöl, lapozz a <b>286</b>-ra.
 	p = new Page(120);
 	p.addAction(function(){
 		wolf1 = new Enemy("Első Farkas", 8, 7);
-		dog.hurtmod = 1;
-		ACTFIGHT = new FightObj("hand", [wolf1]);
-		ACTFIGHT.hurtmod = 1;
-		Fight();
-	}, "fight");
-	p.addAction(function(){
 		wolf2 = new Enemy("Második Farkas", 8, 8);
-		dog.hurtmod = 1;
-		ACTFIGHT = new FightObj("hand", [wolf2]);
+		wolf1.hurtmod = 1;
+		wolf2.hurtmod = 1;
+		ACTFIGHT = new FightObj("hand", [wolf1, wolf2]);
 		ACTFIGHT.hurtmod = 1;
 		Fight();
 	}, "fight");
