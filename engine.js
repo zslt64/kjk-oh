@@ -664,7 +664,7 @@ function UseRocket(){
 		en.active = false;
 		en.hmark.innerHTML = en.hp;
 		
-		WrConsole(en.n + " kapmec");
+		WrConsole(en.n + " kampec");
 	}
 	vp.AddRO(-1);
 	Fight();
