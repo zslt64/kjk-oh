@@ -3376,12 +3376,9 @@ kezdeményezés. Ha győzöl, lapozz a <b>375</b>-re, de vonj le mindig 1
 <script>
 	p = new Page(178);
 	p.addAction(function(){
-		outlaw = new Enemy("Törvényenkívüli", 7, 5);
+		outlaw = new Enemy("Törvényenkívüli", 9, 12);
 		ACTFIGHT = new FightObj("gun", [outlaw]);
-		ACTFIGHT.powermod = -2;
 		Fight();
-		Fight();
-		cp.AddDP(2);
 	}, "fight");
 	p.addAction(rest, "rest");
 	p.addLink(375);

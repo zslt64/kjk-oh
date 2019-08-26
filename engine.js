@@ -523,10 +523,13 @@ function Fight(){
 	}
 	
 	var end = false;
-	
 	for (var i=0;i<fobj.enemies.length;++i){
 	
 		var en = fobj.enemies[i];
+
+		if (en.n == 'Törvényenkívüli' && fobj.rounds == 1) {
+			myp -= 2;
+		}
 		if (!en.active){
 			continue;
 		}		
@@ -716,7 +719,7 @@ function race(){
 	ACTPAGE.enloc += dice();
 	
 	WrConsole("te: "+ACTPAGE.myloc+" ellenfél: "+ACTPAGE.enloc);
-	if (24 <= ACTPAGE.enloc){
+	if (24 <= ACTPAGE.enloc && ACTPAGE.myloc < ACTPAGE.enloc){
 		ACTPAGE.winner = false;
 		WrConsole("vesztettél");
 		ACTPAGE.myloc = 0;
