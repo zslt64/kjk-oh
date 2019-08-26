@@ -493,7 +493,7 @@ function Fight(){
 	if (fobj.rounds == 0){
 		WrConsole("harc kezdődik");
 		
-		if (fobj.type == "car"){
+		if (fobj.type == "car" && vp.ro > 0){
 			ROCKETB.disabled = false;
 		} else if (fobj.type == "gun" || fobj.type == "hand"){
 			MEDKITB.disabled = true;
