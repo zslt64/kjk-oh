@@ -26,7 +26,7 @@
 		</table>
 		Tárgyak:
 		<div id="eq"></div>
-		<p style="border-top-style: solid; border-bottom-style: solid; width: 100%; text-align: center; margin-bottom: 0px;"><b>D</b>odge <b>I</b>nterceptor jellemzői</p>
+		<p id="parag_vehicle" style="border-top-style: solid; border-bottom-style: solid; width: 100%; text-align: center; margin-bottom: 0px;"><b>D</b>odge <b>I</b>nterceptor jellemzői</p>
 		<table>
 		<tr><td>tűzerő:</td><td><pw id="fp">0</pw>/<pw id="mfp">0</pw></td></tr>
 		<tr><td>páncélzat:</td><td><pw id="ap">0</pw>/<pw id="map">0</pw></td></tr>
@@ -40,6 +40,7 @@
 		<div id="mo"></div>
 	</div>
 	<div id="console"></div>
+	<div id="debug" style="visibility: hidden;"><input type="number" id="jumpTo" value="81"><button onclick="jumpByInput(&quot;jumpTo&quot;)">jump</button></div>
 </td></tr>
 </table>
 </div>
@@ -653,7 +654,7 @@ mint az övé, lapozz a <b>74</b>-re. Ha kisebb, akkor lapozz a <b>226</b>-ra.
 	}, "hurt");
 	p.addAction(function(){
 		ACTPAGE.myde = cp.dp+dice()-1;
-		WrConsole("saját pontjiad: "+ACTPAGE.myde);
+		WrConsole("saját pontjaid: "+ACTPAGE.myde);
 	}, "dice");
 	p.addAction(function(){
 		ACTPAGE.ende = 7+dice();
@@ -1462,11 +1463,14 @@ képes. Egy váratlan rajtaütési kísérlettől eltekintve, amelyet
 könnyűszerrel kivédesz, a páncélozott tartálykocsiddal incidensek
 nélkül utazol. Már csaknem leszáll a nap, amikor eléred Új remény
 határát, annak magasról őrzött előfalait. Elszoktál tőle, mégis
-csodálatos látvány. Ha megúsztad harapás nélkül, lapozz a <b>380</b>-ra.
+csodálatos látvány. Ha útközben hazafelé megharapott egy patkány, lapozz a <b>275</b>-re.
+Ha megúsztad harapás nélkül, lapozz a <b>380</b>-ra.
 </p>
 </div>
 <script>
-	LinkPage(74, [380]);
+	p = new Page(74);
+	p.addLink(275, function(){return cp.HasMemo("ratbite");});
+	p.addLink(380, function(){return !cp.HasMemo("ratbite");});
 </script>
 
 <div id="p75" class="kjkpage">
@@ -1585,7 +1589,7 @@ tartod túszodat, míg a Pusztulás Kutyái valamennyien visszavonulnak a
 sivatagba. Aztán hagyod, hogy ő is a barátai után menjen a San
 Angló-i olajfinomító lakóinak üdvrivalgása közepette. Segítesz nekik
 megjavítani a bejáratot, aztán közlöd, hogy ideje távoznod. Beülsz az
-óriási benzinszállítóba, és búcsút intesz. Szomorú elválnod hűséges
+óriási benzinszállítóba <tag></tag>, és búcsút intesz. Szomorú elválnod hűséges
 Interceptorodtól, de tisztában vagy a vállalkozás jelentőségével. Két
 kocsi egész a sivatag határáig kísér észak felé. Ott visszafordulnak,
 s ismét egyedül vagy az országúton. Úgy döntesz, hogy egyenesen észak
@@ -1597,7 +1601,20 @@ látsz fényt a motel ablakában. Ha a kabinban akarsz aludni, lapozz a
 </p>
 </div>
 <script>
-	LinkPage(81, [218, 335]);
+	LinkPage(81, [218, 335], [
+	function(){
+		vp.fp = 1;
+		vp.ap = 1;
+		vp.ro = 0;
+		vp.in = 0;
+		vp.oi = 0;
+		vp.sw = 0;
+		vp.ga = 0;
+		vp.mo = new Array();
+		document.getElementById("parag_vehicle").innerHTML = "Benzinszállító jellemzői";
+		vp.Render();
+		}
+	]);
 </script>
 
 <div id="p82" class="kjkpage">
@@ -1794,7 +1811,7 @@ rádiódat csavargatod, remélve, hogy sikerül kapcsolatot létesítened
 San Anglóval. Ám csak a légköri zörejeket hallod. Mégis bekapcsolva
 hagyod a rádiót, hátha téged hívnak. Jó tizenöt kilométer múlva újabb
 elágazáshoz érsz. Valaki egy táblát erősített ide. Motor és
-karosszériajavítások állj rajta durva kézírással, és egy nyíl, amely
+karosszériajavítások áll rajta durva kézírással, és egy nyíl, amely
 kelet felé mutat. Ha erre fordulsz, lapozz a <b>230</b>-ra. Ha inkább
 továbbmész délnek, lapozz a <b>301</b>-re.
 </p>
@@ -2312,7 +2329,7 @@ hogy kihúzd késed, s azzal védd magad.
 <tr><td><i><en>Első Farkas<en></i></td><td>ÜGYESSÉG <pw>8</pw></td><td>ÉLETERŐ <hp>7</hp></td></tr>
 <tr><td><i><en>Második Farkas<en></i></td><td>ÜGYESSÉG <pw>8</pw></td><td>ÉLETERŐ <hp>8</hp></td></tr>
 </table>
-<tag></tag><tag></tag>
+<tag></tag>
 <p>
 A Kézitusa szabályai szerint egyenként küzdesz meg a farkasokkal. Késed
 és farkasok harapása egyaránt 2 Életerő pont levonását jelenti. Ha
@@ -2323,15 +2340,10 @@ győzöl, lapozz a <b>286</b>-ra.
 	p = new Page(120);
 	p.addAction(function(){
 		wolf1 = new Enemy("Első Farkas", 8, 7);
-		dog.hurtmod = 1;
-		ACTFIGHT = new FightObj("hand", [wolf1]);
-		ACTFIGHT.hurtmod = 1;
-		Fight();
-	}, "fight");
-	p.addAction(function(){
 		wolf2 = new Enemy("Második Farkas", 8, 8);
-		dog.hurtmod = 1;
-		ACTFIGHT = new FightObj("hand", [wolf2]);
+		wolf1.hurtmod = 1;
+		wolf2.hurtmod = 1;
+		ACTFIGHT = new FightObj("hand", [wolf1, wolf2]);
 		ACTFIGHT.hurtmod = 1;
 		Fight();
 	}, "fight");
@@ -3187,6 +3199,7 @@ jelenik meg fényszóróid fényében, és későn próbálod kikerülni. Dobj
 két kockával, és az összeget vond le az Interceptor páncélzatából. <tag></tag> Ha
 túléled a karambolt, lapozz a <b>327</b>-re.
 </p>
+</div>
 <script>
 	p = new Page(168);
 	p.addAction(function(){
@@ -3363,12 +3376,9 @@ kezdeményezés. Ha győzöl, lapozz a <b>375</b>-re, de vonj le mindig 1
 <script>
 	p = new Page(178);
 	p.addAction(function(){
-		outlaw = new Enemy("Törvényenkívüli", 7, 5);
+		outlaw = new Enemy("Törvényenkívüli", 9, 12);
 		ACTFIGHT = new FightObj("gun", [outlaw]);
-		ACTFIGHT.powermod = -2;
 		Fight();
-		Fight();
-		cp.AddDP(2);
 	}, "fight");
 	p.addAction(rest, "rest");
 	p.addLink(375);
@@ -6100,11 +6110,11 @@ engedelmeskedsz, lapozz a <b>283</b>-ra. Ha a harcot választod, lapozz a
 Megfordítod az Interceptort, és visszahajtasz a fakapuhoz, ahol az őr
 géppisztolyával feléd bök. - Meggondoltad magad mi? - Lassan
 bólintasz, s vigyázol, hogy ne mutasd haragodat. Kinyitja a kaput, s
-emlékeztet, merre kell menned. Lapozz a <b>301</b>-ra.
+emlékeztet, merre kell menned. Lapozz a <b>300</b>-ra.
 </p>
 </div>
 <script>
-	LinkPage(330, [301]);
+	LinkPage(330, [300]);
 </script>
 
 
@@ -6269,7 +6279,7 @@ lapozz a <b>213</b>-ra.
 <img class="illust" src="imgs/341.jpg"/>
 <p>
 Egy mentőautót látsz az út szélén. Nincs a közelében senki. Ha meg akarsz
-állni, hogy átnézed, lapozz a <b>267</b>-re. Ha inkább tovább mész kelet
+állni, hogy átnézd, lapozz a <b>267</b>-re. Ha inkább tovább mész kelet
 felé, lapozz a <b>22</b>-re.
 </p>
 </div>
@@ -6341,12 +6351,12 @@ mint neki, lapozz a <b>226</b>-ra.
 <script>
 	p = new Page(345);
 	p.addAction(function(){
-		ACTPAGE.ende = 7+dice();
-		WrConsole("ellenfél pontja: "+ACTPAGE.ende);
+		ACTPAGE.myde = cp.dp+dice();
+		WrConsole("saját pontjaid: "+ACTPAGE.myde);
 	}, "dice");
 	p.addAction(function(){
-		ACTPAGE.myde = cp.dp+dice();
-		WrConsole("saját pontjiad: "+ACTPAGE.myde);
+		ACTPAGE.ende = 7+dice();
+		WrConsole("ellenfél pontja: "+ACTPAGE.ende);
 	}, "dice");
 	p.addLink(74, function(){return ACTPAGE.ende <= ACTPAGE.myde;});
 	p.addLink(226, function(){return ACTPAGE.ende > ACTPAGE.myde;});

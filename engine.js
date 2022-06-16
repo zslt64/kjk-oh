@@ -1,5 +1,6 @@
 ﻿var CONCONT;
 var CONSOLE = false;
+var DEBUG = false;
 var PAGES = new Object();
 var ACTPAGE;
 var NACB;
@@ -49,6 +50,9 @@ function Page(num){
 	this.links = new Array();
 	this.actions = new Array();
 	this.actAction = -1;
+	if (DEBUG) {
+		document.getElementById("debug").style.visibility="visible";
+	}
 }
 Page.prototype.addLink = function(destNum, cond){
 	this.links.push(new Link(this, destNum, cond));
@@ -180,6 +184,15 @@ function redo(){
 
 function rules(){
 	PAGES[381].start();
+}
+
+function jump(page){
+	PAGES[page].start();
+}
+
+function jumpByInput(id){
+	var page = document.getElementById(id).value;
+	jump(page);
 }
 
 function dicehtml(d){
@@ -480,7 +493,7 @@ function Fight(){
 	if (fobj.rounds == 0){
 		WrConsole("harc kezdődik");
 		
-		if (fobj.type == "car"){
+		if (fobj.type == "car" && vp.ro > 0){
 			ROCKETB.disabled = false;
 		} else if (fobj.type == "gun" || fobj.type == "hand"){
 			MEDKITB.disabled = true;
@@ -510,10 +523,13 @@ function Fight(){
 	}
 	
 	var end = false;
-	
 	for (var i=0;i<fobj.enemies.length;++i){
 	
 		var en = fobj.enemies[i];
+
+		if (en.n == 'Törvényenkívüli' && fobj.rounds == 1) {
+			myp -= 2;
+		}
 		if (!en.active){
 			continue;
 		}		
@@ -645,13 +661,17 @@ function UseRocket(){
 		return;
 	}
 	WrConsole("BUMMM, rakéta támadás");
+	var en;
 	for (var i = 0; i<ACTFIGHT.enemies.length; ++i){
 		en = ACTFIGHT.enemies[i];
-		en.hp = 0;
-		en.active = false;
-		en.hmark.innerHTML = en.hp;
+		if (en.active) {
+			en.hp = 0;
+			en.active = false;
+			en.hmark.innerHTML = en.hp;
 		
-		WrConsole(en.n + " kapmec");
+			WrConsole(en.n + " kampec");
+			break;
+		}
 	}
 	vp.AddRO(-1);
 	Fight();
@@ -699,7 +719,7 @@ function race(){
 	ACTPAGE.enloc += dice();
 	
 	WrConsole("te: "+ACTPAGE.myloc+" ellenfél: "+ACTPAGE.enloc);
-	if (24 <= ACTPAGE.enloc){
+	if (24 <= ACTPAGE.enloc && ACTPAGE.myloc < ACTPAGE.enloc){
 		ACTPAGE.winner = false;
 		WrConsole("vesztettél");
 		ACTPAGE.myloc = 0;
